@@ -1,15 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-sign-in',
   templateUrl: './sign-in.component.html',
   styleUrls: ['./sign-in.component.scss']
 })
-export class SignInComponent implements OnInit {
+export class SignInComponent{
+  constructor(private router: Router, private route: ActivatedRoute) { }
 
-  constructor() { }
-
-  ngOnInit(): void {
+  onSignupRedirect() {
+    // console.log('clicked')
+    this.router.navigate(['auth/signup']);
   }
 
 }

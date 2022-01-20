@@ -1,1 +1,25 @@
-<h1>Form</h1>
+<form class="credentials-form">
+  <h2>Welcome to the Library</h2>
+  <div class="form-group">
+    <label class="credentials-form__label" for="email">Email</label>
+    <input type="email" id="email" class="form-input" pInputText>
+  </div>
+  <div class="form-group">
+   <label class="credentials-form__label" for="password">Password</label>
+   <input type="password" id="password" class="form-input" pPassword />
+<!--    <p-password class="form-input&#45;&#45;password" [toggleMask]="true"></p-password>-->
+
+    <div class="settings-box">
+    <div class="field-checkbox">
+      <input type="checkbox" id="checkbox" class="checkbox" checked>
+      <label class="buttons-label" for="checkbox">Remember Me</label>
+    </div>
+
+      <button type="button" class="forgot-pass">Forgot Password</button>
+    </div>
+
+    <button type="submit" class="button">Sign In</button>
+
+    <button type="button" class="create-account-button" (click)="onSignupRedirect()">Create an account</button>
+  </div>
+</form>

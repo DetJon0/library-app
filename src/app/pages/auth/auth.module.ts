@@ -1,9 +1,12 @@
 import {NgModule} from "@angular/core";
 import {LayoutModule} from "../../layout/layout.module";
 import {RouterModule, Routes} from "@angular/router";
-import { SignInComponent } from './containers/sign-in/sign-in.component';
-import { SignUpComponent } from './containers/sign-up/sign-up.component';
-import {PasswordModule} from 'primeng/password';
+import {SignInComponent} from './containers/sign-in/sign-in.component';
+import {SignUpComponent} from './containers/sign-up/sign-up.component';
+import {PasswordModule } from 'primeng/password';
+import {FormsModule} from "@angular/forms";
+import {InputTextModule} from "primeng/inputtext";
+import {CheckboxModule} from 'primeng/checkbox';
 
 
 const routes: Routes = [
@@ -26,6 +29,9 @@ const routes: Routes = [
   imports: [LayoutModule,
     RouterModule.forChild(routes),
     PasswordModule,
+    FormsModule,
+    InputTextModule,
+    CheckboxModule
   ],
   exports: [RouterModule],
   declarations: [

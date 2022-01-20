@@ -11,6 +11,10 @@ html {
   /*font-size: 10px;*/
   /* Percentage of users browser font-size setting */
   font-size: 62.5%; /* 10px / 16px = 0.625 */
+
+  @media (max-width: 75em) {
+    font-size: 50%;
+  }
 }
 
 body {
@@ -19,4 +23,5 @@ body {
   font-weight: 400;
   overflow-x: hidden;
   color: #484848;
+  letter-spacing: 1;
 }
