@@ -7,6 +7,8 @@ import {PasswordModule } from 'primeng/password';
 import {FormsModule} from "@angular/forms";
 import {InputTextModule} from "primeng/inputtext";
 import {CheckboxModule} from 'primeng/checkbox';
+import {CommonModule} from "@angular/common";
+import {LoaddingSpinnerComponent} from "./components/loadding-spinner/loadding-spinner.component";
 
 
 const routes: Routes = [
@@ -31,12 +33,14 @@ const routes: Routes = [
     PasswordModule,
     FormsModule,
     InputTextModule,
-    CheckboxModule
+    CheckboxModule,
+    CommonModule
   ],
   exports: [RouterModule],
   declarations: [
     SignInComponent,
     SignUpComponent,
+    LoaddingSpinnerComponent
   ],
 })
 export class AuthModule {

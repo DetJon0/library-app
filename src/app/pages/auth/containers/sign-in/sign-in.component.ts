@@ -10,8 +10,7 @@ export class SignInComponent{
   constructor(private router: Router, private route: ActivatedRoute) { }
 
   onSignupRedirect() {
-    // console.log('clicked')
-    this.router.navigate(['auth/signup']);
+      this.router.navigate(['auth/signup']);
   }
 
 }
