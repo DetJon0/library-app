@@ -1,25 +1,32 @@
 import {NgModule} from "@angular/core";
 import {LayoutModule} from "../../layout/layout.module";
-import {AuthLayoutComponent} from "../../layout/auth-layout/auth-layout.component";
 import {RouterModule, Routes} from "@angular/router";
+import { SignInComponent } from './containers/sign-in/sign-in.component';
+import { SignUpComponent } from './containers/sign-up/sign-up.component';
 
 const routes: Routes = [
-  {
-    path: '',
-    component: AuthLayoutComponent,
-    children: [
-      { path: '', component: AuthLayoutComponent },
+      {
+        path: '',
+        redirectTo: 'signin',
+        pathMatch: 'full'
+      },
       {
         path: 'signin',
-        component: AuthLayoutComponent,
+        component: SignInComponent,
       },
-    ],
-  },
+      {
+        path: 'signup',
+        component: SignUpComponent,
+      },
 ];
 
 @NgModule({
   imports: [LayoutModule, RouterModule.forChild(routes)],
   exports: [RouterModule],
+  declarations: [
+    SignInComponent,
+    SignUpComponent,
+  ],
 })
 export class AuthModule {
 

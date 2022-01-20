@@ -10,7 +10,8 @@ import { RouterModule } from "@angular/router";
     MainLayoutComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    RouterModule
   ]
 })
 export class LayoutModule { }
