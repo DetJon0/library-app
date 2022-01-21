@@ -9,6 +9,7 @@ import {InputTextModule} from "primeng/inputtext";
 import {CheckboxModule} from 'primeng/checkbox';
 import {CommonModule} from "@angular/common";
 import {SharedModule} from "../../shared/shared.module";
+import {ForgotPasswordComponent} from "./containers/forgot-password/forgot-password.component";
 
 const routes: Routes = [
       {
@@ -23,6 +24,10 @@ const routes: Routes = [
       {
         path: 'signup',
         component: SignUpComponent,
+      },
+      {
+        path: 'forgot-password',
+        component: ForgotPasswordComponent,
       },
 ];
 
@@ -41,6 +46,7 @@ const routes: Routes = [
   declarations: [
     SignInComponent,
     SignUpComponent,
+    ForgotPasswordComponent
   ],
 })
 export class AuthModule {

@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { Router} from "@angular/router";
 import {FormBuilder, Validators} from "@angular/forms";
-import {passwordFunction} from "../../../utils/password-function";
 
 @Component({
   selector: 'app-sign-in',
@@ -23,6 +22,10 @@ export class SignInComponent{
       ]
     ]
   });
+
+  onForgotPassword() {
+    this.router.navigate(['auth/forgot-password'])
+  }
 
   onSignupRedirect() {
       this.router.navigate(['auth/signup']);
