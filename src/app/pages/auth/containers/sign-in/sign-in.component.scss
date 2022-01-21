@@ -36,23 +36,6 @@ h2 {
   border-radius: 7px;
 }
 
-:host {
-  ::ng-deep .p-component {
-    font-size: 1.4rem;
-    padding: 1.2rem;
-    width: 100%;
-    border: none;
-    border-radius: 7px;
-  }
-}
-
-:host {
-  ::ng-deep .p-inputtext:enabled:focus {
-    content: "";
-    //transform: scale(1.1);
-  }
-}
-
 .settings-box {
   display: flex;
   align-items: center;
@@ -96,6 +79,15 @@ h2 {
   background-color: var(--primary-color);
   margin-top: 2rem;
   border: none;
+  transition: all .2s;
+
+  &:hover {
+    background-color: var(--secondary-color);
+  }
+
+  &:active {
+    background-color: var(--tertiary-color-dark);
+  }
 }
 
 .create-account-button {
@@ -104,4 +96,13 @@ h2 {
   font-weight: 400;
   border: none;
   color: var(--primary-color);
+}
+
+.error-message {
+  margin-top: 1rem;
+  font-size: 1.2rem;
+}
+
+input.ng-touched.ng-invalid {
+  border: 1px solid red;
 }

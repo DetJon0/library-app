@@ -4,12 +4,11 @@ import {RouterModule, Routes} from "@angular/router";
 import {SignInComponent} from './containers/sign-in/sign-in.component';
 import {SignUpComponent} from './containers/sign-up/sign-up.component';
 import {PasswordModule } from 'primeng/password';
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {InputTextModule} from "primeng/inputtext";
 import {CheckboxModule} from 'primeng/checkbox';
 import {CommonModule} from "@angular/common";
-import {LoaddingSpinnerComponent} from "./components/loadding-spinner/loadding-spinner.component";
-
+import {SharedModule} from "../../shared/shared.module";
 
 const routes: Routes = [
       {
@@ -34,13 +33,14 @@ const routes: Routes = [
     FormsModule,
     InputTextModule,
     CheckboxModule,
-    CommonModule
+    ReactiveFormsModule,
+    CommonModule,
+    SharedModule
   ],
   exports: [RouterModule],
   declarations: [
     SignInComponent,
     SignUpComponent,
-    LoaddingSpinnerComponent
   ],
 })
 export class AuthModule {

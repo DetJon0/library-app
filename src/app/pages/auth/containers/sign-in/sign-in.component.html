@@ -1,14 +1,22 @@
-<form class="credentials-form">
+<form [formGroup]="form" class="credentials-form">
   <h2>Welcome to the Library</h2>
   <div class="form-group">
     <label class="credentials-form__label" for="email">Email</label>
-    <input type="email" id="email" class="form-input" pInputText>
+    <input type="email" email="true" id="email" class="form-input" formControlName="email" pInputText>
+    <p class="error-message"
+       *ngIf="!form.get('email')?.valid && form.get('email')?.touched"
+    >
+      Please enter a valid email.
+    </p>
   </div>
   <div class="form-group">
    <label class="credentials-form__label" for="password">Password</label>
-<!--   <input type="password" id="password" class="form-input" pPassword />-->
-    <p-password></p-password>
-<!--    <p-password class="form-input&#45;&#45;password" [toggleMask]="true"></p-password>-->
+   <input type="password" id="password" class="form-input" formControlName="password" pInputText/>
+    <p class="error-message"
+       *ngIf="!form.get('password')?.valid && form.get('password')?.touched"
+    >
+      Please enter a valid password.
+    </p>
 
     <div class="settings-box">
     <div class="field-checkbox">
@@ -19,7 +27,7 @@
       <button type="button" class="forgot-pass">Forgot Password</button>
     </div>
 
-    <button type="submit" class="button">Sign In</button>
+    <button type="submit" class="button" [disabled]="!form.valid" >Sign In</button>
 
     <button type="button" class="create-account-button" (click)="onSignupRedirect()">Create an account</button>
   </div>

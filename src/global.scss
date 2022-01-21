@@ -9,6 +9,8 @@
 
 /** Ionic CSS Variables **/
 
+
+
 :root {
   /** responsiveness **/
   //--bp-largest: 75em; // 1200px
@@ -18,6 +20,16 @@
 
   /** colors **/
   --primary-color: #409eff;
+  --secondary-color: #67a8f8;
+  --tertiary-color-dark: #3d87e5;
 
   --buttons-color: #409efc;
+
+  @mixin button-format {
+    font-size: 1.4rem;
+    color: #fff;
+    font-weight: 500;
+    background-color: var(--primary-color);
+    border: none;
+  }
 }

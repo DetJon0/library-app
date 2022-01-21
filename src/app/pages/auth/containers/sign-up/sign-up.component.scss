@@ -55,12 +55,26 @@ h2 {
   background-color: var(--primary-color);
   margin-top: 2rem;
   border: none;
+  transition: all .2s;
+
+  &:hover {
+    background-color: var(--secondary-color);
+  }
 }
 
-.signin-button {
+.signin-account-button {
   margin-top: 2rem;
   font-size: 1.4rem;
   font-weight: 400;
   border: none;
   color: var(--primary-color);
+}
+
+.error-message {
+  margin-top: 1rem;
+  font-size: 1.2rem;
+}
+
+input.ng-touched.ng-invalid {
+  border: 1px solid red;
 }
