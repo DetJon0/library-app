@@ -23,6 +23,14 @@ export class SignInComponent{
     ]
   });
 
+  onSignIn() {
+    if (!this.form.valid) {
+      return;
+    }
+    const email = this.form.value.email;
+    const password = this.form.value.password;
+  }
+
   onForgotPassword() {
     this.router.navigate(['auth/forgot-password'])
   }

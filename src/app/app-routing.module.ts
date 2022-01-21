@@ -12,7 +12,8 @@ const appRoutes: Routes = [
           import('./pages/auth/auth.module').then((m) => m.AuthModule),
       }
     ]
-  }
+  },
+    // { path: 'not-found', component:  }
 ]
 ;
 
