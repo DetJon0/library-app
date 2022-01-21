@@ -32,7 +32,8 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [LayoutModule,
+  imports: [
+    LayoutModule,
     RouterModule.forChild(routes),
     PasswordModule,
     FormsModule,

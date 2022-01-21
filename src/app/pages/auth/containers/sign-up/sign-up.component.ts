@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import {Router} from "@angular/router";
 import {FormBuilder, Validators} from "@angular/forms";
-import {passwordFunction} from "../../../utils/password-function";
+import {passwordFunction} from "../../utils/password-function";
 
 @Component({
   selector: 'app-sign-up',
