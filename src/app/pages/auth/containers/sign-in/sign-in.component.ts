@@ -54,11 +54,17 @@ export class SignInComponent {
         console.log(token);
         this.authService.me().pipe(take(1)).subscribe({
           next: (me: User) => {
-            //krijo modelin e userit
+            // morem me qe i referohet modelit te userit
+
+            // Vendosim tokenin ne Behaviour Subject
             this.authStore.setToken(token);
+
             //nese useri ka zgjedhur remember me ruaje dhe ne localstorage
+            // Vendosim te dhenat e profilit
             this.authStore.setUser(me)
-            this.router.navigateByUrl('/');
+
+            // Bejme navigate ne hyrje te aplikacionit
+            this.router.navigateByUrl('/loan');
           },
           error: err => {
             console.log(err);
