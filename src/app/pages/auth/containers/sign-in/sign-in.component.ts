@@ -7,7 +7,7 @@ import {FormBuilder, Validators} from "@angular/forms";
   templateUrl: './sign-in.component.html',
   styleUrls: ['./sign-in.component.scss']
 })
-export class SignInComponent{
+export class SignInComponent {
   constructor(private router: Router, private fb: FormBuilder) { }
 
   form = this.fb.group({
@@ -29,6 +29,11 @@ export class SignInComponent{
     }
     const email = this.form.value.email;
     const password = this.form.value.password;
+
+    // this.authService.login(email,password).subscribe((resData) => {
+    //   console.log(resData);
+    // })
+
   }
 
   onForgotPassword() {

@@ -41,7 +41,7 @@ const routes: Routes = [
     CheckboxModule,
     ReactiveFormsModule,
     CommonModule,
-    SharedModule
+    SharedModule,
   ],
   exports: [RouterModule],
   declarations: [
