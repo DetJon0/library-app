@@ -10,6 +10,7 @@ import {CheckboxModule} from 'primeng/checkbox';
 import {CommonModule} from "@angular/common";
 import {SharedModule} from "../../shared/shared.module";
 import {ForgotPasswordComponent} from "./containers/forgot-password/forgot-password.component";
+import {HttpClientModule} from "@angular/common/http";
 
 const routes: Routes = [
       {
@@ -33,7 +34,6 @@ const routes: Routes = [
 
 @NgModule({
   imports: [
-    LayoutModule,
     RouterModule.forChild(routes),
     PasswordModule,
     FormsModule,

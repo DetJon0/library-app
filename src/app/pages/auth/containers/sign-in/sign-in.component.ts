@@ -1,6 +1,10 @@
-import { Component } from '@angular/core';
-import { Router} from "@angular/router";
+import {Component} from '@angular/core';
+import {Router} from "@angular/router";
 import {FormBuilder, Validators} from "@angular/forms";
+import {AuthService} from "../../services/auth.service";
+import {take} from "rxjs";
+import {AuthStore} from "../../../../core/services/auth.store";
+import {User} from "../../../../models/user.model";
 
 @Component({
   selector: 'app-sign-in',
@@ -8,15 +12,22 @@ import {FormBuilder, Validators} from "@angular/forms";
   styleUrls: ['./sign-in.component.scss']
 })
 export class SignInComponent {
-  constructor(private router: Router, private fb: FormBuilder) { }
+
+  constructor(
+    private router: Router,
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private authStore: AuthStore
+  ) {
+  }
 
   form = this.fb.group({
     'email': ['', {
-      validators:[
+      validators: [
         Validators.required,
         Validators.minLength(6)]
     }],
-    'password':[
+    'password': [
       '',
       [Validators.required
       ]
@@ -30,10 +41,37 @@ export class SignInComponent {
     const email = this.form.value.email;
     const password = this.form.value.password;
 
-    // this.authService.login(email,password).subscribe((resData) => {
-    //   console.log(resData);
-    // })
+    // this.authService.login(email,password).pipe(
+    //   tap(token => this.authStore.setToken(token)),
+    //   concatMap(token => this.authService.me().pipe(me => this.authStore.setUser(me)))).subscribe()
 
+    // modeli i behaviour subject do jete {token: string, user: User (modeli i response te me())
+
+    //krijo interceptorin qe merr tokenin nga servisi qe ka behaviour subject qe te thirrja e dyte ta coje me token
+
+    this.authService.login(email, password).pipe(take(1)).subscribe({
+      next: token => {
+        console.log(token);
+        this.authService.me().pipe(take(1)).subscribe({
+          next: (me: User) => {
+            //krijo modelin e userit
+            this.authStore.setToken(token);
+            //nese useri ka zgjedhur remember me ruaje dhe ne localstorage
+            this.authStore.setUser(me)
+            this.router.navigateByUrl('/');
+          },
+          error: err => {
+            console.log(err);
+            //  shto nje toast qe shfaq err.message
+          }
+        })
+      },
+      error: err => {
+        console.log(err);
+        //  shto nje toast qe shfaq err.message
+      }
+
+    })
   }
 
   onForgotPassword() {
@@ -41,7 +79,7 @@ export class SignInComponent {
   }
 
   onSignupRedirect() {
-      this.router.navigate(['auth/signup']);
+    this.router.navigate(['auth/signup']);
   }
 
 }
