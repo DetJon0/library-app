@@ -30,7 +30,7 @@ export class AuthStore {
     return this.state$$.getValue().token;
   }
 
-  setToken(token: string): void {
+  setToken(token: string | null): void {
     // we set the token to our initial state
     this.state$$.next({...this.state, token});
   }
@@ -41,7 +41,7 @@ export class AuthStore {
   }
 
   setState(state: AuthState): void {
-    this.state$$.next({...this.state});
+    this.state$$.next({...state});
   }
 
 }

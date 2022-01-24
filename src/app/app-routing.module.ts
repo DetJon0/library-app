@@ -6,6 +6,7 @@ import {MainLayoutComponent} from "./layout/main-layout/main-layout.component";
 const appRoutes: Routes = [
   {path: '', redirectTo: '/auth/signin', pathMatch: 'full'},
   {
+    // non auth guard
     path: 'auth', component: AuthLayoutComponent, children: [
       {
         path: '',
@@ -15,6 +16,7 @@ const appRoutes: Routes = [
     ]
   },
     {
+      //auth guards
       path: '', component: MainLayoutComponent, children: [
         {
           path: 'loan',

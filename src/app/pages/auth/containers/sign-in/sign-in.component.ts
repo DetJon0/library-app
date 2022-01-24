@@ -5,6 +5,7 @@ import {AuthService} from "../../services/auth.service";
 import {take} from "rxjs";
 import {AuthStore} from "../../../../core/services/auth.store";
 import {User} from "../../../../models/user.model";
+import {MessageService} from "primeng/api";
 
 @Component({
   selector: 'app-sign-in',
@@ -17,21 +18,23 @@ export class SignInComponent {
     private router: Router,
     private fb: FormBuilder,
     private authService: AuthService,
-    private authStore: AuthStore
+    private authStore: AuthStore,
+    private messageService: MessageService
   ) {
   }
 
   form = this.fb.group({
-    'email': ['', {
+    email: ['test@gmail.com', {
       validators: [
         Validators.required,
         Validators.minLength(6)]
     }],
-    'password': [
-      '',
+    password: [
+      '12345678',
       [Validators.required
       ]
-    ]
+    ],
+    rememberMe: [true]
   });
 
   onSignIn() {
@@ -52,22 +55,27 @@ export class SignInComponent {
     this.authService.login(email, password).pipe(take(1)).subscribe({
       next: token => {
         console.log(token);
+        // Vendosim tokenin ne Behaviour Subject
+        this.authStore.setToken(token);
         this.authService.me().pipe(take(1)).subscribe({
           next: (me: User) => {
             // morem me qe i referohet modelit te userit
 
-            // Vendosim tokenin ne Behaviour Subject
-            this.authStore.setToken(token);
-
             //nese useri ka zgjedhur remember me ruaje dhe ne localstorage
+
             // Vendosim te dhenat e profilit
             this.authStore.setUser(me)
-
+            if (!!this.form.get('rememberMe')?.value) {
+              localStorage.setItem('token', token);
+            }
             // Bejme navigate ne hyrje te aplikacionit
+            this.messageService.add({key: 'toast', detail: 'Success', severity: 'success', summary: 'Logged in succesfully'})
             this.router.navigateByUrl('/loan');
           },
           error: err => {
             console.log(err);
+            this.authStore.setToken(null);
+            localStorage.removeItem('token');
             //  shto nje toast qe shfaq err.message
           }
         })

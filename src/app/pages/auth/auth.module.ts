@@ -1,5 +1,5 @@
 import {NgModule} from "@angular/core";
-import {LayoutModule} from "../../layout/layout.module";
+// import {LayoutModule} from "../../layout/layout.module";
 import {RouterModule, Routes} from "@angular/router";
 import {SignInComponent} from './containers/sign-in/sign-in.component';
 import {SignUpComponent} from './containers/sign-up/sign-up.component';
@@ -10,7 +10,6 @@ import {CheckboxModule} from 'primeng/checkbox';
 import {CommonModule} from "@angular/common";
 import {SharedModule} from "../../shared/shared.module";
 import {ForgotPasswordComponent} from "./containers/forgot-password/forgot-password.component";
-import {HttpClientModule} from "@angular/common/http";
 
 const routes: Routes = [
       {
