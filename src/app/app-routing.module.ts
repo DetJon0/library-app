@@ -15,11 +15,11 @@ const appRoutes: Routes = [
     ]
   },
     {
-      path: 'loan', component: MainLayoutComponent, children: [
+      path: '', component: MainLayoutComponent, children: [
         {
-          path: '',
+          path: 'loan',
           loadChildren: () =>
-            import('./pages/auth/auth.module').then((m) => m.AuthModule),
+            import('./pages/loan/loan.module').then((m) => m.LoanModule),
         }
       ]
     }
