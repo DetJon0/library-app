@@ -3,6 +3,7 @@ import {RouterModule, Routes} from "@angular/router";
 import {AuthLayoutComponent} from "./layout/auth-layout/auth-layout.component";
 import {MainLayoutComponent} from "./layout/main-layout/main-layout.component";
 import {AuthGuard} from "./core/guards/auth.guard";
+import {NonAuthGuard} from "./core/guards/non-auth.guard";
 
 const appRoutes: Routes = [
   {path: '', redirectTo: '/auth/signin', pathMatch: 'full'},
@@ -11,6 +12,7 @@ const appRoutes: Routes = [
     path: 'auth', component: AuthLayoutComponent, children: [
       {
         path: '',
+        canActivate: [NonAuthGuard],
         loadChildren: () =>
           import('./pages/auth/auth.module').then((m) => m.AuthModule),
       }

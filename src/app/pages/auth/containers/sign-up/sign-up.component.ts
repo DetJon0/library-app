@@ -53,7 +53,7 @@ export class SignUpComponent {
       },
       error: err => {
         console.log(err);
-        this.messageService.add({key: 'toast', detail: 'Error', severity: 'error', summary: err.message})
+        this.messageService.add({key: 'toast', detail: 'Error', severity: 'error', summary: 'Email is taken. Please use another one'})
       }
 
     })
