@@ -54,7 +54,7 @@ export class SignInComponent {
 
     this.authService.login(email, password).pipe(take(1)).subscribe({
       next: token => {
-        console.log(token);
+        // console.log(token);
         // Vendosim tokenin ne Behaviour Subject
         this.authStore.setToken(token);
         this.authService.me().pipe(take(1)).subscribe({
@@ -76,13 +76,13 @@ export class SignInComponent {
             console.log(err);
             this.authStore.setToken(null);
             localStorage.removeItem('token');
-            //  shto nje toast qe shfaq err.message
+            this.messageService.add({key: 'toast', detail: 'Success', severity: 'error', summary: err.message})
           }
         })
       },
       error: err => {
         console.log(err);
-        //  shto nje toast qe shfaq err.message
+        this.messageService.add({key: 'toast', detail: 'Error', severity: 'error', summary: 'Sorry, we don\'t recognize your credentials'})
       }
 
     })

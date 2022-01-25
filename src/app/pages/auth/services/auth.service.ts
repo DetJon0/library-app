@@ -20,4 +20,11 @@ export class AuthService {
     return this.http.get(`${environment.apiUrl}/api/auth/me`);
   }
 
+  signup(email: string, password: string): Observable<any> {
+    return this.http.post(`${environment.apiUrl}/api/auth/sign-up`, {
+      email: email,
+      password: password
+    }, {responseType: 'text'})
+  }
+
 }

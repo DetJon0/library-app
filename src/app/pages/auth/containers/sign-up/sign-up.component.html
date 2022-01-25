@@ -1,4 +1,4 @@
-<form [formGroup]="form" (ngSubmit)="onSignup()" class="credentials-form">
+<form [formGroup]="form" class="credentials-form">
   <h2>Welcome to the Library</h2>
   <div class="form-group">
     <label class="credentials-form__label" for="email">Email</label>
@@ -24,7 +24,7 @@
       Please input a valid password with atleast 6 characters, 1 uppercase, 1 lowercase, 1 numeric.
     </p>
 
-    <button type="submit" class="button">Sign Up</button>
+    <button type="submit" class="button" (click)="onSignup()" >Sign Up</button>
     <button type="button" class="signin-account-button" (click)="onSigninRedirect()">Already have an account? Sign in.</button>
   </div>
 </form>

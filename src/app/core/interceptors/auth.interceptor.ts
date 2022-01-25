@@ -8,7 +8,7 @@ export class AuthInterceptor implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>, next: HttpHandler ) {
     const token = this.authStore.token;
-    console.log(token)
+    console.log(token);
 
     if(token) {
       let modifiedReq = req.clone({
