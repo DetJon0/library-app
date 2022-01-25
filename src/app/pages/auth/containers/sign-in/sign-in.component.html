@@ -28,6 +28,9 @@
     </div>
 
     <button type="submit" class="button" [disabled]="!form.valid" (click)="onSignIn()" >Sign In</button>
+<!--    <div *ngIf="isLoading">-->
+<!--      <app-loading-spinner></app-loading-spinner>-->
+<!--    </div>-->
 
     <button type="button" class="create-account-button" (click)="onSignupRedirect()">Create an account</button>
   </div>

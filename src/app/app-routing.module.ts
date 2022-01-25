@@ -2,6 +2,7 @@ import {NgModule} from "@angular/core";
 import {RouterModule, Routes} from "@angular/router";
 import {AuthLayoutComponent} from "./layout/auth-layout/auth-layout.component";
 import {MainLayoutComponent} from "./layout/main-layout/main-layout.component";
+import {AuthGuard} from "./core/guards/auth.guard";
 
 const appRoutes: Routes = [
   {path: '', redirectTo: '/auth/signin', pathMatch: 'full'},
@@ -20,6 +21,7 @@ const appRoutes: Routes = [
       path: '', component: MainLayoutComponent, children: [
         {
           path: 'loan',
+          canActivate: [AuthGuard],
           loadChildren: () =>
             import('./pages/loan/loan.module').then((m) => m.LoanModule),
         }

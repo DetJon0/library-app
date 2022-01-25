@@ -13,6 +13,7 @@ import {MessageService} from "primeng/api";
   styleUrls: ['./sign-in.component.scss']
 })
 export class SignInComponent {
+  // isLoading = false;
 
   constructor(
     private router: Router,
@@ -43,6 +44,7 @@ export class SignInComponent {
     }
     const email = this.form.value.email;
     const password = this.form.value.password;
+    // this.isLoading = true;
 
     // this.authService.login(email,password).pipe(
     //   tap(token => this.authStore.setToken(token)),
@@ -71,11 +73,13 @@ export class SignInComponent {
             // Bejme navigate ne hyrje te aplikacionit
             this.messageService.add({key: 'toast', detail: 'Success', severity: 'success', summary: 'Logged in succesfully'})
             this.router.navigateByUrl('/loan');
+            // this.isLoading = false;
           },
           error: err => {
             console.log(err);
             this.authStore.setToken(null);
             localStorage.removeItem('token');
+            // this.isLoading = false;
             this.messageService.add({key: 'toast', detail: 'Success', severity: 'error', summary: err.message})
           }
         })
