@@ -1,2 +1,34 @@
-<h1>main-layout works!</h1>
+<div class="main-container">
+  <header>
+    <div class="buttons-box">
+      <p-sidebar [(visible)]="visibleSidebar1" [modal]="false" [baseZIndex]="10000">
+        <h3>Library</h3>
+      <div class="list-background">
+        <ul class="links-list">
+          <li><a class="sidebar-links">Audit Logs</a></li>
+          <li><a class="sidebar-links">Settings</a></li>
+          <li><a class="sidebar-links">Users</a></li>
+          <li><a class="sidebar-links active">Loans</a></li>
+          <li><a class="sidebar-links">Books</a></li>
+        </ul>
+      </div>
+    </p-sidebar>
+
+    <p-button type="button" class="mr-2" (click)="!visibleSidebar1 = true" icon="pi pi-arrow-right"></p-button>
+
+    </div>
+
+    <div class="profile-details-box">
+<!--      <div class="circle">-->
+<!--        <div *ngIf="showInitials" class="initials">-->
+<!--          {{ initials }}-->
+<!--        </div>-->
+<!--      </div>-->
+      <p-megaMenu [model]="items" styleClass="user-panel">
+      </p-megaMenu>
+
+    </div>
+  </header>
+
+</div>
 <router-outlet></router-outlet>

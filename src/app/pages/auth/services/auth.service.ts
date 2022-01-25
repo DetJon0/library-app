@@ -2,12 +2,14 @@ import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../../../environments/environment";
 import {Observable} from "rxjs";
+import {AuthStore} from "../../../core/services/auth.store";
+import {Router} from "@angular/router";
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private authStore: AuthStore, private router: Router) {}
 
   login(email: string, password: string): Observable<any> {
     return this.http.post(`${environment.apiUrl}/api/auth/sign-in`, {
@@ -25,6 +27,12 @@ export class AuthService {
       email: email,
       password: password
     }, {responseType: 'text'})
+  }
+
+  logout() {
+    this.authStore.setState({ token: null, user: null });
+    localStorage.clear();
+    this.router.navigate(['/auth/signin']);
   }
 
 }

@@ -11,10 +11,4 @@ export class LoanComponent {
 
   constructor(private authStore: AuthStore, private router: Router) { }
 
-  onLogout() {
-    this.authStore.state.user = null;
-    localStorage.clear();
-    this.router.navigate(['/auth/signin']);
-  }
-
 }

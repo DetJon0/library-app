@@ -25,6 +25,8 @@
 
   --buttons-color: #409efc;
 
+  --light-active-color: rgba(103, 168, 248, 0.18);
+
   @mixin button-format {
     font-size: 1.4rem;
     color: #fff;
