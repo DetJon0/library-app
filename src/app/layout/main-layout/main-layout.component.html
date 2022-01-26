@@ -5,13 +5,14 @@
       <li><a class="sidebar-links">Audit Logs</a></li>
       <li><a class="sidebar-links">Settings</a></li>
       <li><a class="sidebar-links">Users</a></li>
-      <li><a class="sidebar-links active">Loans</a></li>
+      <li><a routerLink="loan" class="sidebar-links active">Loans</a></li>
       <li><a class="sidebar-links">Books</a></li>
     </ul>
   </div>
 
   <div class="page-container">
        <header>
+         <app-profile-avatar [name]="name"></app-profile-avatar>
         <div class="profile-details-box">
           <p-megaMenu [model]="items" styleClass="user-panel">
           </p-megaMenu>
@@ -19,7 +20,6 @@
        </header>
 
        <div class="page-view">
-          <h1>Test</h1>
           <router-outlet></router-outlet>
        </div>
   </div>

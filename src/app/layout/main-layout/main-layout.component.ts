@@ -29,7 +29,7 @@ export class MainLayoutComponent implements OnInit {
         items: [
           [
             {
-              items: [{ label: 'Edit Profile' ,routerLink: '/auth/signup'},
+              items: [{ label: 'Edit Profile' ,routerLink: '/edit-profile'},
                 { label: 'Logout', command: () => this.onProfileLogout()}]
             }
           ]

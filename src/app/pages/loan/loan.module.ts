@@ -12,7 +12,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [
-    LayoutModule,
+    // LayoutModule,
     RouterModule.forChild(routes)
   ],
   declarations: [

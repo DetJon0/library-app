@@ -6,11 +6,13 @@ import { RouterModule} from "@angular/router";
 import {SidebarModule} from "primeng/sidebar";
 import {ButtonModule} from 'primeng/button';
 import {MegaMenuModule} from 'primeng/megamenu';
+import {ProfileAvatarComponent} from "./main-layout/components/profile-avatar.component";
 
 @NgModule({
   declarations: [
     AuthLayoutComponent,
     MainLayoutComponent,
+    ProfileAvatarComponent
   ],
   imports: [
     CommonModule,

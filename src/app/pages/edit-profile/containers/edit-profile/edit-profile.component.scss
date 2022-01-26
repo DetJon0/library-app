@@ -1,0 +1,132 @@
+.edit-profile-view {
+  padding: 2rem;
+  height: 100%;
+  background-color: #eee;
+
+  .edit-profile-container {
+    padding: 4rem;
+    background-color: white;
+    height: 90%;
+
+    .form-container {
+      height: 100%;
+
+      h1 {
+        font-weight: 600;
+      }
+
+      .button {
+        font-size: 1.4rem;
+        color: #fff;
+        font-weight: 500;
+        padding: 1.4rem 2rem;
+        border-radius: 7px;
+        background-color: var(--primary-color);
+        margin-top: 2rem;
+        border: none;
+        transition: all .2s;
+
+        &:hover {
+          background-color: var(--secondary-color);
+        }
+
+        &:active {
+          background-color: var(--tertiary-color-dark);
+        }
+      }
+
+      .cancel-button {
+        margin-left: 1.3rem;
+        background: none;
+        border: 1px solid var(--buttons-color);
+        margin-top: 2rem;
+        padding: 1.3rem 1.9rem;
+        border-radius: 7px;
+        font-size: 1.4rem;
+        font-weight: 400;
+        //border: none;
+        color: var(--primary-color);
+        transition: all .2s;
+
+        &:hover {
+          background-color: #f5f1f1;
+        }
+
+        &:active {
+          background-color: #e5e0e0;
+        }
+      }
+
+      form {
+        padding: 5rem;
+
+        .form-group {
+          margin-bottom: 3rem;
+
+          .error-message {
+            margin-top: 1rem;
+            font-size: 1.2rem;
+          }
+
+          .label-box {
+            margin-bottom: .8rem;
+
+            label {
+              font-size: 1.4rem;
+              margin-right: 1rem;
+              font-weight: 500;
+            }
+
+
+          }
+          .form-input {
+            font-size: 1.4rem;
+            height: 4.2rem;
+            padding-left: 1.5rem;
+            width: 40%;
+            border-radius: 7px;
+          }
+
+        }
+      }
+
+    }
+
+  }
+
+  .upload-img {
+    margin-bottom: 5rem;
+  }
+
+}
+
+:host ::ng-deep {
+  .p-inputtext {
+    font-size: 1.4rem;
+    height: 4.2rem;
+    padding-left: 1.5rem;
+    width: 40%;
+    border-radius: 7px;
+  }
+}
+
+:host ::ng-deep {
+  .p-button-label {
+    font-size: 1.4rem;
+  }
+}
+
+:host ::ng-deep {
+  .p-component {
+    img, svg {
+      width: 100%;
+    }
+  }
+}
+
+:host ::ng-deep {
+  .p-fileupload, .p-fileupload-row > div {
+    //margin-bottom: 15rem;
+    font-size: 1.4rem;
+  }
+}
