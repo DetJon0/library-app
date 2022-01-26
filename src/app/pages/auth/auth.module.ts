@@ -46,7 +46,7 @@ const routes: Routes = [
   declarations: [
     SignInComponent,
     SignUpComponent,
-    ForgotPasswordComponent
+    ForgotPasswordComponent,
   ],
 })
 export class AuthModule {
