@@ -3,7 +3,7 @@ import {EditProfileComponent} from "./containers/edit-profile/edit-profile.compo
 import {NgModule} from "@angular/core";
 import {ChipsModule} from 'primeng/chips';
 import {InputTextModule} from "primeng/inputtext";
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {CommonModule} from "@angular/common";
 import {InputMaskModule} from 'primeng/inputmask';
 import {FileUploadModule} from 'primeng/fileupload';
@@ -26,7 +26,8 @@ const routes: Routes = [
     ReactiveFormsModule,
     InputMaskModule,
     FileUploadModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   declarations: [
     EditProfileComponent

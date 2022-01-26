@@ -12,5 +12,6 @@ export interface User {
   updatedAt: string,
   __v: 0,
   authenticationUid: string,
-  id: string
+  id: string,
+  phoneNumber?: string,
 }

@@ -42,10 +42,10 @@
           </p>
         </div>
 
-        <p-fileUpload name="myfile[]" class="upload-img" url="./upload.php" multiple:boolean="multiple"
-                      accept="image/*" maxFileSize:number="1000000"></p-fileUpload>
+        <input type="file" (change)="onFile($event)">
 
-        <button type="submit" class="button" [disabled]="!form.valid" (click)="onSave()" >Save</button>
+
+        <button type="submit" class="button"  (click)="onSave()" >Save</button>
         <button type="button" class="cancel-button" (click)="onCancel()">Cancel</button>
 
       </form>

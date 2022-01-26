@@ -4,6 +4,8 @@ import {environment} from "../../../../environments/environment";
 import {Observable} from "rxjs";
 import {AuthStore} from "../../../core/services/auth.store";
 import {Router} from "@angular/router";
+import {User} from "../../../models/user.model";
+import {UserEdit} from "../../edit-profile/models/user-edit.model";
 
 @Injectable({
   providedIn: 'root',
@@ -29,10 +31,18 @@ export class AuthService {
     }, {responseType: 'text'})
   }
 
-  logout() {
+  edit(credentials: {  }) {
+    return this.http.put<{ }>(`${environment.apiUrl}/api/auth/profile`, {profile: {...credentials}});
+  }
+
+  logout(): void  {
     this.authStore.setState({ token: null, user: null });
     localStorage.clear();
     this.router.navigate(['/auth/signin']);
+  }
+
+  upload(file: any) {
+    return this.http.post('http://localhost:8080/api/upload/user/avatars/profile/iam', file);
   }
 
 }
