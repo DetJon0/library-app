@@ -1,3 +1,102 @@
-.test {
-  background-color: red;
+.loan-view {
+  padding: 2rem;
+  height: 100%;
+  background-color: #eee;
+
+  &__container {
+    padding: 4rem;
+    background-color: white;
+    height: 90%;
+
+    h1 {
+      font-weight: 600;
+    }
+
+    .button {
+      font-size: 1.4rem;
+      color: #fff;
+      font-weight: 500;
+      padding: 1.2rem 2rem;
+      border-radius: 4px;
+      background-color: var(--primary-color);
+      margin: 2rem 1.2rem 0 0;
+      border: none;
+      transition: all .2s;
+
+      &:hover {
+        background-color: var(--secondary-color);
+      }
+
+      &:active {
+        background-color: var(--tertiary-color-dark);
+      }
+    }
+
+    .audit-button {
+      font-size: 1.4rem;
+      color: rgba(28, 27, 27, 0.85);
+      font-weight: 500;
+      padding: 1.2rem 2rem;
+      border: 1px solid rgba(0,0,0, .2);
+      border-radius: 4px;
+      transition: all .2s;
+      margin: 2rem 1.2rem 0 0;
+      background-color: #fff;
+
+      &:hover {
+        color: var(--buttons-color);
+        background-color: rgba(61, 135, 229, .2);
+        border-color: rgba(61, 135, 229, .2);
+      }
+
+      &:active {
+        color: rgba(61, 135, 229, .4);
+        background-color: rgba(61, 135, 229, .4);
+      }
+    }
+  }
+
+  .loan-container {
+    //background-color: red;
+    margin-top: 3rem;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    height: 50%;
+
+    form {
+      padding: 5rem;
+
+      .form-group {
+        margin-bottom: 3rem;
+
+        .error-message {
+          margin-top: 1rem;
+          font-size: 1.2rem;
+        }
+
+        .label-box {
+          margin-bottom: .8rem;
+
+          label {
+            font-size: 1.4rem;
+            margin-right: 1rem;
+            font-weight: 500;
+          }
+
+
+        }
+        .form-input {
+          font-size: 1.4rem;
+          height: 4.2rem;
+          padding-left: 1.5rem;
+          width: 40%;
+          border-radius: 7px;
+          border: 1px solid rgba(0, 0, 0, 0.3);
+        }
+
+      }
+    }
+
+  }
+
 }

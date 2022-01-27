@@ -1,19 +1,27 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {MegaMenuItem} from "primeng/api";
 import {AuthService} from "../../pages/auth/services/auth.service";
 import {AuthStore} from "../../core/services/auth.store";
+import {tap} from "rxjs";
 
 @Component({
   selector: 'app-main-layout',
   templateUrl: './main-layout.component.html',
   styleUrls: ['./main-layout.component.scss']
 })
-export class MainLayoutComponent implements OnInit {
+export class MainLayoutComponent {
 
-  items!: MegaMenuItem[];
+  items: MegaMenuItem[] = this.getItems();
+
   visibleSidebar1 = true;
 
-  name = this.authStore.state.user?.firstName;
+
+  nameChanges$ = this.authStore.name$.pipe(
+    tap((name) => {
+      this.items = this.getItems()
+      }
+    )
+  );
 
   constructor(private authService: AuthService, private authStore: AuthStore) { }
 
@@ -21,21 +29,20 @@ export class MainLayoutComponent implements OnInit {
     this.authService.logout();
   }
 
-  ngOnInit() {
-
-    this.items = [
+  private getItems(): MegaMenuItem[] {
+    return [
       {
-        label: this.name,
+        label: this.authStore.getName(),
         items: [
           [
             {
-              items: [{ label: 'Edit Profile' ,routerLink: '/edit-profile'},
+              items: [{ label: 'Edit Profile', routerLink: '/edit-profile'},
                 { label: 'Logout', command: () => this.onProfileLogout()}]
             }
           ]
         ]
       }
-    ]
+    ];
   }
 
 }

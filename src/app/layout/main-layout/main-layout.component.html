@@ -11,17 +11,19 @@
   </div>
 
   <div class="page-container">
-       <header>
-         <app-profile-avatar [name]="name"></app-profile-avatar>
+    <header>
+      <ng-container *ngIf="nameChanges$ | async as name">
+        <app-profile-avatar [displayedName]="name + ''"></app-profile-avatar>
         <div class="profile-details-box">
           <p-megaMenu [model]="items" styleClass="user-panel">
           </p-megaMenu>
         </div>
-       </header>
+      </ng-container>
+    </header>
 
-       <div class="page-view">
-          <router-outlet></router-outlet>
-       </div>
+    <div class="page-view">
+      <router-outlet></router-outlet>
+    </div>
   </div>
 
 </div>

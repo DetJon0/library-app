@@ -18,6 +18,11 @@ export class AuthStore {
   state$$ = new BehaviorSubject<AuthState>(initialState)
   state$ = this.state$$.asObservable();
   user$ = this.state$.pipe(pluck('user'))
+  name$ = this.user$.pipe(pluck('firstName'))
+
+  getName(): string {
+    return this.state.user?.firstName ?? '';
+  }
 
   constructor() {
   }

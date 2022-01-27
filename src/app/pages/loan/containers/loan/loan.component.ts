@@ -1,14 +1,22 @@
-import { Component } from '@angular/core';
-import {AuthStore} from "../../../../core/services/auth.store";
-import {Router} from "@angular/router";
+import {Component, OnInit} from '@angular/core';
+import {CountryService} from "../../services/country.service";
 
 @Component({
   selector: 'app-loan',
   templateUrl: './loan.component.html',
   styleUrls: ['./loan.component.scss']
 })
-export class LoanComponent {
+export class LoanComponent implements OnInit {
 
-  constructor(private authStore: AuthStore, private router: Router) { }
+  countries!: any[];
+  selectedCountryAdvanced!: 'test';
+  filteredCountries!: any[];
+
+  constructor(private countryService: CountryService) { }
+
+  ngOnInit() {
+    this.countryService.getCountries();
+  }
+
 
 }

@@ -4,6 +4,7 @@ import {Router} from "@angular/router";
 import {AuthService} from "../../../auth/services/auth.service";
 import {AuthStore} from "../../../../core/services/auth.store";
 import {MessageService} from "primeng/api";
+import {take} from "rxjs";
 
 @Component({
   selector: 'app-edit-profile',
@@ -15,7 +16,11 @@ export class EditProfileComponent implements OnInit {
   fileName = '';
   file = null;
 
-  constructor(private fb: FormBuilder, private router: Router, private authService: AuthService, private messageService: MessageService) {
+  constructor(private fb: FormBuilder,
+              private router: Router,
+              private authService: AuthService,
+              private messageService: MessageService,
+              private authStore: AuthStore) {
   }
 
   form = this.fb.group({
@@ -95,12 +100,30 @@ export class EditProfileComponent implements OnInit {
     }
 
     this.authService.edit(credentials).subscribe(response => console.log(response))
-    this.messageService.add({key: 'toast', detail: 'Success', severity: 'success', summary: 'Profile updated succesfully'})
+    // this.messageService.add({key: 'toast', detail: 'Success', severity: 'success', summary: 'Profile updated succesfully'})
 
-    window.location.reload();
+    // this.authService.me().pipe(take(1)).subscribe({
+    //   next: (me: User) => {
+    //     me.firstName = newCredentials.firstName;
+    //     me.lastName = newCredentials.lastName;
+    //     me.phoneNumber = newCredentials.phoneNumber;
+    //
+    //     this.authStore.setUser(me);
+    //     console.log(this.authStore.state.user?.firstName);
+    //   }
+    // })
+    // }
 
-    // this.router.navigate(['/loan'], { relativeTo: this.route });
-    // this.authStore.setUser({ credentials })
+    this.authService.me().pipe(take(1)).subscribe((user) => {
+      user.firstName = newCredentials.firstName;
+      user.lastName = newCredentials.lastName;
+      user.phoneNumber = newCredentials.phoneNumber;
+
+      this.authStore.setUser(user);
+      console.log(user);
+      console.log(this.authStore.state);
+      console.log(this.authStore.state.user?.firstName);
+    });
 
     console.log(credentials)
   }

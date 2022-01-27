@@ -1,14 +1,20 @@
-import {ChangeDetectionStrategy, Component, Input, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-profile-avatar',
   templateUrl: './profile-avatar.component.html',
-  styleUrls: [ './profile-avatar.component.scss' ],
+  styleUrls: ['./profile-avatar.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProfileAvatarComponent implements OnInit {
 
-  @Input() name!: string | undefined;
+  name: string | null = '';
+
+  @Input() set displayedName(name: string | null) {
+    this.name = name;
+    this.createInititals();
+  }
 
   public showInitials = false;
   public initials!: string;
@@ -20,30 +26,28 @@ export class ProfileAvatarComponent implements OnInit {
     '#FFD558', // yellow
     '#3670B2', // blue
   ];
-  constructor() {}
 
-
-
+  constructor() {
+  }
 
   ngOnInit() {
-      this.showInitials = true;
-      this.createInititals();
+    this.showInitials = true;
+    this.createInititals();
 
-      const randomIndex = Math.floor(Math.random() * Math.floor(this.colors.length));
-      this.circleColor = this.colors[randomIndex];
-
+    const randomIndex = Math.floor(Math.random() * Math.floor(this.colors.length));
+    this.circleColor = this.colors[randomIndex];
   }
 
   private createInititals(): void {
     let initials = '';
     const words = this.name?.split(' ');
 
-    if(words) {
-    for (const initial of words) {
-      initials += initial.charAt(0).toUpperCase();
+    if (words) {
+      for (const initial of words) {
+        initials += initial.charAt(0).toUpperCase();
+      }
+      this.initials = initials;
     }
-    this.initials = initials;
-    }
-    }
+  }
 
 }
