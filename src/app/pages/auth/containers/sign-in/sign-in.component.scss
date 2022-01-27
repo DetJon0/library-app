@@ -106,3 +106,10 @@ h2 {
 input.ng-touched.ng-invalid {
   border: 1px solid red;
 }
+
+:host ::ng-deep {
+  .p-toast, .p-toast-message, .p-toast-content, .p-toast-summary {
+    //margin-bottom: 15rem;
+    font-size: 2rem;
+  }
+}

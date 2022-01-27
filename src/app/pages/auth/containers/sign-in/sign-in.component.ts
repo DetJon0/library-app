@@ -80,7 +80,7 @@ export class SignInComponent {
             this.authStore.setToken(null);
             localStorage.removeItem('token');
             // this.isLoading = false;
-            this.messageService.add({key: 'toast', detail: 'Success', severity: 'error', summary: err.message})
+            this.messageService.add({key: 'toast', detail: 'Error', severity: 'error', summary: err.message})
           }
         })
       },

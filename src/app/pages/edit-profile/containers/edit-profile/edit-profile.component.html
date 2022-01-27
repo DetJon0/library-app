@@ -20,11 +20,11 @@
 
         <div class="form-group">
           <div class="label-box">
-            <label class="credentials-form__label" for="fullName">Last Name</label>
+            <label class="credentials-form__label" for="lastName">Last Name</label>
           </div>
-          <input type="text" id="fullName" class="form-input" formControlName="fullName" pInputText>
+          <input type="text" id="lastName" class="form-input" formControlName="lastName" pInputText>
           <p class="error-message"
-             *ngIf="!form.get('fullName')?.valid && form.get('fullName')?.touched"
+             *ngIf="!form.get('lastName')?.valid && form.get('lastName')?.touched"
           >
             Please enter a valid name.
           </p>
@@ -45,7 +45,7 @@
         <input type="file" (change)="onFile($event)">
 
 
-        <button type="submit" class="button"  (click)="onSave()" >Save</button>
+        <button type="submit" class="button" [disabled]="!form.valid" (click)="onSave()" >Save</button>
         <button type="button" class="cancel-button" (click)="onCancel()">Cancel</button>
 
       </form>

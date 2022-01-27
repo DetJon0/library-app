@@ -41,7 +41,7 @@ export class AuthService {
     this.router.navigate(['/auth/signin']);
   }
 
-  upload(file: any) {
+  upload(file: any): Observable<any> {
     return this.http.post('http://localhost:8080/api/upload/user/avatars/profile/iam', file);
   }
 
