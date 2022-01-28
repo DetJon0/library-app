@@ -32,6 +32,12 @@ const appRoutes: Routes = [
           canActivate: [AuthGuard],
           loadChildren: () =>
             import('./pages/edit-profile/edit-profile.module').then((m) => m.EditProfileModule),
+        },
+        {
+          path: 'book',
+          canActivate: [AuthGuard],
+          loadChildren: () =>
+            import('./pages/books/books.module').then((m) => m.BooksModule),
         }
       ]
     }

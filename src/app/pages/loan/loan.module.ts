@@ -5,7 +5,7 @@ import {RouterModule, Routes} from "@angular/router";
 import {InputTextModule} from "primeng/inputtext";
 import {NewLoanComponent} from "./containers/new-loan/new-loan.component";
 import {AutoCompleteModule} from "primeng/autocomplete";
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { LoansFormComponent } from './components/loans-form/loans-form.component';
 import { LoansTableComponent } from './components/loans-table/loans-table.component';
 import { LoansFiltersComponent } from './components/loans-filters/loans-filters.component';
@@ -35,7 +35,8 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     InputTextModule,
     AutoCompleteModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   declarations: [
     LoanComponent,

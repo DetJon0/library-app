@@ -1,100 +1,103 @@
 <div class="form-box">
-<form class="form-layout">
-  <div class="form-group">
-    <div class="label-box">
-      <label class="form-label">Book</label>
+<form [formGroup]="form" class="form-layout">
+<!--  <div class="form-group">-->
+<!--    <div class="label-box">-->
+<!--      <label class="form-label">Book</label>-->
 
-      <p-autoComplete [(ngModel)]="selectedCountryAdvanced" [suggestions]="filteredCountries" field="name" [dropdown]="true">
-        <ng-template let-country pTemplate="item">
-          <div class="country-item">
-            <img src="assets/showcase/images/demo/flag/flag_placeholder.png" [class]="'flag flag-' + country.code.toLowerCase()" />
-            <div>{{country.name}}</div>
-          </div>
-        </ng-template>
-      </p-autoComplete>
+<!--      <p-autoComplete [(ngModel)]="selectedCountryAdvanced" [suggestions]="filteredCountries" field="name" [dropdown]="true">-->
+<!--        <ng-template let-country pTemplate="item">-->
+<!--          <div class="country-item">-->
+<!--            <img src="assets/showcase/images/demo/flag/flag_placeholder.png" [class]="'flag flag-' + country.code.toLowerCase()" />-->
+<!--            <div>{{country.name}}</div>-->
+<!--          </div>-->
+<!--        </ng-template>-->
+<!--      </p-autoComplete>-->
 
-    </div>
-  </div>
+<!--    </div>-->
+<!--  </div>-->
 
-  <div class="form-group">
-    <div class="label-box">
-      <label class="form-label">Member</label>
+<!--  <div class="form-group">-->
+<!--    <div class="label-box">-->
+<!--      <label class="form-label">Member</label>-->
 
-      <p-autoComplete [(ngModel)]="selectedCountryAdvanced" [suggestions]="filteredCountries" field="name" [dropdown]="true">
-        <ng-template let-country pTemplate="item">
-          <div class="country-item">
-            <img src="assets/showcase/images/demo/flag/flag_placeholder.png" [class]="'flag flag-' + country.code.toLowerCase()" />
-            <div>{{country.name}}</div>
-          </div>
-        </ng-template>
-      </p-autoComplete>
+<!--      <p-autoComplete [(ngModel)]="selectedCountryAdvanced" [suggestions]="filteredCountries" field="name" [dropdown]="true">-->
+<!--        <ng-template let-country pTemplate="item">-->
+<!--          <div class="country-item">-->
+<!--            <img src="assets/showcase/images/demo/flag/flag_placeholder.png" [class]="'flag flag-' + country.code.toLowerCase()" />-->
+<!--            <div>{{country.name}}</div>-->
+<!--          </div>-->
+<!--        </ng-template>-->
+<!--      </p-autoComplete>-->
 
-    </div>
-  </div>
+<!--    </div>-->
+<!--  </div>-->
 
   <div class="form-group">
     <div class="label-box">
       <label class="form-label">Issue Date</label>
 
-      <p-autoComplete [(ngModel)]="selectedCountryAdvanced" [suggestions]="filteredCountries" field="name" [dropdown]="true">
-        <ng-template let-country pTemplate="item">
+      <p-autoComplete
+        (onKeyUp)="filterBooks($event)"
+        (onSelect)="select($event)"
+        [suggestions]="books" field="name"
+        [dropdown]="true"
+        formControlName="result">
+        <ng-template let-books pTemplate="item">
           <div class="country-item">
-            <img src="assets/showcase/images/demo/flag/flag_placeholder.png" [class]="'flag flag-' + country.code.toLowerCase()" />
-            <div>{{country.name}}</div>
+            <div>{{ books[0] }}</div>
           </div>
         </ng-template>
       </p-autoComplete>
-
     </div>
   </div>
 
-  <div class="form-group">
-    <div class="label-box">
-      <label class="form-label">Due Date</label>
+<!--  <div class="form-group">-->
+<!--    <div class="label-box">-->
+<!--      <label class="form-label">Due Date</label>-->
 
-      <p-autoComplete [(ngModel)]="selectedCountryAdvanced" [suggestions]="filteredCountries" field="name" [dropdown]="true">
-        <ng-template let-country pTemplate="item">
-          <div class="country-item">
-            <img src="assets/showcase/images/demo/flag/flag_placeholder.png" [class]="'flag flag-' + country.code.toLowerCase()" />
-            <div>{{country.name}}</div>
-          </div>
-        </ng-template>
-      </p-autoComplete>
+<!--      <p-autoComplete [(ngModel)]="selectedCountryAdvanced" [suggestions]="filteredCountries" field="name" [dropdown]="true">-->
+<!--        <ng-template let-country pTemplate="item">-->
+<!--          <div class="country-item">-->
+<!--            <img src="assets/showcase/images/demo/flag/flag_placeholder.png" [class]="'flag flag-' + country.code.toLowerCase()" />-->
+<!--            <div>{{country.name}}</div>-->
+<!--          </div>-->
+<!--        </ng-template>-->
+<!--      </p-autoComplete>-->
 
-    </div>
-  </div>
+<!--    </div>-->
+<!--  </div>-->
 
-  <div class="form-group">
-    <div class="label-box">
-      <label class="form-label">Return Date</label>
+<!--  <div class="form-group">-->
+<!--    <div class="label-box">-->
+<!--      <label class="form-label">Return Date</label>-->
 
-      <p-autoComplete [(ngModel)]="selectedCountryAdvanced" [suggestions]="filteredCountries" field="name" [dropdown]="true">
-        <ng-template let-country pTemplate="item">
-          <div class="country-item">
-            <img src="assets/showcase/images/demo/flag/flag_placeholder.png" [class]="'flag flag-' + country.code.toLowerCase()" />
-            <div>{{country.name}}</div>
-          </div>
-        </ng-template>
-      </p-autoComplete>
+<!--      <p-autoComplete [(ngModel)]="selectedCountryAdvanced" [suggestions]="filteredCountries" field="name" [dropdown]="true">-->
+<!--        <ng-template let-country pTemplate="item">-->
+<!--          <div class="country-item">-->
+<!--            <img src="assets/showcase/images/demo/flag/flag_placeholder.png" [class]="'flag flag-' + country.code.toLowerCase()" />-->
+<!--            <div>{{country.name}}</div>-->
+<!--          </div>-->
+<!--        </ng-template>-->
+<!--      </p-autoComplete>-->
 
-    </div>
-  </div>
+<!--    </div>-->
+<!--  </div>-->
 
-  <div class="form-group">
-    <div class="label-box">
-      <label class="form-label">Status</label>
+<!--  <div class="form-group">-->
+<!--    <div class="label-box">-->
+<!--      <label class="form-label">Status</label>-->
 
-      <p-autoComplete [(ngModel)]="selectedCountryAdvanced" [suggestions]="filteredCountries" field="name" [dropdown]="true">
-        <ng-template let-country pTemplate="item">
-          <div class="country-item">
-            <img src="assets/showcase/images/demo/flag/flag_placeholder.png" [class]="'flag flag-' + country.code.toLowerCase()" />
-            <div>{{country.name}}</div>
-          </div>
-        </ng-template>
-      </p-autoComplete>
+<!--      <p-autoComplete [(ngModel)]="selectedCountryAdvanced" [suggestions]="filteredCountries" field="name" [dropdown]="true">-->
+<!--        <ng-template let-country pTemplate="item">-->
+<!--          <div class="country-item">-->
+<!--            <img src="assets/showcase/images/demo/flag/flag_placeholder.png" [class]="'flag flag-' + country.code.toLowerCase()" />-->
+<!--            <div>{{country.name}}</div>-->
+<!--          </div>-->
+<!--        </ng-template>-->
+<!--      </p-autoComplete>-->
 
-    </div>
-  </div>
+<!--    </div>-->
+<!--  </div>-->
 
 </form>
 

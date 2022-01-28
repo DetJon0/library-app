@@ -47,26 +47,6 @@
     text-align: end;
     //background-color: red;
 
-    .button {
-      font-size: 1.4rem;
-      color: #fff;
-      font-weight: 500;
-      padding: 1.2rem 2rem;
-      border-radius: 4px;
-      background-color: var(--primary-color);
-      margin: 4rem 1.2rem 0 0;
-      border: none;
-      transition: all .2s;
-
-      &:hover {
-        background-color: var(--secondary-color);
-      }
-
-      &:active {
-        background-color: var(--tertiary-color-dark);
-      }
-    }
-
     .reset-button {
       font-size: 1.4rem;
       color: rgba(28, 27, 27, 0.85);

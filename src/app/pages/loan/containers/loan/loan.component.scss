@@ -1,73 +1,4 @@
-.loan-view {
-  padding: 2rem;
-  height: 100%;
-  background-color: #eee;
-
-  &__container {
-    padding: 4rem;
-    background-color: white;
-    height: 90%;
-
-    h1 {
-      font-weight: 600;
-    }
-
-    .button {
-      font-size: 1.4rem;
-      color: #fff;
-      font-weight: 500;
-      padding: 1.2rem 2rem;
-      border-radius: 4px;
-      background-color: var(--primary-color);
-      margin: 4rem 1.2rem 0 0;
-      border: none;
-      transition: all .2s;
-
-      &:hover {
-        background-color: var(--secondary-color);
-      }
-
-      &:active {
-        background-color: var(--tertiary-color-dark);
-      }
-    }
-
-    .audit-button, .delete-button {
-      font-size: 1.4rem;
-      color: rgba(28, 27, 27, 0.85);
-      font-weight: 500;
-      padding: 1.2rem 2rem;
-      border: 1px solid rgba(0,0,0, .2);
-      border-radius: 4px;
-      transition: all .2s;
-      margin: 2rem 1.2rem 0 0;
-      background-color: #fff;
-
-      &:hover {
-        color: var(--buttons-color);
-        background-color: rgba(61, 135, 229, .2);
-        border-color: rgba(61, 135, 229, .2);
-      }
-
-      &:active {
-        color: rgba(61, 135, 229, .4);
-        background-color: rgba(61, 135, 229, .4);
-      }
-    }
-
-    .delete-button {
-      background-color: #ce6c6c;
-      color: #fff;
-      border: none;
-
-      &:hover {
-        background-color: rgba(206, 108, 108, 0.92);
-        color: #fff;
-      }
-    }
-  }
-
-  .loan-container {
+.loan-container {
     //background-color: red;
     margin-top: 3rem;
     border: 1px solid rgba(0, 0, 0, 0.2);
@@ -75,8 +6,6 @@
     height: 55%;
     padding: 5rem;
   }
-
-}
 
 :host ::ng-deep {
   .p-autocomplete-dd, .p-autocomplete-input, .p-autocomplete-dd .p-autocomplete-multiple-container {
