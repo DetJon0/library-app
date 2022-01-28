@@ -1,21 +1,15 @@
-import {Component, OnInit} from '@angular/core';
-import {CountryService} from "../../services/country.service";
+import {Component} from '@angular/core';
 
 @Component({
   selector: 'app-loan',
   templateUrl: './loan.component.html',
   styleUrls: ['./loan.component.scss']
 })
-export class LoanComponent implements OnInit {
+export class LoanComponent {
 
-  countries!: any[];
-  selectedCountryAdvanced!: 'test';
-  filteredCountries!: any[];
-
-  constructor(private countryService: CountryService) { }
+  constructor() { }
 
   ngOnInit() {
-    this.countryService.getCountries();
   }
 
 

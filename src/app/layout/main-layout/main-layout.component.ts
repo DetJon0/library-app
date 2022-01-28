@@ -15,7 +15,6 @@ export class MainLayoutComponent {
 
   visibleSidebar1 = true;
 
-
   nameChanges$ = this.authStore.name$.pipe(
     tap((name) => {
       this.items = this.getItems()

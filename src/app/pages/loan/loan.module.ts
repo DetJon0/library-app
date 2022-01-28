@@ -6,6 +6,13 @@ import {InputTextModule} from "primeng/inputtext";
 import {NewLoanComponent} from "./containers/new-loan/new-loan.component";
 import {AutoCompleteModule} from "primeng/autocomplete";
 import {FormsModule} from "@angular/forms";
+import { LoansFormComponent } from './components/loans-form/loans-form.component';
+import { LoansTableComponent } from './components/loans-table/loans-table.component';
+import { LoansFiltersComponent } from './components/loans-filters/loans-filters.component';
+import { LoansButtonsComponent } from './components/loans-buttons/loans-buttons.component';
+import { ViewLoanComponent } from './containers/view-loan/view-loan.component';
+import { EditLoanComponent } from './containers/edit-loan/edit-loan.component';
+import { ImportLoanComponent } from './containers/import-loan/import-loan.component';
 
 const routes: Routes = [
   {
@@ -15,6 +22,10 @@ const routes: Routes = [
   {
     path: 'new',
     component: NewLoanComponent,
+  },
+  {
+    path: 'import',
+    component: ImportLoanComponent,
   }
 ];
 
@@ -28,7 +39,14 @@ const routes: Routes = [
   ],
   declarations: [
     LoanComponent,
-    NewLoanComponent
+    NewLoanComponent,
+    LoansFormComponent,
+    LoansTableComponent,
+    LoansFiltersComponent,
+    LoansButtonsComponent,
+    ViewLoanComponent,
+    EditLoanComponent,
+    ImportLoanComponent
   ]
 })
 export class LoanModule {

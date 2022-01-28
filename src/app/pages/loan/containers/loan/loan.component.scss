@@ -19,7 +19,7 @@
       padding: 1.2rem 2rem;
       border-radius: 4px;
       background-color: var(--primary-color);
-      margin: 2rem 1.2rem 0 0;
+      margin: 4rem 1.2rem 0 0;
       border: none;
       transition: all .2s;
 
@@ -32,7 +32,7 @@
       }
     }
 
-    .audit-button {
+    .audit-button, .delete-button {
       font-size: 1.4rem;
       color: rgba(28, 27, 27, 0.85);
       font-weight: 500;
@@ -54,6 +54,17 @@
         background-color: rgba(61, 135, 229, .4);
       }
     }
+
+    .delete-button {
+      background-color: #ce6c6c;
+      color: #fff;
+      border: none;
+
+      &:hover {
+        background-color: rgba(206, 108, 108, 0.92);
+        color: #fff;
+      }
+    }
   }
 
   .loan-container {
@@ -61,42 +72,15 @@
     margin-top: 3rem;
     border: 1px solid rgba(0, 0, 0, 0.2);
     border-radius: 5px;
-    height: 50%;
-
-    form {
-      padding: 5rem;
-
-      .form-group {
-        margin-bottom: 3rem;
-
-        .error-message {
-          margin-top: 1rem;
-          font-size: 1.2rem;
-        }
-
-        .label-box {
-          margin-bottom: .8rem;
-
-          label {
-            font-size: 1.4rem;
-            margin-right: 1rem;
-            font-weight: 500;
-          }
-
-
-        }
-        .form-input {
-          font-size: 1.4rem;
-          height: 4.2rem;
-          padding-left: 1.5rem;
-          width: 40%;
-          border-radius: 7px;
-          border: 1px solid rgba(0, 0, 0, 0.3);
-        }
-
-      }
-    }
-
+    height: 55%;
+    padding: 5rem;
   }
 
+}
+
+:host ::ng-deep {
+  .p-autocomplete-dd, .p-autocomplete-input, .p-autocomplete-dd .p-autocomplete-multiple-container {
+    //width: 58rem;
+    height: 3.3rem;
+  }
 }
