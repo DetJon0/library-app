@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {FormBuilder, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-new-book',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NewBookComponent implements OnInit {
 
-  constructor() { }
+  constructor(private fb: FormBuilder) { }
 
   ngOnInit(): void {
   }
+
+  form = this.fb.group({
+    isbn: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(5) ]],
+    title: ['', [Validators.required]],
+    author: ['', [Validators.required]],
+    copies: [1, [Validators.required]]
+  })
 
 }
