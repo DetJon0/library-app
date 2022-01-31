@@ -26,7 +26,7 @@ body {
   letter-spacing: 1;
 }
 
-.loan-view {
+.box-view {
   padding: 2rem;
   height: 100%;
   background-color: #eee;
@@ -39,6 +39,12 @@ body {
     h1 {
       font-weight: 600;
     }
+  }
+
+  .form-label {
+    font-size: 1.4rem;
+    //margin-right: 1rem;
+    width: 5rem;
   }
 
   .button {
@@ -93,5 +99,28 @@ body {
   &:hover {
     background-color: rgba(206, 108, 108, 0.92);
     color: #fff;
+  }
+}
+
+.reset-button {
+  font-size: 1.4rem;
+  color: rgba(28, 27, 27, 0.85);
+  font-weight: 500;
+  padding: 1.2rem 2rem;
+  border: 1px solid rgba(0,0,0, .2);
+  border-radius: 4px;
+  transition: all .2s;
+  margin-top: 2rem;
+  background-color: #fff;
+
+  &:hover {
+    color: var(--buttons-color);
+    background-color: rgba(61, 135, 229, .2);
+    border-color: rgba(61, 135, 229, .2);
+  }
+
+  &:active {
+    color: rgba(61, 135, 229, .4);
+    background-color: rgba(61, 135, 229, .25);
   }
 }

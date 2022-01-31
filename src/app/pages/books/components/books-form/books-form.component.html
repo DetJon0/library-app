@@ -1,27 +1,34 @@
-<div class="book-container-box grid">
+<div class="book-container-box">
 
-  <div class="grid">
-    <div class="form-group col-6 sm:col-12">
-      <label class="form-label" for="isbn">ISBN</label>
-      <input type="text" id="isbn" class="form-input" pInputText>
-    </div>
-    <div class="form-group col-6 sm:col-12">
-      <label class="form-label" for="isbn">Title</label>
-      <input type="text" id="isbn" class="form-input" pInputText>
-    </div>
-    <div class="form-group col-6 sm:col-12">
-      <label class="form-label" for="isbn">Author</label>
-      <input type="text" id="isbn" class="form-input" pInputText>
-    </div>
-    <div class="form-group col-6 sm:col-12">
-      <label class="form-label" for="isbn">Status</label>
-      <input type="text" id="isbn" class="form-input" pInputText>
-    </div>
-  </div>
+    <form [formGroup]="form">
 
-  <div class="buttons-box">
-    <button class="button">Search</button>
-    <button class="reset-button">Reset</button>
-  </div>
+    <div class="input-container">
+      <div class="form-group">
+        <label class="form-label" for="isbn">ISBN</label>
+        <input type="text" id="isbn" class="form-input" formControlName="isbn" pInputText>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="isbn">Title</label>
+        <input type="text" id="isbn" class="form-input" pInputText>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="isbn">Author</label>
+        <input type="text" id="isbn" class="form-input" pInputText>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="isbn">Status</label>
+        <input type="text" id="isbn" class="form-input" pInputText>
+      </div>
+    </div>
+
+    <div class="buttons-box">
+      <button type="submit" class="button" (click)="onSearch()" >Search</button>
+      <button type="submit" class="reset-button">Reset</button>
+    </div>
+
+    </form>
 
 </div>
