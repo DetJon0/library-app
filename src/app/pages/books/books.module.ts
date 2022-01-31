@@ -19,6 +19,7 @@ import {DropdownModule} from "primeng/dropdown";
 import {ButtonModule} from "primeng/button";
 import {ToastModule} from "primeng/toast";
 import {ProgressBarModule} from "primeng/progressbar";
+import {BooksStore} from "./services/books.store";
 
 const routes: Routes = [
   {
@@ -56,6 +57,9 @@ const routes: Routes = [
     EditBookComponent,
     BooksFormComponent,
     BooksTableComponent
+  ],
+  providers: [
+    BooksStore
   ]
 })
 export class BooksModule {
