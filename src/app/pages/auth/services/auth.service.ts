@@ -4,8 +4,6 @@ import {environment} from "../../../../environments/environment";
 import {Observable} from "rxjs";
 import {AuthStore} from "../../../core/services/auth.store";
 import {Router} from "@angular/router";
-import {User} from "../../../models/user.model";
-import {UserEdit} from "../../edit-profile/models/user-edit.model";
 
 @Injectable({
   providedIn: 'root',
