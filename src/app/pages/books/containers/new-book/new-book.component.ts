@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, Validators} from "@angular/forms";
 import {BooksService} from "../../services/books.service";
-import {BookModel} from "../../model/book.model";
+import {Book} from "../../model/book.model";
 
 @Component({
   selector: 'app-new-book',
@@ -10,7 +10,7 @@ import {BookModel} from "../../model/book.model";
 })
 export class NewBookComponent implements OnInit {
 
-  books: BookModel[] = [];
+  books: Book[] = [];
 
   constructor(private fb: FormBuilder, private bookService: BooksService) { }
 
@@ -30,7 +30,7 @@ export class NewBookComponent implements OnInit {
 
     const newData = this.form.value;
 
-    const data: BookModel = {
+    const data: Book = {
       isbn: newData.isbn,
       title: newData.title,
       author: newData.author,
