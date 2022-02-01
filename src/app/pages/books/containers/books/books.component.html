@@ -10,12 +10,17 @@
     <button type="button" class="audit-button" >Export to Excel</button>
 
     <div class="book-container">
-      <app-books-form></app-books-form>
+      <app-books-form
+        (searchQuery)="searchParams($event)"
+      ></app-books-form>
     </div>
 
     <ng-container *ngIf="store.state$ | async as state">
     <app-books-table
+      [rows]="state.params.limit"
+      [total]="state.total"
       [books]="state.data"
+      (paginationChanged)="paginate($event)"
     ></app-books-table>
     </ng-container>
 

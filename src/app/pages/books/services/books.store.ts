@@ -43,7 +43,7 @@ export const initialState: BooksState = {
   loading: false,
   loaded: false,
   error: null,
-  total: 0
+  total: 0,
 }
 
 @Injectable()
@@ -51,6 +51,7 @@ export class BooksStore extends ComponentStore<BooksState>{
 
   constructor(private booksService: BooksService) {
     super(initialState);
+    // this.state$.subscribe(console.log)
   }
 
   get params() {
@@ -64,7 +65,6 @@ export class BooksStore extends ComponentStore<BooksState>{
       switchMap(params => {
         const currentParams = this.params;
         const newParams = { ...currentParams, ...params };
-        //@todo add global response model
         return this.booksService.getAll(newParams).pipe(tap((response: BookServerResponse) =>
             this.patchState(
               {

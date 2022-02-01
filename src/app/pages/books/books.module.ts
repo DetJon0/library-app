@@ -11,15 +11,8 @@ import {CommonModule} from "@angular/common";
 import {InputNumberModule} from 'primeng/inputnumber';
 import { BooksTableComponent } from './components/books-table/books-table.component';
 import {TableModule} from 'primeng/table';
-import {SliderModule} from "primeng/slider";
-import {DialogModule} from "primeng/dialog";
-import {MultiSelectModule} from "primeng/multiselect";
-import {ContextMenuModule} from "primeng/contextmenu";
-import {DropdownModule} from "primeng/dropdown";
-import {ButtonModule} from "primeng/button";
-import {ToastModule} from "primeng/toast";
-import {ProgressBarModule} from "primeng/progressbar";
 import {BooksStore} from "./services/books.store";
+import {PaginatorModule} from 'primeng/paginator';
 
 const routes: Routes = [
   {
@@ -41,14 +34,7 @@ const routes: Routes = [
     InputNumberModule,
     TableModule,
     FormsModule,
-    SliderModule,
-    DialogModule,
-    MultiSelectModule,
-    ContextMenuModule,
-    DropdownModule,
-    ButtonModule,
-    ToastModule,
-    ProgressBarModule
+    PaginatorModule
   ],
   declarations: [
     BooksComponent,

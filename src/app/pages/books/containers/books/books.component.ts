@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {BooksStore} from "../../services/books.store";
 
 @Component({
@@ -8,10 +8,19 @@ import {BooksStore} from "../../services/books.store";
 })
 export class BooksComponent implements OnInit {
 
-  constructor(public store: BooksStore) {}
+  constructor(public store: BooksStore) {
+  }
 
   ngOnInit() {
     this.store.load({});
+  }
+
+  paginate(event: any) {
+    this.store.load({limit: event.rows, offset: event.first})
+  }
+
+  searchParams(event: any) {
+    this.store.load({isbn: event.isbn, title:event.title, author: event.author })
   }
 
 }

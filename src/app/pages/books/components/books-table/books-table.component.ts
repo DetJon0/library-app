@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Book} from "../../model/book.model";
 import {BooksService} from "../../services/books.service";
 import {take} from "rxjs";
@@ -12,26 +12,25 @@ import {BooksStore} from "../../services/books.store";
 export class BooksTableComponent implements OnInit {
 
   @Input() books!: Book[];
+  @Input() total!: number;
+  @Input() rows!: number;
 
   cols!: any[];
 
+  @Output() paginationChanged = new EventEmitter<number>();
   constructor(private bookService: BooksService, private store: BooksStore) { }
 
   ngOnInit() {
-    // this.bookService.getBooks().
-    // subscribe((books: Book[]) => {
-    //   this.books = books;
-    //   console.log(books);
-    //   console.log(this.books);
-    // });
-    //
-
     this.cols = [
       { field: 'isbn', header: 'ISBN' },
       { field: 'title', header: 'Title' },
       { field: 'author', header: 'Author' }
     ];
+  }
 
+  paginate(event: any) {
+    this.paginationChanged.emit(event);
+    console.log(event);
   }
 
 }

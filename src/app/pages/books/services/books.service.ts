@@ -34,13 +34,24 @@ export class BooksService {
   }
 
   getBookParams(params: BooksParams): HttpParams {
+
     let httpParams = new HttpParams();
-    httpParams = httpParams.set('offset', params.offset)
     httpParams = httpParams.set('limit', params.limit)
-    if(params.title) {
-      httpParams = httpParams.set('title', params.title)
+    httpParams = httpParams.set('offset', params.offset)
+
+    if(params.isbn) {
+      httpParams = httpParams.set('filter[isbn]', params.isbn)
     }
 
+    if(params.title) {
+      httpParams = httpParams.set('filter[title]', params.title)
+    }
+
+    if(params.author) {
+      httpParams = httpParams.set('filter[author]', params.author)
+    }
+
+    console.log(httpParams.toString());
     return httpParams;
   }
 }

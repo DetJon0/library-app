@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {FormBuilder} from "@angular/forms";
 
 @Component({
@@ -8,17 +8,22 @@ import {FormBuilder} from "@angular/forms";
 })
 export class BooksFormComponent implements OnInit {
 
+  @Output() searchQuery = new EventEmitter<{}>();
   constructor(private fb: FormBuilder) { }
 
   ngOnInit(): void {
   }
 
   form = this.fb.group({
-    isbn: ['test']
+    isbn: ['1234567891234'],
+    title: ['book'],
+    author: ['Writer'],
+    status: [''],
   })
 
   onSearch() {
     console.log(this.form.value)
+    this.searchQuery.emit(this.form.value)
   }
 
 }
