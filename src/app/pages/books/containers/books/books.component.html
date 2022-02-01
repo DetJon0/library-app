@@ -13,7 +13,11 @@
       <app-books-form></app-books-form>
     </div>
 
-    <app-books-table></app-books-table>
+    <ng-container *ngIf="store.state$ | async as state">
+    <app-books-table
+      [books]="state.data"
+    ></app-books-table>
+    </ng-container>
 
   </div>
 

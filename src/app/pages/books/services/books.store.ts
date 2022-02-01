@@ -1,6 +1,14 @@
 import {Injectable} from '@angular/core';
 import {Book} from "../model/book.model";
 import {ComponentStore} from "@ngrx/component-store";
+import {catchError, EMPTY, Observable, switchMap, tap} from "rxjs";
+import {BookResponse} from "../model/book-response.model";
+import {BooksService} from "./books.service";
+
+export interface BookServerResponse {
+  rows: BookResponse[];
+  count: number;
+}
 
 export interface BooksParams {
   orderBy: string | null;
@@ -41,7 +49,7 @@ export const initialState: BooksState = {
 @Injectable()
 export class BooksStore extends ComponentStore<BooksState>{
 
-  constructor() {
+  constructor(private booksService: BooksService) {
     super(initialState);
   }
 
@@ -50,5 +58,36 @@ export class BooksStore extends ComponentStore<BooksState>{
   }
   //
   // load = this.effect()
-//  this.store.load({})
+
+  load = this.effect((params$: Observable<Partial<BooksParams>>) => params$
+    .pipe(tap(() => this.patchState({ loading: true, loaded: false, error: null })),
+      switchMap(params => {
+        const currentParams = this.params;
+        const newParams = { ...currentParams, ...params };
+        //@todo add global response model
+        return this.booksService.getAll(newParams).pipe(tap((response: BookServerResponse) =>
+            this.patchState(
+              {
+                loading: false,
+                loaded: true,
+                data: response.rows,
+                params: newParams,
+                total: Number(response.count)
+              })
+          ), catchError(error => {
+              this.patchState({
+                error: error.message, data: [], loaded: false, loading: false,
+                params: initialState.params
+              });
+              return EMPTY;
+            }
+          )
+        );
+      })
+    ));
+
+
+
+  //  this.store.load({})
+
 }
