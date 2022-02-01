@@ -15,22 +15,28 @@ export class BooksTableComponent implements OnInit {
   @Input() total!: number;
   @Input() rows!: number;
 
-  cols!: any[];
+  cols = [
+    { field: 'isbn', header: 'ISBN' },
+    { field: 'title', header: 'Title' },
+    { field: 'author', header: 'Author' }
+  ];
 
   @Output() paginationChanged = new EventEmitter<number>();
+  @Output() sortChanged = new EventEmitter<any>();
+
   constructor(private bookService: BooksService, private store: BooksStore) { }
 
   ngOnInit() {
-    this.cols = [
-      { field: 'isbn', header: 'ISBN' },
-      { field: 'title', header: 'Title' },
-      { field: 'author', header: 'Author' }
-    ];
   }
 
   paginate(event: any) {
     this.paginationChanged.emit(event);
-    console.log(event);
+  }
+
+  sort(event: any) {
+    console.log('ktu', event);
+    const sortQuery = `${event.sortField}_${event.sortOrder === 1 ? 'ASC' : 'DESC'}`
+    this.sortChanged.emit(sortQuery);
   }
 
 }

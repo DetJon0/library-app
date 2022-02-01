@@ -19,6 +19,12 @@ export class BooksComponent implements OnInit {
     this.store.load({limit: event.rows, offset: event.first})
   }
 
+  sort(orderBy: string): void {
+    console.log(orderBy)
+
+    this.store.load({orderBy, offset: 0});
+  }
+
   searchParams(event: any) {
     this.store.load({isbn: event.isbn, title:event.title, author: event.author })
   }

@@ -8,19 +8,21 @@
     <button type="button" class="delete-button" [disabled]="true" >Delete</button>
     <button type="button" class="audit-button" >Audit Logs</button>
     <button type="button" class="audit-button" >Export to Excel</button>
-
+    <ng-container *ngIf="store.state$ | async as state">
     <div class="book-container">
       <app-books-form
+        [formValue]="state.params"
         (searchQuery)="searchParams($event)"
       ></app-books-form>
     </div>
 
-    <ng-container *ngIf="store.state$ | async as state">
+
     <app-books-table
       [rows]="state.params.limit"
       [total]="state.total"
       [books]="state.data"
       (paginationChanged)="paginate($event)"
+      (sortChanged)="sort($event)"
     ></app-books-table>
     </ng-container>
 

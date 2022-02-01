@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, Validators} from "@angular/forms";
 import {BooksService} from "../../services/books.service";
 import {Book} from "../../model/book.model";
@@ -13,7 +13,8 @@ export class NewBookComponent implements OnInit {
 
   books: Book[] = [];
 
-  constructor(private fb: FormBuilder, private bookService: BooksService, private router: Router) { }
+  constructor(private fb: FormBuilder, private bookService: BooksService, private router: Router) {
+  }
 
   ngOnInit(): void {
   }
@@ -38,11 +39,16 @@ export class NewBookComponent implements OnInit {
       numberOfCopies: newData.numberOfCopies,
     }
 
-    this.bookService.postBook(data).subscribe((res)=>
-    {
-      this.books.push(res);
-    })
-    this.router.navigate(['../book'])
+    this.bookService.postBook(data).subscribe({
+        next: (res) => {
+          this.router.navigateByUrl('/book');
+        },
+        error: (err) => {
+          console.log(err);
+        }
+      }
+    )
+
   }
 
 }

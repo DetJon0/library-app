@@ -51,6 +51,10 @@ export class BooksService {
       httpParams = httpParams.set('filter[author]', params.author)
     }
 
+    if(params.orderBy) {
+      httpParams = httpParams.set('orderBy', params.orderBy);
+    }
+
     console.log(httpParams.toString());
     return httpParams;
   }

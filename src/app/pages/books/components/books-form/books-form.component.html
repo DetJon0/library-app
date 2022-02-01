@@ -20,13 +20,13 @@
 
       <div class="form-group">
         <label class="form-label" for="status">Status</label>
-        <input type="text" id="status" class="form-input" formControlName="status" pInputText>
+        <p-dropdown id="status" [options]="availability" formControlName="status" optionLabel="label" optionValue="value"></p-dropdown>
       </div>
     </div>
 
     <div class="buttons-box">
       <button type="submit" class="button" (click)="onSearch()" >Search</button>
-      <button type="submit" class="reset-button">Reset</button>
+      <button (click)="reset()" type="submit" class="reset-button">Reset</button>
     </div>
 
     </form>
