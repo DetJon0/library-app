@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, Validators} from "@angular/forms";
 import {BooksService} from "../../services/books.service";
 import {Book} from "../../model/book.model";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-new-book',
@@ -12,7 +13,7 @@ export class NewBookComponent implements OnInit {
 
   books: Book[] = [];
 
-  constructor(private fb: FormBuilder, private bookService: BooksService) { }
+  constructor(private fb: FormBuilder, private bookService: BooksService, private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -41,7 +42,7 @@ export class NewBookComponent implements OnInit {
     {
       this.books.push(res);
     })
-    console.log(this.books);
+    this.router.navigate(['../book'])
   }
 
 }
