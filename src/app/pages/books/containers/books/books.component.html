@@ -5,7 +5,7 @@
 
     <button type="button" routerLink="new" class="button" >New</button>
     <button type="button" routerLink="import" class="button" >Import</button>
-    <button type="button" class="delete-button" [disabled]="true" >Delete</button>
+    <button type="button" class="delete-button" (click)="onDeleteButton()">Delete</button>
     <button type="button" class="audit-button" >Audit Logs</button>
     <button type="button" class="audit-button" >Export to Excel</button>
     <ng-container *ngIf="store.state$ | async as state">
