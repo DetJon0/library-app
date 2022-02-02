@@ -9,6 +9,7 @@
       <th *ngFor="let column of columns"
           [pSortableColumn]="column.field">{{column.header}} <p-sortIcon [field]="column.field" ></p-sortIcon>
       </th>
+      <th [pSortableColumn]="'status'">Status <p-sortIcon [field]="'status'" ></p-sortIcon></th>
       <th></th>
     </tr>
   </ng-template>
@@ -21,9 +22,12 @@
         {{rowData[col.field]}}
       </td>
       <td>
+        {{rowData.numberOfCopies > 0 ? 'Available': 'Unavailable'}}
+      </td>
+      <td>
         <button class="button-link">View</button>
         <button class="button-link">Edit</button>
-        <button class="button-link" (click)="onDeleteBook(rowData)">Delete</button>
+        <button class="button-link" (click)="onDeleteConfirmation(rowData)">Delete</button>
       </td>
     </tr>
   </ng-template>

@@ -13,7 +13,6 @@ import {MessageService} from "primeng/api";
 })
 export class BooksTableComponent implements OnInit {
 
-
   @Input() books!: Book[];
   @Input() total!: number;
   @Input() rows!: number;
@@ -22,7 +21,6 @@ export class BooksTableComponent implements OnInit {
     {field: 'isbn', header: 'ISBN'},
     {field: 'title', header: 'Title'},
     {field: 'author', header: 'Author'},
-    {field: 'status', header: 'Status'},
   ];
 
   @Output() paginationChanged = new EventEmitter<number>();
@@ -48,7 +46,7 @@ export class BooksTableComponent implements OnInit {
     if (!!event.sortField && !!event.sortOrder) this.sortChanged.emit(sortQuery);
   }
 
-  onDeleteBook(rowData: any) {
+  onDeleteConfirmation(rowData: any) {
     // this.selectedBooks.push(rowData);
     console.log(rowData.id);
 
@@ -63,4 +61,6 @@ export class BooksTableComponent implements OnInit {
       }
     })
   }
+
+
 }

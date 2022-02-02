@@ -1,5 +1,9 @@
 .box-view {
   height: auto;
+
+  &__container {
+    position: relative;
+  }
 }
 
 .book-container {
@@ -40,6 +44,10 @@ h3{
 
   .p-paginator, .p-paginator-pages, .p-paginator-page {
     font-size: 1.2rem;
+  }
+
+  .p-dialog.p-confirm-dialog, .p-confirm-dialog-message {
+    font-size: 1.4rem;
   }
 
 }

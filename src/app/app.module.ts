@@ -7,7 +7,8 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {AuthInterceptor} from "./core/interceptors/auth.interceptor";
 import {CoreModule} from "./core/core.module";
 import {ToastModule} from "primeng/toast";
-import {MessageService} from "primeng/api";
+import {ConfirmationService, MessageService} from "primeng/api";
+import {ConfirmDialogModule} from "primeng/confirmdialog";
 
 @NgModule({
   declarations: [
@@ -19,9 +20,13 @@ import {MessageService} from "primeng/api";
     HttpClientModule,
     BrowserAnimationsModule,
     CoreModule,
-    ToastModule
+    ToastModule,
+    ConfirmDialogModule
   ],
   bootstrap: [AppComponent],
-  providers: [MessageService]
+  providers: [
+    MessageService,
+    ConfirmationService
+  ]
 })
 export class AppModule { }

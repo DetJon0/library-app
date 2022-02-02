@@ -4,7 +4,7 @@ import {BooksService} from "../../services/books.service";
 import {Book} from "../../model/book.model";
 import {BooksTableComponent} from "../../components/books-table/books-table.component";
 import {take} from "rxjs";
-import {MessageService} from "primeng/api";
+import {ConfirmationService, MessageService} from "primeng/api";
 
 @Component({
   selector: 'app-books',
@@ -15,7 +15,12 @@ export class BooksComponent implements OnInit {
 
   @ViewChild(BooksTableComponent) table!: BooksTableComponent;
 
-  constructor(public store: BooksStore, private booksService: BooksService, private messageService: MessageService) {
+  constructor(
+    public store: BooksStore,
+    private booksService: BooksService,
+    private messageService: MessageService,
+    private confirmationService: ConfirmationService
+  ) {
   }
 
   ngOnInit() {
@@ -39,17 +44,23 @@ export class BooksComponent implements OnInit {
     console.log(this.table.selectedBooks)
 
     if(this.table.selectedBooks.length !== 0) {
-      this.booksService.deleteBooks(this.table.selectedBooks).pipe(take(1)).subscribe({
-        next: (res) => {
-          this.messageService.add({key: 'toast', detail: 'Success', severity: 'success', summary: 'Deleted succesfully'})
-          this.table.selectedBooks.length = 0;
-          this.store.load({})
-        },
-        error: err => {
-          this.messageService.add({key: 'toast', detail: 'Error', severity: 'error', summary: err.message})
-          console.log(err);
+      this.confirmationService.confirm({
+        message: 'Are you sure?',
+        accept: () => {
+          this.booksService.deleteBooks(this.table.selectedBooks).pipe(take(1)).subscribe({
+            next: (res) => {
+              this.messageService.add({key: 'toast', detail: 'Success', severity: 'success', summary: 'Deleted succesfully'})
+              this.table.selectedBooks.length = 0;
+              this.store.load({})
+            },
+            error: err => {
+              this.messageService.add({key: 'toast', detail: 'Error', severity: 'error', summary: err.message})
+              console.log(err);
+            }
+          })
         }
       })
+
     }
 
   }
