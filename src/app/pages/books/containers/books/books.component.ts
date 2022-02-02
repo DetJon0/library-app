@@ -37,16 +37,21 @@ export class BooksComponent implements OnInit {
 
   onDeleteButton() {
     console.log(this.table.selectedBooks)
-    this.booksService.deleteBooks(this.table.selectedBooks).pipe(take(1)).subscribe({
-      next: (res) => {
-        this.messageService.add({key: 'toast', detail: 'Success', severity: 'success', summary: 'Deleted succesfully'})
-        this.store.load({})
-      },
-      error: err => {
-        this.messageService.add({key: 'toast', detail: 'Error', severity: 'error', summary: err.message})
-        console.log(err);
-      }
-    })
+
+    if(this.table.selectedBooks.length !== 0) {
+      this.booksService.deleteBooks(this.table.selectedBooks).pipe(take(1)).subscribe({
+        next: (res) => {
+          this.messageService.add({key: 'toast', detail: 'Success', severity: 'success', summary: 'Deleted succesfully'})
+          this.table.selectedBooks.length = 0;
+          this.store.load({})
+        },
+        error: err => {
+          this.messageService.add({key: 'toast', detail: 'Error', severity: 'error', summary: err.message})
+          console.log(err);
+        }
+      })
+    }
+
   }
 
 }

@@ -62,7 +62,7 @@ export class BooksService {
   }
 
   singleDeleteBook(id: string): Observable<any> {
-    return this.http.delete(`${environment.apiUrl}/api/book?ids[]={id}`)
+    return this.http.delete(`${environment.apiUrl}/api/book?ids[]=${id}`)
   }
 
   deleteBooks(books: BookResponse[]): Observable<any> {

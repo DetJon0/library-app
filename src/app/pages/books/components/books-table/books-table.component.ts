@@ -3,6 +3,8 @@ import {Book} from "../../model/book.model";
 import {BooksService} from "../../services/books.service";
 import {BooksStore} from "../../services/books.store";
 import {BookResponse} from "../../model/book-response.model";
+import {take} from "rxjs";
+import {MessageService} from "primeng/api";
 
 @Component({
   selector: 'app-books-table',
@@ -26,12 +28,13 @@ export class BooksTableComponent implements OnInit {
   @Output() paginationChanged = new EventEmitter<number>();
   @Output() sortChanged = new EventEmitter<string>();
 
-  selectedBooks!: BookResponse[];
+  selectedBooks: BookResponse[] = [];
 
-  constructor(private bookService: BooksService, private store: BooksStore) {
+  constructor(private booksService: BooksService, private store: BooksStore, private messageService: MessageService) {
   }
 
   ngOnInit() {
+    console.log(this.selectedBooks);
   }
 
   paginate(event: any) {
@@ -45,7 +48,19 @@ export class BooksTableComponent implements OnInit {
     if (!!event.sortField && !!event.sortOrder) this.sortChanged.emit(sortQuery);
   }
 
-  onDeleteBook() {
-    console.log(this.selectedBooks);
+  onDeleteBook(rowData: any) {
+    // this.selectedBooks.push(rowData);
+    console.log(rowData.id);
+
+    this.booksService.singleDeleteBook(rowData.id).subscribe({
+      next: (res) => {
+        this.messageService.add({key: 'toast', detail: 'Success', severity: 'success', summary: 'Deleted succesfully'})
+        this.store.load({})
+      },
+      error: err => {
+        this.messageService.add({key: 'toast', detail: 'Error', severity: 'error', summary: err.message})
+        console.log(err);
+      }
+    })
   }
 }
