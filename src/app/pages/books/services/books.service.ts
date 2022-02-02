@@ -18,6 +18,10 @@ export class BooksService {
   constructor(private http: HttpClient) {
   }
 
+  getBookById(id: string): Observable<any> {
+    return this.http.get<BookResponse>(`${environment.apiUrl}/api/book/${id}`);
+  }
+
   postBook(data: Book): Observable<any> {
     return this.http.post(`${environment.apiUrl}/api/book`, {
         data: {...data}

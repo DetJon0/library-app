@@ -23,6 +23,10 @@ const routes: Routes = [
     path: 'new',
     component: NewBookComponent,
   },
+  {
+    path: ':id',
+    component: ViewBookComponent,
+  },
 ]
 
 @NgModule({

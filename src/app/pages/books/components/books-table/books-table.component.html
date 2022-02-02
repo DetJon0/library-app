@@ -25,7 +25,7 @@
         {{rowData.numberOfCopies > 0 ? 'Available': 'Unavailable'}}
       </td>
       <td>
-        <button class="button-link">View</button>
+        <button class="button-link" (click)="onView(rowData)">View</button>
         <button class="button-link">Edit</button>
         <button class="button-link" (click)="onDeleteConfirmation(rowData)">Delete</button>
       </td>
