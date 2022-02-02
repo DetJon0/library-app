@@ -13,3 +13,18 @@
 .buttons-box {
   text-align: end;
 }
+
+:host ::ng-deep {
+  .p-dropdown {
+    width: 100%;
+  }
+
+  .p-dropdown-panel, .p-dropdown-items, .p-dropdown-item {
+    font-size: 1.4rem;
+  }
+
+  .p-inputtext {
+    display: flex;
+    align-items: center;
+  }
+}

@@ -55,7 +55,7 @@ export class BooksService {
       httpParams = httpParams.set('orderBy', params.orderBy);
     }
 
-    console.log(httpParams.toString());
+    // console.log(httpParams.toString());
     return httpParams;
   }
 }

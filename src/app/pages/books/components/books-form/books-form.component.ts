@@ -13,7 +13,7 @@ export class BooksFormComponent implements OnInit {
   constructor(private fb: FormBuilder) { }
 
   availability = [
-    { label: '', value: 'null' },
+    { label: '', value: null },
     { label: 'Available', value: 'available' },
     { label: 'Unavailable', value: 'unavailable' }
   ];

@@ -2,5 +2,5 @@ export interface Book {
   isbn: string,
   title: string,
   author: string,
-  numberOfCopies: number
+  numberOfCopies: number,
 }

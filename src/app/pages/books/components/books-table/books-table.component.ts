@@ -18,11 +18,14 @@ export class BooksTableComponent implements OnInit {
   cols = [
     { field: 'isbn', header: 'ISBN' },
     { field: 'title', header: 'Title' },
-    { field: 'author', header: 'Author' }
+    { field: 'author', header: 'Author' },
+    { field: 'status', header: 'Status' }
   ];
 
   @Output() paginationChanged = new EventEmitter<number>();
   @Output() sortChanged = new EventEmitter<any>();
+
+  selectedBook!: Book[];
 
   constructor(private bookService: BooksService, private store: BooksStore) { }
 
@@ -34,9 +37,14 @@ export class BooksTableComponent implements OnInit {
   }
 
   sort(event: any) {
-    console.log('ktu', event);
+    // console.log('ktu', event);
     const sortQuery = `${event.sortField}_${event.sortOrder === 1 ? 'ASC' : 'DESC'}`
-    this.sortChanged.emit(sortQuery);
+
+    if(!!event.sortField && !!event.sortOrder) this.sortChanged.emit(sortQuery);
+  }
+
+  clicked() {
+    console.log(this.selectedBook);
   }
 
 }
