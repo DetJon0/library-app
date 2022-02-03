@@ -13,6 +13,7 @@ import { BooksTableComponent } from './components/books-table/books-table.compon
 import {TableModule} from 'primeng/table';
 import {BooksStore} from "./services/books.store";
 import {PaginatorModule} from 'primeng/paginator';
+import {SharedModule} from "../../shared/shared.module";
 
 const routes: Routes = [
   {
@@ -27,10 +28,14 @@ const routes: Routes = [
     path: ':id',
     component: ViewBookComponent,
   },
+  {
+    path: ':id/edit',
+    component: EditBookComponent
+  }
 ]
 
 @NgModule({
-  imports:[
+  imports: [
     RouterModule.forChild(routes),
     CommonModule,
     InputTextModule,
@@ -38,7 +43,8 @@ const routes: Routes = [
     InputNumberModule,
     TableModule,
     FormsModule,
-    PaginatorModule
+    PaginatorModule,
+    SharedModule
   ],
   declarations: [
     BooksComponent,

@@ -78,4 +78,15 @@ export class BooksTableComponent implements OnInit {
     }
   }
 
+  onEdit(rowData: BookResponse) {
+    console.log(rowData);
+    let id = rowData.id;
+    console.log(id);
+
+    if (id) {
+      this.router.navigate([id, 'edit'], { relativeTo: this.route });
+    } else {
+    }
+  }
+
 }

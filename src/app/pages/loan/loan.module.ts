@@ -13,6 +13,7 @@ import { LoansButtonsComponent } from './components/loans-buttons/loans-buttons.
 import { ViewLoanComponent } from './containers/view-loan/view-loan.component';
 import { EditLoanComponent } from './containers/edit-loan/edit-loan.component';
 import { ImportLoanComponent } from './containers/import-loan/import-loan.component';
+import {SharedModule} from "../../shared/shared.module";
 
 const routes: Routes = [
   {
@@ -30,14 +31,15 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [
-    // LayoutModule,
-    RouterModule.forChild(routes),
-    InputTextModule,
-    AutoCompleteModule,
-    FormsModule,
-    ReactiveFormsModule
-  ],
+    imports: [
+        // LayoutModule,
+        RouterModule.forChild(routes),
+        InputTextModule,
+        AutoCompleteModule,
+        FormsModule,
+        ReactiveFormsModule,
+        SharedModule
+    ],
   declarations: [
     LoanComponent,
     NewLoanComponent,

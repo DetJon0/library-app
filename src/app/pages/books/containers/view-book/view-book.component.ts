@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {BookResponse} from "../../model/book-response.model";
 import {catchError, map, Observable, of, switchMap} from "rxjs";
 import {BooksService} from "../../services/books.service";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {MessageService} from "primeng/api";
 
 @Component({
@@ -27,9 +27,13 @@ export class ViewBookComponent implements OnInit {
   );
 
   constructor(private booksService: BooksService, private route: ActivatedRoute,
-              private messageService: MessageService) { }
+              private messageService: MessageService, private router: Router) { }
 
   ngOnInit(): void {
   }
+
+  // onEditRedirect() {
+  //   this.router.navigate(['edit'], {relativeTo: this.route})
+  // }
 
 }
