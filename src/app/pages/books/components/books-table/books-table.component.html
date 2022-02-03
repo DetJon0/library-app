@@ -1,7 +1,10 @@
 <p-table [lazy]="true" (onLazyLoad)="sort($event)"
          [columns]="cols"
          [value]="books"
-         [customSort]="true" [(selection)]="selectedBooks" selectionMode="multiple" dataKey="id">
+         [customSort]="true" [(selection)]="selectedBooks"
+         selectionMode="multiple"
+         dataKey="id"
+         [loading]="loading">
   <ng-template pTemplate="header" let-columns>
     <tr>
       <th style="width: 2.25em">

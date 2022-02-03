@@ -5,6 +5,7 @@ import {map, Observable} from "rxjs";
 import {Book} from "../model/book.model";
 import {BooksParams} from "./books.store";
 import {BookResponse} from "../model/book-response.model";
+import {BookEditModel} from "../model/book-edit.model";
 
 export interface BookModelServerResponse {
   rows: Book[];
@@ -63,6 +64,10 @@ export class BooksService {
 
     // console.log(httpParams.toString());
     return httpParams;
+  }
+
+  editBook(id: string, book: BookEditModel): Observable<any> {
+    return  this.http.put(`${environment.apiUrl}/api/book/${id}`, book)
   }
 
   singleDeleteBook(id: string): Observable<any> {

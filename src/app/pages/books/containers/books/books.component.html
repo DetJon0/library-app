@@ -23,6 +23,7 @@
       [books]="state.data"
       (paginationChanged)="paginate($event)"
       (sortChanged)="sort($event)"
+      [loading]="state.loading"
     ></app-books-table>
     </ng-container>
 

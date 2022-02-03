@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {BookResponse} from "../../model/book-response.model";
-import {catchError, map, Observable, of, switchMap} from "rxjs";
+import {catchError, map, Observable, of, switchMap, take} from "rxjs";
 import {BooksService} from "../../services/books.service";
 import {ActivatedRoute, Router} from "@angular/router";
-import {MessageService} from "primeng/api";
+import {ConfirmationService, MessageService} from "primeng/api";
+import {BooksStore} from "../../services/books.store";
 
 @Component({
   selector: 'app-view-book',
@@ -26,14 +27,36 @@ export class ViewBookComponent implements OnInit {
     )
   );
 
+  // loading: boolean = false;
+
   constructor(private booksService: BooksService, private route: ActivatedRoute,
-              private messageService: MessageService, private router: Router) { }
+              private messageService: MessageService, private router: Router,
+              private confirmationService: ConfirmationService, private store: BooksStore) { }
 
   ngOnInit(): void {
   }
 
-  // onEditRedirect() {
-  //   this.router.navigate(['edit'], {relativeTo: this.route})
-  // }
+  onBookDelete() {
+    const id = this.route.snapshot.paramMap.get('id');
+    console.log(id);
 
+    if(id) {
+      this.confirmationService.confirm({
+        message: 'Are you sure?',
+        accept: () => {
+          this.booksService.singleDeleteBook(id).pipe(take(1)).subscribe({
+            next: (res) => {
+              this.messageService.add({key: 'toast', detail: 'Success', severity: 'success', summary: 'Deleted succesfully'})
+              this.store.load({})
+              this.router.navigate(['../book'])
+            },
+            error: err => {
+              this.messageService.add({key: 'toast', detail: 'Error', severity: 'error', summary: err.message})
+              console.log(err);
+            }
+          })
+        }
+      })
+    }
+  }
 }
