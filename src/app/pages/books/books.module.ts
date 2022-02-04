@@ -14,11 +14,16 @@ import {TableModule} from 'primeng/table';
 import {BooksStore} from "./services/books.store";
 import {PaginatorModule} from 'primeng/paginator';
 import {SharedModule} from "../../shared/shared.module";
+import {ImportBookComponent} from "./containers/import-book/import-book.component";
 
 const routes: Routes = [
   {
     path: '',
     component: BooksComponent
+  },
+  {
+    path: 'import',
+    component: ImportBookComponent,
   },
   {
     path: 'new',
@@ -52,7 +57,8 @@ const routes: Routes = [
     ViewBookComponent,
     EditBookComponent,
     BooksFormComponent,
-    BooksTableComponent
+    BooksTableComponent,
+    ImportBookComponent
   ],
   providers: [
     BooksStore

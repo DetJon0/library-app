@@ -8,9 +8,6 @@
     <button type="button" class="delete-button" (click)="onBookDelete()" >Delete</button>
     <button type="button" class="audit-button" >Audit Logs</button>
 
-<!--    <div *ngIf="loading" >-->
-<!--      <app-loading-spinner></app-loading-spinner>-->
-<!--    </div>-->
     <ng-container *ngIf="book$ | async as book ;">
     <div class="container-content">
       <p>ID: <span> {{book.id}} </span> </p>
