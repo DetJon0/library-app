@@ -57,8 +57,6 @@ export class BooksStore extends ComponentStore<BooksState>{
   get params() {
     return this.get(s => s.params);
   }
-  //
-  // load = this.effect()
 
   load = this.effect((params$: Observable<Partial<BooksParams>>) => params$
     .pipe(tap(() => this.patchState({ loading: true, loaded: false, error: null })),

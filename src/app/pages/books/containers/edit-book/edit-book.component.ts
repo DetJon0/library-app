@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormBuilder, Validators} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
 import {BooksService} from "../../services/books.service";
 import {BooksStore} from "../../services/books.store";
 import {MessageService} from "primeng/api";
-import {catchError, map, Observable, of, pluck, switchMap, tap} from "rxjs";
+import {catchError, map, Observable, of, pluck, Subscription, switchMap, tap} from "rxjs";
 import {BookResponse} from "../../model/book-response.model";
 
 @Component({
@@ -12,7 +12,7 @@ import {BookResponse} from "../../model/book-response.model";
   templateUrl: './edit-book.component.html',
   styleUrls: ['./edit-book.component.scss']
 })
-export class EditBookComponent implements OnInit {
+export class EditBookComponent implements OnInit, OnDestroy {
 
   resetObject!: {
     id: string,
@@ -21,49 +21,6 @@ export class EditBookComponent implements OnInit {
     author: string,
     numberOfCopies: number,
     images: [],
-  }
-
-  sameObject!: boolean;
-
-  book$: Observable<BookResponse | null> = this.route.params.pipe(
-    pluck('id'),
-    switchMap((id: string) =>
-      id ? this.booksService.getBookById(id).pipe(tap((response) => {
-          this.form.patchValue({
-            id: response.id,
-            isbn: response.isbn,
-            title: response.title,
-            author: response.author,
-            numberOfCopies: response.numberOfCopies,
-            images: response.images,
-          });
-          this.resetObject = {
-            id: response.id,
-            isbn: response.isbn,
-            title: response.title,
-            author: response.author,
-            numberOfCopies: response.numberOfCopies,
-            images: response.images,
-          }
-          this.sameObject = JSON.stringify(this.form.value) === JSON.stringify(this.resetObject);
-          }), catchError((err) => {
-            this.messageService.add({key: 'toast', detail: 'Error', severity: 'error', summary: 'Book not found'})
-            this.router.navigateByUrl('/book');
-            return of(null);
-          })
-        )
-        : of(null)
-    )
-  );
-
-  constructor(private fb: FormBuilder,
-              private route: ActivatedRoute,
-              private booksService: BooksService,
-              private router: Router,
-              private store: BooksStore,
-              private messageService: MessageService) { }
-
-  ngOnInit():void {
   }
 
   form = this.fb.group({
@@ -75,8 +32,59 @@ export class EditBookComponent implements OnInit {
     images: ['']
   })
 
+  subscription: Subscription | null = null;
+  disabled = true;
+  // sameObject: boolean = true;
+
+  book$: Observable<BookResponse | null> = this.route.params.pipe(
+    pluck('id'),
+    switchMap((id: string) =>
+      id ? this.booksService.getBookById(id).pipe(tap((response) => {
+            // console.log(response);
+            this.form.patchValue({
+              id: response.id,
+              isbn: response.isbn,
+              title: response.title,
+              author: response.author,
+              numberOfCopies: response.numberOfCopies,
+              images: response.images,
+            });
+            this.resetObject = {
+              id: response.id,
+              isbn: response.isbn,
+              title: response.title,
+              author: response.author,
+              numberOfCopies: response.numberOfCopies,
+              images: response.images,
+            }
+            this.subscription = this.form.valueChanges.pipe(tap(res => console.log(res)), map(value => {
+              console.log(JSON.stringify(value) === JSON.stringify(this.resetObject))
+              this.disabled = JSON.stringify(value) === JSON.stringify(this.resetObject);
+            })).subscribe();
+            // this.sameObject = JSON.stringify(this.form.value) === JSON.stringify(this.resetObject);
+          }), catchError((err) => {
+            this.messageService.add({key: 'toast', detail: 'Error', severity: 'error', summary: 'Book not found'})
+            this.router.navigateByUrl('/book');
+            return of(null);
+          })
+        )
+        : of(null)
+    )
+  )
+
+  constructor(private fb: FormBuilder,
+              private route: ActivatedRoute,
+              private booksService: BooksService,
+              private router: Router,
+              private store: BooksStore,
+              private messageService: MessageService) {
+  }
+
+  ngOnInit() {
+  }
+
   onSave() {
-    console.log(this.form.value);
+    // console.log(this.form.value);
 
     const id = this.route.snapshot.paramMap.get('id');
 
@@ -88,6 +96,9 @@ export class EditBookComponent implements OnInit {
     if (id) {
       this.booksService.editBook(id, book).subscribe({
           next: (res) => {
+            console.log(res);
+            console.log(book.data);
+            console.log(this.resetObject);
             this.messageService.add({key: 'toast', detail: 'Success', severity: 'success', summary: 'Edited succesfully'})
             this.store.load({})
             this.router.navigateByUrl('/book');
@@ -99,10 +110,15 @@ export class EditBookComponent implements OnInit {
         }
       )
     }
+
   }
 
   onReset() {
     this.form.patchValue(this.resetObject)
+  }
+
+  ngOnDestroy() {
+    this.subscription?.unsubscribe();
   }
 
 }

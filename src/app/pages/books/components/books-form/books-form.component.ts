@@ -10,6 +10,7 @@ import {BooksParams} from "../../services/books.store";
 export class BooksFormComponent implements OnInit {
 
   @Output() searchQuery = new EventEmitter<{}>();
+
   constructor(private fb: FormBuilder) { }
 
   availability = [

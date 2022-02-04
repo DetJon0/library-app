@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {CountryService} from "../../services/country.service";
+import {LoansService} from "../../services/loans.service";
 import {take} from "rxjs";
-import {FormBuilder, Validators} from "@angular/forms";
+import {FormBuilder} from "@angular/forms";
 
 @Component({
   selector: 'app-loans-form',
@@ -10,38 +10,64 @@ import {FormBuilder, Validators} from "@angular/forms";
 })
 export class LoansFormComponent implements OnInit {
 
-  countries!: any[];
-  bookSearchQuery = '';
-  filteredCountries!: any[];
-
-  constructor(private countryService: CountryService, private fb: FormBuilder) { }
-
   books = [];
+  members = [];
+
+  constructor(private loansService: LoansService, private fb: FormBuilder) { }
+
+  availability = [
+    { label: '--', value: null },
+    { label: 'In progress', value: 'in progress' },
+    { label: 'Overdue', value: 'overdue' },
+    { label: 'Closed', value: 'closed' }
+  ];
 
   form = this.fb.group({
-    result: ['']
+    book: '',
+    member: '',
+    issueDate: '',
+    dueDate: '',
+    returnDate: '',
+    status: '',
   });
 
   ngOnInit() {
-    this.countryService.getBooks(this.bookSearchQuery).pipe(take(1)).subscribe(res => {
-      this.books = res;
-      console.log(this.books)
-    })
-    // this.countryService.getCountries();
   }
 
-  filterBooks(event: any): void {
-    console.log(event)
-    console.log(this.form.value.result)
-    let result = this.form.value.result;
-    this.countryService.getBooks(result).pipe(take(1)).subscribe(res => {
-      this.books = res;
-      console.log(this.books)
-    })
+  //Book Autocomplete
+  search(event: any) {
+    console.log(event);
+
+    setTimeout(()=> {
+      this.loansService.getBooks(event.query).pipe(take(1)).subscribe(res => {
+        this.books = res;
+        console.log(this.books)
+      })
+    }, 500)
   }
 
   select(event: any) {
     console.log(event);
+  }
+  //////////////////////////////
+
+  // Member Autocomplete
+  searchMember(event: any) {
+    setTimeout(()=> {
+      this.loansService.getMember(event.query).pipe(take(1)).subscribe(res => {
+        this.members = res;
+        console.log(this.members)
+      })
+    }, 500)
+  }
+
+  selectMember(event: any) {
+    console.log(event);
+  }
+  /////////////////////////////
+
+  onSearch() {
+    console.log(this.form.value);
   }
 
 }

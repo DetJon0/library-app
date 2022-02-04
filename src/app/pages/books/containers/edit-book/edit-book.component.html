@@ -52,7 +52,9 @@
 
         <input type="file" formControlName="images">
 
-        <button type="submit" class="button" [disabled]="sameObject" (click)="onSave()" >Save</button>
+        <button [class.p-disabled]="disabled" type="submit" class="button" [disabled]="disabled" (click)="onSave()" >
+          Save
+        </button>
         <button type="button" class="reset-button" (click)="onReset()">Reset</button>
 
       </form>

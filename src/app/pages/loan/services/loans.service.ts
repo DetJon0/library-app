@@ -1,11 +1,12 @@
 import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
+import {environment} from "../../../../environments/environment";
 
 @Injectable({
   providedIn: 'root',
 })
-export class CountryService {
+export class LoansService {
 
   constructor(private http: HttpClient) {
   }
@@ -15,11 +16,18 @@ export class CountryService {
   }
 
   getBooks(query: string): Observable<any> {
-    let path = `http://localhost:8080/api/book/autocomplete?limit=10`;
+    let path = `${environment.apiUrl}/api/book/autocomplete?limit=10`;
     if (query) {
       path += `&query=${query}`
     }
-    //`http://localhost:8080/api/api/book/autocomplete?query=T&limit=10`
+    return this.http.get(path);
+  }
+
+  getMember(query: string): Observable<any> {
+    let path = `${environment.apiUrl}/api/iam/user/autocomplete?limit=10`;
+    if (query) {
+      path += `&query=${query}`
+    }
     return this.http.get(path);
   }
 }

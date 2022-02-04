@@ -87,7 +87,6 @@ export class BooksTableComponent implements OnInit {
 
     if (id) {
       this.router.navigate([id, 'edit'], { relativeTo: this.route });
-    } else {
     }
   }
 
