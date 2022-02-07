@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {FormBuilder} from "@angular/forms";
 
 @Component({
   selector: 'app-settings',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SettingsComponent implements OnInit {
 
-  constructor() { }
+  constructor(private fb: FormBuilder) { }
+
+  form = this.fb.group({
+    loanPeriodInDays: 4
+  })
 
   ngOnInit(): void {
+  }
+
+  onSave() {
+    console.log(this.form.value);
   }
 
 }

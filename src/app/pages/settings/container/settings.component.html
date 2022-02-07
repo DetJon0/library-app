@@ -5,15 +5,19 @@
 
     <button type="button" class="audit-button" >Audit Logs</button>
 
-    <form>
+    <form [formGroup]="form">
 
       <div class="form-container">
         <div class="form-group">
           <label for="loanPeriod" class="form-label">Loan Period (In Days)</label>
-          <p-inputNumber mode="decimal" id="loanPeriod" [showButtons]="true" inputId="minmax-buttons" [min]="4" [max]="20">
+          <p-inputNumber mode="decimal" id="loanPeriod" [showButtons]="true" inputId="minmax-buttons" [min]="4" [max]="20"
+          formControlName="loanPeriodInDays">
           </p-inputNumber>
         </div>
       </div>
+
+      <button type="submit" class="button" [disabled]="!form.valid" (click)="onSave()" >Save</button>
+      <button type="button" class="reset-button">Reset</button>
 
     </form>
 

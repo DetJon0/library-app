@@ -3,6 +3,7 @@ import {SettingsComponent} from "./container/settings.component";
 import {CommonModule} from "@angular/common";
 import {RouterModule, Routes} from "@angular/router";
 import {InputNumberModule} from "primeng/inputnumber";
+import {ReactiveFormsModule} from "@angular/forms";
 
 const routes: Routes = [
   {
@@ -12,11 +13,12 @@ const routes: Routes = [
 ]
 
 @NgModule({
-  imports: [
-    CommonModule,
-    RouterModule.forChild(routes),
-    InputNumberModule
-  ],
+    imports: [
+        CommonModule,
+        RouterModule.forChild(routes),
+        InputNumberModule,
+        ReactiveFormsModule
+    ],
   declarations: [
     SettingsComponent
   ]
