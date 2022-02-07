@@ -16,6 +16,8 @@ import { ImportLoanComponent } from './containers/import-loan/import-loan.compon
 import {SharedModule} from "../../shared/shared.module";
 import {CalendarModule} from 'primeng/calendar';
 import {DropdownModule} from "primeng/dropdown";
+import {BooksStore} from "../books/services/books.store";
+import {LoansStore} from "./services/loans.store";
 
 const routes: Routes = [
   {
@@ -54,6 +56,9 @@ const routes: Routes = [
     ViewLoanComponent,
     EditLoanComponent,
     ImportLoanComponent
+  ],
+  providers: [
+    LoansStore
   ]
 })
 export class LoanModule {

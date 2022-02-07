@@ -1,4 +1,5 @@
 import {Component} from '@angular/core';
+import {LoansStore} from "../../services/loans.store";
 
 @Component({
   selector: 'app-loan',
@@ -7,10 +8,23 @@ import {Component} from '@angular/core';
 })
 export class LoanComponent {
 
-  constructor() { }
+  constructor(public store: LoansStore) { }
 
   ngOnInit() {
   }
 
+  searchParams(event: any) {
+    this.store.load ({
+      book: event.book,
+      member: event.member,
+      issueFromDateRange: event.issueFromDateRange,
+      issueToDateRange: event.issueToDateRange,
+      dueToDateRange: event.dueToDateRange,
+      dueFromDateRange: event.dueToDateRange,
+      returnFromDateRange: event.returnFromDateRange,
+      returnToDateRange: event.returnToDateRange,
+      status: event.status,
+      })
+  }
 
 }

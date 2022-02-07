@@ -1,7 +1,13 @@
 import {Injectable} from "@angular/core";
-import {LoanBook} from "../model/loan-book.model";
 import {ComponentStore} from "@ngrx/component-store";
 import {LoansService} from "./loans.service";
+import {catchError, EMPTY, Observable, switchMap, tap} from "rxjs";
+import {BookResponse} from "../../books/model/book-response.model";
+
+export interface LoanServerResponse {
+  rows: BookResponse[];
+  count: number;
+}
 
 export interface LoansParams {
   orderBy: string | null;
@@ -10,16 +16,16 @@ export interface LoansParams {
   member: string| null;
   book: string | null;
   status: string | null;
-  issueDateRange: string | null;
+  issueFromDateRange: string | null;
   issueToDateRange: string | null;
-  dueDateRange: string | null;
+  dueFromDateRange: string | null;
   dueToDateRange: string | null;
-  returnDateRange: string | null;
+  returnFromDateRange: string | null;
   returnToDateRange: string | null;
 }
 
 export interface LoansState {
-  data: LoanBook[],
+  data: BookResponse[],
   params: LoansParams,
   loading: boolean;
   loaded: boolean;
@@ -33,15 +39,15 @@ export const initialState: LoansState = {
     orderBy: null,
     limit: 10,
     offset: 0,
-    member: null;
-    book: null;
-    status: null;
-    issueDateRange: null;
-    issueToDateRange: null;
-    dueDateRange: null;
-    dueToDateRange: null;
-    returnDateRange: null;
-    returnToDateRange: null;
+    member: null,
+    book: null,
+    status: null,
+    issueFromDateRange: null,
+    issueToDateRange: null,
+    dueFromDateRange: null,
+    dueToDateRange: null,
+    returnFromDateRange: null,
+    returnToDateRange: null,
   },
   loading: false,
   loaded: false,
@@ -60,5 +66,30 @@ export class LoansStore extends ComponentStore<LoansState> {
     return this.get(s => s.params);
   }
 
+  load = this.effect((params$: Observable<Partial<LoansParams>>) => params$
+    .pipe(tap(() => this.patchState({ loading: true, loaded: false, error: null })),
+      switchMap(params => {
+        const currentParams = this.params;
+        const newParams = { ...currentParams, ...params };
+        return this.loansService.getAll(newParams).pipe(tap((response: LoanServerResponse) =>
+            this.patchState(
+              {
+                loading: false,
+                loaded: true,
+                data: response.rows,
+                params: newParams,
+                total: Number(response.count)
+              })
+          ), catchError(error => {
+              this.patchState({
+                error: error.message, data: [], loaded: false, loading: false,
+                params: initialState.params
+              });
+              return EMPTY;
+            }
+          )
+        );
+      })
+    ));
 
 }

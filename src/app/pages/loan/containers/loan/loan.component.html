@@ -10,7 +10,8 @@
     <button type="button" class="audit-button" >Export to Excel</button>
 
     <div class="loan-container">
-      <app-loans-form></app-loans-form>
+      <app-loans-form
+      (searchQuery)="searchParams($event)"></app-loans-form>
     </div>
 
   </div>
