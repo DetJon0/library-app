@@ -4,7 +4,7 @@ import {Observable} from "rxjs";
 import {environment} from "../../../../environments/environment";
 import {LoansParams} from "./loans.store";
 import {BookResponse} from "../../books/model/book-response.model";
-import {Book, LoanBookResponse, LoanedBook} from "../model/loan-book-response.model";
+import { LoanBookResponse} from "../model/loan-book-response.model";
 
 @Injectable({
   providedIn: 'root',
