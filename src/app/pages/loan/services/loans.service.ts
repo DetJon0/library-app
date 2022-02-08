@@ -3,6 +3,8 @@ import {HttpClient, HttpParams} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {environment} from "../../../../environments/environment";
 import {LoansParams} from "./loans.store";
+import {BookResponse} from "../../books/model/book-response.model";
+import {Book, LoanBookResponse, LoanedBook} from "../model/loan-book-response.model";
 
 @Injectable({
   providedIn: 'root',
@@ -28,6 +30,10 @@ export class LoansService {
     return this.http.get(path);
   }
 
+  getLoanBookById(id: string): Observable<any> {
+    return this.http.get<BookResponse>(`${environment.apiUrl}/api/loan/${id}`);
+  }
+
   getAll(params: LoansParams) {
     return this.http.get<any>(`${environment.apiUrl}/api/loan`, {params: this.getLoanParams(params)})
   }
@@ -50,28 +56,19 @@ export class LoansService {
       httpParams = httpParams.set('filter[status]', params.status)
     }
 
-    if (params.issueFromDateRange) {
+    if (params.issueFromDateRange && params.issueToDateRange) {
       httpParams = httpParams.set('filter[issueDateRange]', params.issueFromDateRange)
+        .append('filter[issueDateRange]', params.issueToDateRange)
     }
 
-    if (params.issueToDateRange) {
-      httpParams = httpParams.set('filter[issueDateRange]', params.issueToDateRange)
-    }
-
-    if (params.dueFromDateRange) {
+    if (params.dueFromDateRange && params.dueToDateRange) {
       httpParams = httpParams.set('filter[dueDateRange]', params.dueFromDateRange)
+        .append('filter[dueDateRange]', params.dueToDateRange)
     }
 
-    if (params.dueToDateRange) {
-      httpParams = httpParams.set('filter[dueDateRange]', params.dueToDateRange)
-    }
-
-    if (params.returnFromDateRange) {
+    if (params.returnFromDateRange && params.returnToDateRange) {
       httpParams = httpParams.set('filter[returnDateRange]', params.returnFromDateRange)
-    }
-
-    if (params.returnToDateRange) {
-      httpParams = httpParams.set('filter[returnDateRange]', params.returnToDateRange)
+        .append('filter[returnDateRange]', params.returnToDateRange)
     }
 
     if (params.orderBy) {
@@ -79,6 +76,18 @@ export class LoansService {
     }
 
     // console.log(httpParams.toString());
+    return httpParams;
+  }
+
+  deleteLoans(books: LoanBookResponse[]): Observable<any> {
+    return this.http.delete(`${environment.apiUrl}/api/loan`, {params: this.deleteLoanBookParams(books)})
+  }
+
+  deleteLoanBookParams(books: LoanBookResponse[]): HttpParams {
+    let httpParams = new HttpParams();
+    books.forEach(book => {
+      httpParams = httpParams.append('ids[]', book.id);
+    })
     return httpParams;
   }
 

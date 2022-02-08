@@ -1,8 +1,9 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {LoansService} from "../../services/loans.service";
 import {take} from "rxjs";
 import {FormBuilder} from "@angular/forms";
 import {formatDate} from "@angular/common";
+import {LoansParams} from "../../services/loans.store";
 
 @Component({
   selector: 'app-loans-form',
@@ -24,6 +25,20 @@ export class LoansFormComponent implements OnInit {
   returnToDate!: string | null;
 
   @Output() searchQuery = new EventEmitter<{}>();
+
+  @Input() set formValue(params: LoansParams) {
+    this.form.patchValue({
+      book: params.book,
+      member: params.member,
+      issueFromDateRange: params.issueFromDateRange,
+      issueToDateRange: params.issueToDateRange,
+      dueFromDateRange: params.dueFromDateRange,
+      dueToDateRange: params.dueToDateRange,
+      returnFromDateRange: params.returnFromDateRange,
+      returnToDateRange: params.returnToDateRange,
+      status: params.status,
+    })
+  }
 
   constructor(private loansService: LoansService, private fb: FormBuilder) {
   }
@@ -82,7 +97,8 @@ export class LoansFormComponent implements OnInit {
   /////////////////////////////
 
   onSearch() {
-    console.log(this.form.value);
+    // console.log(this.form.value);
+    console.log(this.form.value.dueDate);
     console.log(this.form.value.issueDate);
 
     if (this.form.value.issueDate) {
@@ -122,6 +138,27 @@ export class LoansFormComponent implements OnInit {
       dateFormatted = formatDate(date, 'yyyy-MM-ddThh:mm:ss', 'en_US')
     }
     return dateFormatted;
+  }
+
+  reset() {
+    this.searchQuery.emit({
+      offset: 0,
+      member: null,
+      book: null,
+      status: null,
+      issueFromDateRange: null,
+      issueToDateRange: null,
+      dueFromDateRange: null,
+      dueToDateRange: null,
+      returnFromDateRange: null,
+      returnToDateRange: null,
+    })
+
+    this.form.patchValue({
+      issueDate: null,
+      dueDate: null,
+      returnDate: null,
+    })
   }
 
 }

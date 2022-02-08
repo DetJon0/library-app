@@ -18,6 +18,9 @@ import {CalendarModule} from 'primeng/calendar';
 import {DropdownModule} from "primeng/dropdown";
 import {BooksStore} from "../books/services/books.store";
 import {LoansStore} from "./services/loans.store";
+import {TableModule} from "primeng/table";
+import {PaginatorModule} from "primeng/paginator";
+import {ViewBookComponent} from "../books/containers/view-book/view-book.component";
 
 const routes: Routes = [
   {
@@ -27,6 +30,10 @@ const routes: Routes = [
   {
     path: 'new',
     component: NewLoanComponent,
+  },
+  {
+    path: ':id',
+    component: ViewLoanComponent,
   },
   {
     path: 'import',
@@ -44,7 +51,10 @@ const routes: Routes = [
         ReactiveFormsModule,
         SharedModule,
         CalendarModule,
-        DropdownModule
+        DropdownModule,
+        TableModule,
+        PaginatorModule,
+        SharedModule
     ],
   declarations: [
     LoanComponent,

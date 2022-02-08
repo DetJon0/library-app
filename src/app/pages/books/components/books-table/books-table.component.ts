@@ -76,7 +76,6 @@ export class BooksTableComponent implements OnInit {
 
     if (id) {
       this.router.navigate([id], { relativeTo: this.route });
-    } else {
     }
   }
 

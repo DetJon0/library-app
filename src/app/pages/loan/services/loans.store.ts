@@ -2,10 +2,10 @@ import {Injectable} from "@angular/core";
 import {ComponentStore} from "@ngrx/component-store";
 import {LoansService} from "./loans.service";
 import {catchError, EMPTY, Observable, switchMap, tap} from "rxjs";
-import {BookResponse} from "../../books/model/book-response.model";
+import {LoanBookResponse} from "../model/loan-book-response.model";
 
 export interface LoanServerResponse {
-  rows: BookResponse[];
+  rows: LoanBookResponse[];
   count: number;
 }
 
@@ -25,7 +25,7 @@ export interface LoansParams {
 }
 
 export interface LoansState {
-  data: BookResponse[],
+  data: LoanBookResponse[],
   params: LoansParams,
   loading: boolean;
   loaded: boolean;
@@ -60,6 +60,8 @@ export class LoansStore extends ComponentStore<LoansState> {
 
   constructor(private loansService: LoansService) {
     super(initialState);
+
+    this.state$.subscribe(console.log)
   }
 
   get params() {
