@@ -2,6 +2,10 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {LoansTableComponent} from "../../../loan/components/loans-table/loans-table.component";
 import {UsersStore} from "../../services/users.store";
 import {UsersTableComponent} from "../../components/users-table/users-table.component";
+import {UserDisable} from "../../model/user-disable.model";
+import {take} from "rxjs";
+import {ConfirmationService, MessageService} from "primeng/api";
+import {UsersService} from "../../services/users.service";
 
 @Component({
   selector: 'app-users',
@@ -10,11 +14,12 @@ import {UsersTableComponent} from "../../components/users-table/users-table.comp
 })
 export class UsersComponent implements OnInit {
 
+  idArray : string[] = [];
+
   @ViewChild(UsersTableComponent) table!: UsersTableComponent;
 
-  disabled: boolean = true;
-
-  constructor(public store: UsersStore) { }
+  constructor(public store: UsersStore, private confirmationService: ConfirmationService, private usersService: UsersService,
+              private messageService: MessageService) { }
 
   ngOnInit() {
     this.store.load({})
@@ -37,7 +42,50 @@ export class UsersComponent implements OnInit {
       status: event.status,
       createdAtFirst: event.createdAtFirst,
       createdAtSecond: event.createdAtSecond,
+      role: event.role,
     })
+  }
+
+  onDisableUser() {
+    console.log(this.table.selectedUsers);
+
+    let selectedUsers = this.table.selectedUsers;
+
+    // idArray.push(selectedUsers.id)
+
+    this.table.selectedUsers.map((user) => {
+      console.log(user)
+      this.idArray.push(user.id)
+
+      const userData: UserDisable = {
+        ids: this.idArray,
+        disabled: true,
+      }
+
+      console.log(userData);
+
+      if(this.table.selectedUsers.length !== 0) {
+        this.confirmationService.confirm({
+          message: 'Are you sure?',
+          accept: () => {
+            this.usersService.disableUser(userData).pipe(take(1)).subscribe({
+              next: (res) => {
+                this.messageService.add({key: 'toast', detail: 'Success', severity: 'success', summary: 'Disabled succesfully'})
+                this.table.selectedUsers.length = 0;
+                this.store.load({})
+              },
+              error: err => {
+                this.messageService.add({key: 'toast', detail: 'Error', severity: 'error', summary: err.message})
+                console.log(err);
+              }
+            })
+          }
+        })
+
+      }
+
+    })
+
   }
 
 }

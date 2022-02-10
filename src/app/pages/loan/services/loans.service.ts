@@ -100,7 +100,7 @@ export class LoansService {
   }
 
   editLoanBook(id: string, book: EditedLoanBook): Observable<any> {
-    return  this.http.put(`${environment.apiUrl}/api/loan/${id}`, book)
+    return this.http.put(`${environment.apiUrl}/api/loan/${id}`, book)
   }
 
   postLoan(data: LoanData): Observable<any> {

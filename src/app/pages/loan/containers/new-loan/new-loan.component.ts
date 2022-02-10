@@ -195,6 +195,16 @@ export class NewLoanComponent implements OnInit {
     return this.form.get('status')?.value;
   }
 
+  onReset() {
+    this.form.patchValue({
+      book: null,
+      member: null,
+      issueDate: null,
+      dueDate: null,
+      status: null,
+    })
+  }
+
   ngOnDestroy() {
     this.subscription?.unsubscribe();
   }

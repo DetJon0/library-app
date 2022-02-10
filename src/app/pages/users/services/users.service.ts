@@ -3,6 +3,7 @@ import {HttpClient, HttpParams} from "@angular/common/http";
 import {LoansParams} from "../../loan/services/loans.store";
 import {environment} from "../../../../environments/environment";
 import {UsersParams} from "./users.store";
+import {UserDisable} from "../model/user-disable.model";
 
 @Injectable({
   providedIn: 'root',
@@ -34,6 +35,14 @@ export class UsersService {
       httpParams = httpParams.set('filter[email]', params.email)
     }
 
+    if (params.name) {
+      httpParams = httpParams.set('filter[name]', params.name)
+    }
+
+    if (params.role) {
+      httpParams = httpParams.set('filter[role]', params.role)
+    }
+
     if (params.status) {
       httpParams = httpParams.set('filter[status]', params.status)
     }
@@ -45,6 +54,10 @@ export class UsersService {
 
     // console.log(httpParams.toString());
     return httpParams;
+  }
+
+  disableUser(data: UserDisable) {
+    return this.http.put(`${environment.apiUrl}/api/iam/status`, data)
   }
 
 }

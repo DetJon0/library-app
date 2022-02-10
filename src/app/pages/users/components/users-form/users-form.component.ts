@@ -34,6 +34,7 @@ export class UsersFormComponent implements OnInit {
       status: params.status,
       createdAtFirst: params.createdAtFirst,
       createdAtSecond: params.createdAtSecond,
+      role: params.role,
     })
   }
 
@@ -58,24 +59,22 @@ export class UsersFormComponent implements OnInit {
     console.log(this.form.value);
 
     if (this.form.value.createdAt) {
-      this.createdAtFirst = this.formatDates(this.form.value.returnDate[0])
-      this.createdAtSecond = this.formatDates(this.form.value.returnDate[1])
+      this.createdAtFirst = this.formatDates(this.form.value.createdAt[0])
+      this.createdAtSecond = this.formatDates(this.form.value.createdAt[1])
     }
 
-    // const object = {
-    //   id: this.form.value.book?.id,
-    //   member: this.form.value.member?.id,
-    //   issueFromDateRange: this.issueFromDate,
-    //   issueToDateRange: this.issueToDate,
-    //   dueFromDateRange: this.dueFromDate,
-    //   dueToDateRange: this.dueToDate,
-    //   returnFromDateRange: this.returnFromDate,
-    //   returnToDateRange: this.returnToDate,
-    //   status: this.form.value.status,
-    // }
+    const object = {
+      id: this.form.value.id,
+      email: this.form.value.email,
+      name: this.form.value.name,
+      status: this.form.value.status,
+      createdAtFirst: this.createdAtFirst,
+      createdAtSecond: this.createdAtSecond,
+      role: this.form.value.role,
+    }
 
-    // console.log(object);
-    // this.searchQuery.emit(object)
+    console.log(object);
+    this.searchQuery.emit(object)
   }
 
   formatDates(date: string) {
