@@ -26,8 +26,8 @@
       <td>{{rowData.dueDate | date}}</td>
       <td>{{rowData.returnDate | date}} </td>
       <td >
-        <span [ngClass]="{ 'closed-status': rowData.status === 'Closed', 'progress-status': rowData.status === 'inProgress'}">
-          {{rowData.status === 'inProgress' ? 'In Progress' : rowData.status}}</span>
+        <span [ngClass]="{ 'closed-status': rowData.status === 'Closed' || 'overdue', 'progress-status': rowData.status === 'inProgress'}">
+          {{rowData.status === 'inProgress' ? 'In Progress' : rowData.status | titlecase}}</span>
       </td>
       <td>
         <button class="button-link" (click)="onView(rowData)" >View</button>

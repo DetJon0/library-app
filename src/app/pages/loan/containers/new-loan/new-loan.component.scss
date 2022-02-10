@@ -17,6 +17,12 @@
   }
 }
 
+.closed-status, .progress-status {
+  font-size: 1.4rem;
+  width: 50%;
+}
+
+
 :host ::ng-deep {
   .p-inputtext {
     width: 70%;

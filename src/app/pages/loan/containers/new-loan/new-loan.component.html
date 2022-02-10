@@ -58,11 +58,11 @@
           </p-calendar>
         </div>
 
-        <div class="form-group">
+        <div class="form-group" *ngIf="inputDate">
           <label class="form-label">Status</label>
-          <span class="book-status" *ngIf="inputDate" [ngClass]="{
-            'closed-status': statusValue === 'Overdue', 'progress-status': statusValue === 'inProgress'}" >
-              {{ statusValue === 'inProgress' ? 'In Progress' : statusValue  }} </span>
+          <span class="book-status" [ngClass]="{
+            'closed-status': statusValue === 'overdue', 'progress-status': statusValue === 'inProgress'}" >
+              {{ statusValue === 'inProgress' ? 'In Progress' : statusValue | titlecase  }} </span>
         </div>
 
         <button type="submit" class="button" [disabled]="!form.valid" (click)="onSave()" >Save</button>
