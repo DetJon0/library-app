@@ -16,8 +16,8 @@
         <p>Issue Date: <span> {{book.issueDate | date:'medium'}} </span> </p>
         <p>Due Date: <span> {{book.dueDate | date:'medium' }} </span> </p>
         <p>Status:
-          <span [ngClass]="{ 'closed-status': book.status === 'Closed', 'progress-status': book.status === 'inProgress'}">
-            {{book.status === 'inProgress' ? 'In Progress' : book.status }}
+          <span [ngClass]="{ 'closed-status': book.status === 'Closed' || 'overdue', 'progress-status': book.status === 'inProgress'}">
+            {{book.status === 'inProgress' ? 'In Progress' : book.status | titlecase }}
           </span>
         </p>
         <p>Created at: <span> {{book.createdAt | date:'medium'}} </span> </p>

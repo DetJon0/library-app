@@ -61,13 +61,23 @@ export class NewLoanComponent implements OnInit {
         console.log(today);
         let todayDate = dayjs(new Date()).format('YYYY-MM-DDTHH:mm:ss');
 
-        let dayDue = dayjs(dueDateValue).date();
-        let dayToday = dayjs(todayDate).date();
+        console.log(todayDate);
+
+        // const diff = todayDate.diff(dueDateValue)
+
+        let dayDue = dayjs(dueDateValue);
+        let dayToday = dayjs(todayDate);
+
+        // let monthDue =
+
+        const difference = dayDue.diff(dayToday)
+
+        console.log(difference);
 
         console.log(dayDue);
         console.log(dayToday);
 
-        if(dayDue > dayToday) {
+        if(difference > 0) {
           this.status = 'inProgress'
         } else {
           this.status = 'overdue'

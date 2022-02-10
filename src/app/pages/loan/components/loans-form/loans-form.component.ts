@@ -46,7 +46,7 @@ export class LoansFormComponent implements OnInit {
   availability = [
     {label: '--', value: null},
     {label: 'In progress', value: 'inProgress'},
-    {label: 'Overdue', value: 'Overdue'},
+    {label: 'Overdue', value: 'overdue'},
     {label: 'Closed', value: 'Closed'}
   ];
 

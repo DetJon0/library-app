@@ -43,8 +43,8 @@
           <div class="form-group">
             <label class="form-label">Status</label>
             <span class="book-status" [ngClass]="{
-            'closed-status': statusValue === 'Closed', 'progress-status': statusValue === 'inProgress'}" >
-              {{ statusValue === 'inProgress' ? 'In Progress' : statusValue  }} </span>
+            'closed-status': statusValue === 'Closed' || 'overdue', 'progress-status': statusValue === 'inProgress'}" >
+              {{ statusValue === 'inProgress' ? 'In Progress' : statusValue | titlecase  }} </span>
           </div>
 
           <button type="submit" class="button" [disabled]="!form.valid" (click)="onSave()" >

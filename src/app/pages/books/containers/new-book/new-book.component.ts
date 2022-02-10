@@ -3,6 +3,8 @@ import {FormBuilder, Validators} from "@angular/forms";
 import {BooksService} from "../../services/books.service";
 import {Book} from "../../model/book.model";
 import {Router} from "@angular/router";
+import {MessageService} from "primeng/api";
+import {BooksStore} from "../../services/books.store";
 
 @Component({
   selector: 'app-new-book',
@@ -13,7 +15,8 @@ export class NewBookComponent implements OnInit {
 
   books: Book[] = [];
 
-  constructor(private fb: FormBuilder, private bookService: BooksService, private router: Router) {
+  constructor(private fb: FormBuilder, private bookService: BooksService, private router: Router,
+              private messageService: MessageService, private store: BooksStore) {
   }
 
   ngOnInit(): void {
@@ -41,9 +44,13 @@ export class NewBookComponent implements OnInit {
 
     this.bookService.postBook(data).subscribe({
         next: (res) => {
+          this.messageService.add({key: 'toast', detail: 'Success', severity: 'success', summary: 'Created succesfully'})
+          this.store.load({})
           this.router.navigateByUrl('/book');
         },
         error: (err) => {
+          this.messageService.add({key: 'toast', detail: 'Error', severity: 'error', summary: err.message})
+          this.store.load({})
           console.log(err);
         }
       }
