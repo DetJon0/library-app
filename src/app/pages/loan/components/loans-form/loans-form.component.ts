@@ -46,8 +46,8 @@ export class LoansFormComponent implements OnInit {
   availability = [
     {label: '--', value: null},
     {label: 'In progress', value: 'inProgress'},
-    {label: 'Overdue', value: 'overdue'},
-    {label: 'Closed', value: 'closed'}
+    {label: 'Overdue', value: 'Overdue'},
+    {label: 'Closed', value: 'Closed'}
   ];
 
   form = this.fb.group({

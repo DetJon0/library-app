@@ -24,12 +24,15 @@
       <td>{{rowData.member.email}}</td>
       <td>{{rowData.issueDate | date}}</td>
       <td>{{rowData.dueDate | date}}</td>
-      <td></td>
-      <td>{{rowData.status === 'inProgress' ? 'In Progress' : ''}}</td>
+      <td>{{rowData.returnDate | date}} </td>
+      <td >
+        <span [ngClass]="{ 'closed-status': rowData.status === 'Closed', 'progress-status': rowData.status === 'inProgress'}">
+          {{rowData.status === 'inProgress' ? 'In Progress' : rowData.status}}</span>
+      </td>
       <td>
         <button class="button-link" (click)="onView(rowData)" >View</button>
-        <button class="button-link" >Edit</button>
-        <button class="button-link" >Delete</button>
+        <button class="button-link" (click)="onEdit(rowData)" *ngIf="!rowData.returnDate" >Edit</button>
+        <button class="button-link" (click)="onDelete(rowData)" >Delete</button>
       </td>
     </tr>
   </ng-template>

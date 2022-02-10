@@ -4,7 +4,11 @@ import {Observable} from "rxjs";
 import {environment} from "../../../../environments/environment";
 import {LoansParams} from "./loans.store";
 import {BookResponse} from "../../books/model/book-response.model";
-import { LoanBookResponse} from "../model/loan-book-response.model";
+import {LoanBookResponse} from "../model/loan-book-response.model";
+import {BookEditModel} from "../../books/model/book-edit.model";
+import {EditedLoanBook, EditLoanBook} from "../model/edit-loan-book.model";
+import {Book} from "../../books/model/book.model";
+import {LoanData, LoanPost} from "../model/post-loan-model";
 
 @Injectable({
   providedIn: 'root',
@@ -89,6 +93,21 @@ export class LoansService {
       httpParams = httpParams.append('ids[]', book.id);
     })
     return httpParams;
+  }
+
+  singleLoanDeleteBook(id: string): Observable<any> {
+    return this.http.delete(`${environment.apiUrl}/api/loan?ids[]=${id}`)
+  }
+
+  editLoanBook(id: string, book: EditedLoanBook): Observable<any> {
+    return  this.http.put(`${environment.apiUrl}/api/loan/${id}`, book)
+  }
+
+  postLoan(data: LoanData): Observable<any> {
+    return this.http.post(`${environment.apiUrl}/api/loan`, {
+        data: {...data}
+      }
+    )
   }
 
 }

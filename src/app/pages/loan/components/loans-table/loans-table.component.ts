@@ -3,6 +3,9 @@ import {Book} from "../../../books/model/book.model";
 import {BookResponse} from "../../../books/model/book-response.model";
 import {LoanBookResponse} from "../../model/loan-book-response.model";
 import {ActivatedRoute, Router} from "@angular/router";
+import {LoansService} from "../../services/loans.service";
+import {LoansStore} from "../../services/loans.store";
+import {ConfirmationService, MessageService} from "primeng/api";
 
 @Component({
   selector: 'app-loans-table',
@@ -31,7 +34,11 @@ export class LoansTableComponent implements OnInit {
 
   selectedBooks: LoanBookResponse[] = [];
 
-  constructor(private router: Router, private route: ActivatedRoute) { }
+  constructor(private router: Router, private route: ActivatedRoute,
+              private loansService: LoansService,
+              private store: LoansStore,
+              private messageService: MessageService,
+              private confirmationService: ConfirmationService) { }
 
   ngOnInit() {
     // console.log(this.books);
@@ -54,6 +61,35 @@ export class LoansTableComponent implements OnInit {
 
     if (id) {
       this.router.navigate([id], { relativeTo: this.route });
+    }
+  }
+
+  onDelete(rowData: LoanBookResponse) {
+    console.log(rowData);
+    this.confirmationService.confirm({
+      message: 'Are you sure?',
+      accept: () => {
+        this.loansService.singleLoanDeleteBook(rowData.id).subscribe({
+          next: (res) => {
+            this.messageService.add({key: 'toast', detail: 'Success', severity: 'success', summary: 'Deleted succesfully'})
+            this.store.load({})
+          },
+          error: err => {
+            this.messageService.add({key: 'toast', detail: 'Error', severity: 'error', summary: err.message})
+            console.log(err);
+          }
+        })
+      }
+    })
+  }
+
+  onEdit(rowData: LoanBookResponse) {
+    console.log(rowData);
+    let id = rowData.id;
+    // console.log(id);
+
+    if (id) {
+      this.router.navigate([id, 'edit'], { relativeTo: this.route });
     }
   }
 

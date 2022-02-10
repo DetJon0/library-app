@@ -156,3 +156,19 @@ body {
 input.ng-touched.ng-invalid {
   border: 1px solid red;
 }
+
+.closed-status, .progress-status {
+  border-radius: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  padding: .7rem 1.2rem;
+}
+
+.closed-status {
+  color: #909399;
+  background-color: rgba(144, 147, 153, 0.1);
+}
+
+.progress-status {
+  color: #67c23a;
+  background-color: rgba(103, 194, 58, 0.1);
+}

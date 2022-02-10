@@ -36,6 +36,10 @@ const routes: Routes = [
     component: ViewLoanComponent,
   },
   {
+    path: ':id/edit',
+    component: EditLoanComponent,
+  },
+  {
     path: 'import',
     component: ImportLoanComponent,
   }
