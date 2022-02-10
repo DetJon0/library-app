@@ -8,19 +8,15 @@ import {AutoCompleteModule} from "primeng/autocomplete";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { LoansFormComponent } from './components/loans-form/loans-form.component';
 import { LoansTableComponent } from './components/loans-table/loans-table.component';
-import { LoansFiltersComponent } from './components/loans-filters/loans-filters.component';
-import { LoansButtonsComponent } from './components/loans-buttons/loans-buttons.component';
 import { ViewLoanComponent } from './containers/view-loan/view-loan.component';
 import { EditLoanComponent } from './containers/edit-loan/edit-loan.component';
 import { ImportLoanComponent } from './containers/import-loan/import-loan.component';
 import {SharedModule} from "../../shared/shared.module";
 import {CalendarModule} from 'primeng/calendar';
 import {DropdownModule} from "primeng/dropdown";
-import {BooksStore} from "../books/services/books.store";
 import {LoansStore} from "./services/loans.store";
 import {TableModule} from "primeng/table";
 import {PaginatorModule} from "primeng/paginator";
-import {ViewBookComponent} from "../books/containers/view-book/view-book.component";
 
 const routes: Routes = [
   {
@@ -65,8 +61,6 @@ const routes: Routes = [
     NewLoanComponent,
     LoansFormComponent,
     LoansTableComponent,
-    LoansFiltersComponent,
-    LoansButtonsComponent,
     ViewLoanComponent,
     EditLoanComponent,
     ImportLoanComponent

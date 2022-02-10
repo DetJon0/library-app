@@ -1,4 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {LoanBookResponse} from "../../../loan/model/loan-book-response.model";
+import {ActivatedRoute, Router} from "@angular/router";
+import {LoansService} from "../../../loan/services/loans.service";
+import {ConfirmationService, MessageService} from "primeng/api";
+import {UserServerResponse, UsersStore} from "../../services/users.store";
+import {UsersResponse} from "../../model/user-response.model";
 
 @Component({
   selector: 'app-users-table',
@@ -7,9 +13,44 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UsersTableComponent implements OnInit {
 
-  constructor() { }
+  @Input() users!: UsersResponse[];
+  @Input() total!: number;
+  @Input() rows!: number;
 
-  ngOnInit(): void {
+  @Input() loading!: boolean;
+
+  cols = [
+    {field: 'email', header: 'Email'},
+    {field: 'name', header: 'Name'},
+    {field: 'roles', header: 'Roles'},
+    {field: 'status', header: 'Status'},
+    {field: 'createdAt', header: 'Created at'},
+  ];
+
+  @Output() paginationChanged = new EventEmitter<number>();
+  @Output() sortChanged = new EventEmitter<string>();
+
+  selectedUsers: UsersResponse[] = [];
+
+  constructor(private router: Router, private route: ActivatedRoute,
+              private loansService: LoansService,
+              private store: UsersStore,
+              private messageService: MessageService,
+              private confirmationService: ConfirmationService) { }
+
+  ngOnInit() {
+    // console.log(this.books);
   }
+
+  paginate(event: any) {
+    this.paginationChanged.emit(event);
+  }
+
+  sort(event: any) {
+    const sortQuery = `${event.sortField}_${event.sortOrder === 1 ? 'ASC' : 'DESC'}`
+
+    if (!!event.sortField && !!event.sortOrder) this.sortChanged.emit(sortQuery);
+  }
+
 
 }
