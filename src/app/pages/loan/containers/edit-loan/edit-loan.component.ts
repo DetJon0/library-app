@@ -8,6 +8,7 @@ import {MessageService} from "primeng/api";
 import {LoanBookResponse} from "../../model/loan-book-response.model";
 import {formatDate} from "@angular/common";
 import {LoansStore} from "../../services/loans.store";
+import {formatDates} from "../../utils/formatDates.function";
 
 @Component({
   selector: 'app-edit-loan',
@@ -93,7 +94,7 @@ export class EditLoanComponent implements OnInit, OnDestroy {
 
   onSave() {
     console.log(this.form.value.returnDate);
-    const returnDate = this.formatDates(this.form.value.returnDate);
+    const returnDate = formatDates(this.form.value.returnDate);
 
     console.log(this.form.value.status);
 
@@ -126,14 +127,6 @@ export class EditLoanComponent implements OnInit, OnDestroy {
         }
       )
     }
-  }
-
-  formatDates(date: string) {
-    let dateFormatted = null;
-    if (date) {
-      dateFormatted = formatDate(date, 'yyyy-MM-ddThh:mm:ss', 'en_US')
-    }
-    return dateFormatted;
   }
 
   formatNormalDates(date: string) {

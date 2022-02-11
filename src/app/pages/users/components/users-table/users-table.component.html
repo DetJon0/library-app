@@ -1,7 +1,7 @@
 <p-table [lazy]="true" (onLazyLoad)="sort($event)"
          [columns]="cols"
          [value]="users"
-         [customSort]="true" [(selection)]="selectedUsers"
+         [customSort]="true" [(selection)]="selectedUsers" (selectionChange)="selectionChange($event)"
          selectionMode="multiple"
          dataKey="id"
          [loading]="loading">
@@ -29,9 +29,8 @@
       </td>
       <td>{{rowData.createdAt | date}} </td>
       <td>
-        <button class="button-link"  >View</button>
-        <button class="button-link"   >Edit</button>
-        <button class="button-link" >Delete</button>
+        <button class="button-link" (click)="onView(rowData)"  >View</button>
+        <button class="button-link" (click)="onEdit(rowData)" >Edit</button>
       </td>
     </tr>
   </ng-template>

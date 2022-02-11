@@ -29,8 +29,9 @@ export class UsersTableComponent implements OnInit {
 
   @Output() paginationChanged = new EventEmitter<number>();
   @Output() sortChanged = new EventEmitter<string>();
+  @Output() userSelection = new EventEmitter<[]>();
 
-  selectedUsers: UsersResponse[] = [];
+  @Input() selectedUsers: UsersResponse[] = [];
 
   constructor(private router: Router, private route: ActivatedRoute,
               private loansService: LoansService,
@@ -40,6 +41,11 @@ export class UsersTableComponent implements OnInit {
 
   ngOnInit() {
     // console.log(this.books);
+  }
+
+  selectionChange(event: any) {
+    console.log(event)
+    this.userSelection.emit(event)
   }
 
   paginate(event: any) {
@@ -52,5 +58,24 @@ export class UsersTableComponent implements OnInit {
     if (!!event.sortField && !!event.sortOrder) this.sortChanged.emit(sortQuery);
   }
 
+  onView(rowData: UsersResponse) {
+    console.log(rowData);
+    let id = rowData.id;
+    // console.log(id);
+
+    if (id) {
+      this.router.navigate([id], { relativeTo: this.route });
+    }
+  }
+
+  onEdit(rowData: UsersResponse) {
+    console.log(rowData);
+    let id = rowData.id;
+    // console.log(id);
+
+    if (id) {
+      this.router.navigate([id, 'edit'], { relativeTo: this.route });
+    }
+  }
 
 }

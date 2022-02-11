@@ -17,6 +17,8 @@ import {RouterModule, Routes} from "@angular/router";
 import {CalendarModule} from "primeng/calendar";
 import {DropdownModule} from "primeng/dropdown";
 import {UsersStore} from "./services/users.store";
+import {InputMaskModule} from "primeng/inputmask";
+import {MultiSelectModule} from 'primeng/multiselect';
 
 const routes: Routes = [
   {
@@ -34,6 +36,10 @@ const routes: Routes = [
   {
     path: ':id',
     component: ViewUserComponent
+  },
+  {
+    path: ':id/edit',
+    component: EditUserComponent
   }
 ]
 
@@ -60,6 +66,8 @@ const routes: Routes = [
     PaginatorModule,
     CalendarModule,
     DropdownModule,
+    InputMaskModule,
+    MultiSelectModule,
   ],
   providers: [
     UsersStore

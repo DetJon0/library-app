@@ -14,7 +14,9 @@ import {UsersService} from "../../services/users.service";
 })
 export class UsersComponent implements OnInit {
 
-  idArray : string[] = [];
+  idArray: string[] = [];
+
+  usersSelection: [] = [];
 
   @ViewChild(UsersTableComponent) table!: UsersTableComponent;
 
@@ -23,6 +25,12 @@ export class UsersComponent implements OnInit {
 
   ngOnInit() {
     this.store.load({})
+  }
+
+  selectedUsers(event: any) {
+    console.log(this.usersSelection);
+    this.usersSelection = event;
+    console.log(this.usersSelection);
   }
 
   paginate(event: any) {
@@ -46,12 +54,8 @@ export class UsersComponent implements OnInit {
     })
   }
 
-  onDisableUser() {
+  onStatusChangeUser(status: boolean) {
     console.log(this.table.selectedUsers);
-
-    let selectedUsers = this.table.selectedUsers;
-
-    // idArray.push(selectedUsers.id)
 
     this.table.selectedUsers.map((user) => {
       console.log(user)
@@ -59,19 +63,22 @@ export class UsersComponent implements OnInit {
 
       const userData: UserDisable = {
         ids: this.idArray,
-        disabled: true,
+        disabled: status,
       }
 
       console.log(userData);
+
+      console.log(this.table.selectedUsers.length);
 
       if(this.table.selectedUsers.length !== 0) {
         this.confirmationService.confirm({
           message: 'Are you sure?',
           accept: () => {
-            this.usersService.disableUser(userData).pipe(take(1)).subscribe({
+            this.usersService.userStatusChange(userData).pipe(take(1)).subscribe({
               next: (res) => {
                 this.messageService.add({key: 'toast', detail: 'Success', severity: 'success', summary: 'Disabled succesfully'})
-                this.table.selectedUsers.length = 0;
+                this.usersSelection = [];
+                console.log(this.usersSelection);
                 this.store.load({})
               },
               error: err => {

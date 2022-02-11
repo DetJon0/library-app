@@ -4,6 +4,9 @@ import {LoansParams} from "../../loan/services/loans.store";
 import {environment} from "../../../../environments/environment";
 import {UsersParams} from "./users.store";
 import {UserDisable} from "../model/user-disable.model";
+import {Observable} from "rxjs";
+import {BookResponse} from "../../books/model/book-response.model";
+import {UsersResponse} from "../model/user-response.model";
 
 @Injectable({
   providedIn: 'root',
@@ -36,7 +39,7 @@ export class UsersService {
     }
 
     if (params.name) {
-      httpParams = httpParams.set('filter[name]', params.name)
+      httpParams = httpParams.set('filter[fullName]', params.name)
     }
 
     if (params.role) {
@@ -56,8 +59,12 @@ export class UsersService {
     return httpParams;
   }
 
-  disableUser(data: UserDisable) {
+  userStatusChange(data: UserDisable) {
     return this.http.put(`${environment.apiUrl}/api/iam/status`, data)
+  }
+
+  getUserById(id: string): Observable<any> {
+    return this.http.get<UsersResponse>(`${environment.apiUrl}/api/iam/${id}`);
   }
 
 }

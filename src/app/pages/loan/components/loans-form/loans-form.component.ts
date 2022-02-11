@@ -2,8 +2,8 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {LoansService} from "../../services/loans.service";
 import {take} from "rxjs";
 import {FormBuilder} from "@angular/forms";
-import {formatDate} from "@angular/common";
 import {LoansParams} from "../../services/loans.store";
+import {formatDates} from "../../utils/formatDates.function";
 
 @Component({
   selector: 'app-loans-form',
@@ -102,18 +102,18 @@ export class LoansFormComponent implements OnInit {
     console.log(this.form.value.issueDate);
 
     if (this.form.value.issueDate) {
-      this.issueFromDate = this.formatDates(this.form.value.issueDate[0])
-      this.issueToDate = this.formatDates(this.form.value.issueDate[1])
+      this.issueFromDate = formatDates(this.form.value.issueDate[0])
+      this.issueToDate = formatDates(this.form.value.issueDate[1])
     }
 
     if (this.form.value.dueDate) {
-      this.dueFromDate = this.formatDates(this.form.value.dueDate[0])
-      this.dueToDate = this.formatDates(this.form.value.dueDate[1])
+      this.dueFromDate = formatDates(this.form.value.dueDate[0])
+      this.dueToDate = formatDates(this.form.value.dueDate[1])
     }
 
     if (this.form.value.returnDate) {
-      this.returnFromDate = this.formatDates(this.form.value.returnDate[0])
-      this.returnToDate = this.formatDates(this.form.value.returnDate[1])
+      this.returnFromDate = formatDates(this.form.value.returnDate[0])
+      this.returnToDate = formatDates(this.form.value.returnDate[1])
     }
 
     const object = {
@@ -130,14 +130,6 @@ export class LoansFormComponent implements OnInit {
 
     console.log(object);
     this.searchQuery.emit(object)
-  }
-
-  formatDates(date: string) {
-    let dateFormatted = null;
-    if (date) {
-      dateFormatted = formatDate(date, 'yyyy-MM-ddThh:mm:ss', 'en_US')
-    }
-    return dateFormatted;
   }
 
   reset() {

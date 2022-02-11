@@ -6,8 +6,10 @@
     <button type="button" routerLink="new" class="button" >New</button>
     <button type="button" routerLink="import" class="button" >Import</button>
     <button type="button" class="button" >Remove</button>
-    <button type="button" class="button" >Enable</button>
-    <button type="button" (click)="onDisableUser()" class="button" >Disable</button>
+    <button  type="button" [class.p-disabled]="usersSelection.length === 0"
+             class="button"(click)="onStatusChangeUser(false)" >Enable</button>
+    <button type="button" (click)="onStatusChangeUser(true)" class="button"
+            [class.p-disabled]="usersSelection.length === 0" >Disable</button>
     <button type="button" class="audit-button" >Audit Logs</button>
     <button type="button" class="audit-button" >Export to Excel</button>
 
@@ -17,11 +19,13 @@
           (searchQuery)="searchParams($event)"></app-users-form>
 
       <app-users-table
+        [selectedUsers]="usersSelection"
         [rows]="state.params.limit"
         [total]="state.total"
         [users]="state.data"
         (paginationChanged)="paginate($event)"
         (sortChanged)="sort($event)"
+        (userSelection)="selectedUsers($event)"
         [loading]="state.loading">
       </app-users-table>
 
