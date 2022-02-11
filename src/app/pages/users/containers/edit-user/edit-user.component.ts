@@ -6,6 +6,9 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {UsersService} from "../../services/users.service";
 import {FormBuilder, Validators} from "@angular/forms";
 import {MessageService} from "primeng/api";
+import {UsersStore} from "../../services/users.store";
+import {UserEdit} from "../../../edit-profile/models/user-edit.model";
+import {UserEditData} from "../../model/user-edit.model";
 
 @Component({
   selector: 'app-edit-user',
@@ -53,20 +56,41 @@ export class EditUserComponent implements OnInit {
   )
 
   constructor(private route: ActivatedRoute, private router: Router,
-              private usersService: UsersService,
               private fb: FormBuilder,
+              private store: UsersStore,
+              private usersService: UsersService,
               private messageService: MessageService) { }
 
   ngOnInit(): void {
 
   }
 
-  get statusValue() {
-    return this.form.get('roles')?.value;
-  }
-
   onSave() {
     console.log(this.form.value);
+
+    const user: UserEditData = {
+      data: this.form.value,
+    }
+
+    console.log(user);
+
+    const id = this.route.snapshot.paramMap.get('id');
+
+    if (id) {
+      this.usersService.editUser(user).subscribe({
+          next: (res) => {
+            console.log(res);
+            this.messageService.add({key: 'toast', detail: 'Success', severity: 'success', summary: 'Edited succesfully'})
+            this.store.load({})
+            this.router.navigateByUrl('/iam');
+          },
+          error: (err) => {
+            this.messageService.add({key: 'toast', detail: 'Error', severity: 'error', summary: err.message})
+            console.log(err);
+          }
+        }
+      )
+    }
   }
 
 }

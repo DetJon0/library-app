@@ -1,12 +1,11 @@
 import {Injectable} from "@angular/core";
 import {HttpClient, HttpParams} from "@angular/common/http";
-import {LoansParams} from "../../loan/services/loans.store";
 import {environment} from "../../../../environments/environment";
 import {UsersParams} from "./users.store";
 import {UserDisable} from "../model/user-disable.model";
 import {Observable} from "rxjs";
-import {BookResponse} from "../../books/model/book-response.model";
 import {UsersResponse} from "../model/user-response.model";
+import {UserEdit, UserEditData} from "../model/user-edit.model";
 
 @Injectable({
   providedIn: 'root',
@@ -65,6 +64,10 @@ export class UsersService {
 
   getUserById(id: string): Observable<any> {
     return this.http.get<UsersResponse>(`${environment.apiUrl}/api/iam/${id}`);
+  }
+
+  editUser(data: UserEditData) {
+    return this.http.put(`${environment.apiUrl}/api/iam`, data )
   }
 
 }
