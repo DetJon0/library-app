@@ -24,9 +24,10 @@ export class NewLoanComponent implements OnInit {
 
   subscription: Subscription | undefined;
 
-  constructor(private fb: FormBuilder, private loansService: LoansService, private messageService: MessageService,
-               private store: LoansStore, private router: Router) {
-  }
+  constructor(private fb: FormBuilder,
+              private loansService: LoansService,
+              private messageService: MessageService,
+              private store: LoansStore, private router: Router) {}
 
   form = this.fb.group({
     book: [null, Validators.required],

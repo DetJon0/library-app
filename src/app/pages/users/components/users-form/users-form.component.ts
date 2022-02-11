@@ -3,6 +3,7 @@ import {FormBuilder} from "@angular/forms";
 import {formatDate} from "@angular/common";
 import {LoansParams} from "../../../loan/services/loans.store";
 import {UsersParams} from "../../services/users.store";
+import {formatDates} from "../../../loan/utils/formatDates.function";
 
 @Component({
   selector: 'app-users-form',
@@ -59,8 +60,8 @@ export class UsersFormComponent implements OnInit {
     console.log(this.form.value);
 
     if (this.form.value.createdAt) {
-      this.createdAtFirst = this.formatDates(this.form.value.createdAt[0])
-      this.createdAtSecond = this.formatDates(this.form.value.createdAt[1])
+      this.createdAtFirst = formatDates(this.form.value.createdAt[0])
+      this.createdAtSecond = formatDates(this.form.value.createdAt[1])
     }
 
     const object = {
@@ -77,12 +78,19 @@ export class UsersFormComponent implements OnInit {
     this.searchQuery.emit(object)
   }
 
-  formatDates(date: string) {
-    let dateFormatted = null;
-    if (date) {
-      dateFormatted = formatDate(date, 'yyyy-MM-ddThh:mm:ss', 'en_US')
-    }
-    return dateFormatted;
+  reset() {
+    this.searchQuery.emit({
+      offset: 0,
+      id: null,
+      email: null,
+      name: null,
+      status: null,
+      roles: null
+    })
+
+    this.form.patchValue({
+      createdAt: null,
+    })
   }
 
 }

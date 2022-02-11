@@ -19,6 +19,7 @@ import {DropdownModule} from "primeng/dropdown";
 import {UsersStore} from "./services/users.store";
 import {InputMaskModule} from "primeng/inputmask";
 import {MultiSelectModule} from 'primeng/multiselect';
+import {ChipsModule} from 'primeng/chips';
 
 const routes: Routes = [
   {
@@ -68,6 +69,7 @@ const routes: Routes = [
     DropdownModule,
     InputMaskModule,
     MultiSelectModule,
+    ChipsModule,
   ],
   providers: [
     UsersStore
