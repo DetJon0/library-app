@@ -50,4 +50,12 @@
   .p-multiselect-items {
     font-size: 1.4rem;
   }
+
+  .p-chips {
+    display: flex;
+  }
+
+  .p-chips-multiple-container .p-chips-input-token input {
+    font-size: 1.4rem;
+  }
 }

@@ -4,21 +4,22 @@
     <app-back-button></app-back-button>
     <h1>View User</h1>
 
-    <button type="button" class="button" routerLink="edit" >Edit</button>
-    <button type="button" class="delete-button" >Delete</button>
-    <button type="button" class="audit-button" >Audit Logs</button>
-
     <ng-container *ngIf="user$ | async as user ;">
+    <button type="button" class="button" routerLink="edit" >Edit</button>
+    <button type="button" class="button" (click)="onStatus(user.disabled === false ? true : false)" > {{ user.disabled === true ? 'Enable' : 'disable' | titlecase }} </button>
+    <button type="button" class="audit-button" >Audit Logs</button>
+    <button type="button" class="audit-button" >Activity</button>
+
       <div class="container-content">
         <p>ID: <span> {{user.id}} </span> </p>
         <p>Email: <span> {{user.email}} </span> </p>
-        <p>First Name: <span> {{user.firstName}} </span> </p>
+        <p *ngIf="user.firstName != undefined " >First Name: <span> {{user.firstName}} </span> </p>
         <p>Status:
           <span [ngClass]="{ 'closed-status': user.disabled === true , 'progress-status': user.disabled === false}">
             {{user.disabled === false ? 'Enabled' : 'disabled' | titlecase}}
           </span>
         </p>
-        <p>Roles: <span> {{user.roles}} </span> </p>
+        <p>Roles: <span> {{user.roles.join(', ') | titlecase }} </span> </p>
         <p>Created at: <span> {{user.createdAt | date:'medium'}} </span> </p>
         <p>Updated at: <span> {{user.updatedAt | date:'medium' }} </span> </p>
 
