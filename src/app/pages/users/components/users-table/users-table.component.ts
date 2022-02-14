@@ -1,9 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {LoanBookResponse} from "../../../loan/model/loan-book-response.model";
 import {ActivatedRoute, Router} from "@angular/router";
-import {LoansService} from "../../../loan/services/loans.service";
-import {ConfirmationService, MessageService} from "primeng/api";
-import {UserServerResponse, UsersStore} from "../../services/users.store";
 import {UsersResponse} from "../../model/user-response.model";
 
 @Component({

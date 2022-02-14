@@ -50,6 +50,12 @@ const appRoutes: Routes = [
           canActivate: [AuthGuard],
           loadChildren: () =>
             import('./pages/users/users.module').then((m)=> m.UsersModule)
+        },
+        {
+          path: 'audit-logs',
+          canActivate: [AuthGuard],
+          loadChildren: () =>
+            import('./pages/audit-logs/audit-logs.module').then((m)=> m.AuditLogsModule)
         }
       ]
     }
