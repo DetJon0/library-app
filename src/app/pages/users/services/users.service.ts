@@ -75,4 +75,17 @@ export class UsersService {
     return this.http.post(`${environment.apiUrl}/api/iam`, data)
   }
 
+  removePermissions(user: UsersResponse[]): Observable<any> {
+    return this.http.delete(`${environment.apiUrl}/api/iam`, {params: this.userPermissionsParams(user)})
+  }
+
+  userPermissionsParams(users: UsersResponse[]): HttpParams {
+    let httpParams = new HttpParams();
+    httpParams = httpParams.set('all', true)
+    users.forEach(user => {
+      httpParams = httpParams.append('emails[]', user.email);
+    })
+    return httpParams;
+  }
+
 }

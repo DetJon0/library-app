@@ -86,6 +86,7 @@ export class NewUserComponent implements OnInit {
     const user: NewUserData = {
       data: this.form.value,
     }
+
     console.log(user);
 
     this.usersService.postUser(user).subscribe({
