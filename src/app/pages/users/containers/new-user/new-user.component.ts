@@ -17,6 +17,7 @@ export class NewUserComponent implements OnInit {
 
   multipleEmailsDisplay: boolean = true;
   errorMessage: string = ''
+  emailArray: string[] = [];
 
   subscription: Subscription | undefined;
 
@@ -40,9 +41,22 @@ export class NewUserComponent implements OnInit {
     this.subscription = this.form.get('emails')?.valueChanges.subscribe((value => {
       length = value.length;
       console.log(length);
+      let emails: string[] = value;
+      console.log(emails);
+      this.emailArray = emails;
+      console.log(this.emailArray);
+
+      this.emailArray.forEach((email)=> {
+        if(!emailValidator(email)) {
+          this.form.get('emails')?.setErrors({'emailValidation': true })
+          // this.form.get('emails')?.pop(); // remove last entry from emails array of strings
+        }
+      })
+
 
       if(length > 1) {
         this.multipleEmailsDisplay = false
+
         this.form.get('firstName')?.setValidators(null);
         this.form.get('lastName')?.setValidators(null);
         this.form.get('phoneNumber')?.setValidators(null);
@@ -59,12 +73,6 @@ export class NewUserComponent implements OnInit {
         this.form.get('firstName')?.setValidators(Validators.required);
         this.form.get('lastName')?.setValidators(Validators.required);
         this.form.get('phoneNumber')?.setValidators(Validators.required);
-
-        // this.form.patchValue({
-        //   firstName: '',
-        //   lastName: '',
-        //   phoneNumber: '',
-        // })
 
       }
 
@@ -93,23 +101,6 @@ export class NewUserComponent implements OnInit {
       }
     )
   }
-
-  testMail(event: any) {
-    this.errorMessage = ''; // reinitialize error message
-
-    if(!this.validateEmail(event.value)) {
-      this.errorMessage = event.value + ' is not a valid mail address !'; // display message
-      // this.form.get('emails')?.pop(); // remove last entry from emails array of strings
-    }
-  }
-
-  validateEmail(email: string) {
-    return String(email)
-      .toLowerCase()
-      .match(
-        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-      );
-  };
 
   ngOnDestroy() {
     this.subscription?.unsubscribe();
