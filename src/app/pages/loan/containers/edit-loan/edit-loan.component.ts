@@ -93,13 +93,9 @@ export class EditLoanComponent implements OnInit, OnDestroy {
   }
 
   onSave() {
-    console.log(this.form.value.returnDate);
     const returnDate = formatDates(this.form.value.returnDate);
 
-    console.log(this.form.value.status);
-
     this.editObject.status = this.form.value.status;
-    console.log(this.editObject.status);
     this.editObject.returnDate = returnDate;
 
     const id = this.route.snapshot.paramMap.get('id');
@@ -108,8 +104,6 @@ export class EditLoanComponent implements OnInit, OnDestroy {
       id: `${id}`,
       data: this.editObject,
     }
-
-    console.log(book);
 
     if (id) {
       this.loansService.editLoanBook(id, book).subscribe({

@@ -56,8 +56,6 @@ export class UsersFormComponent implements OnInit {
   }
 
   onSearch() {
-    // console.log(this.form.value);
-    console.log(this.form.value);
 
     if (this.form.value.createdAt) {
       this.createdAtFirst = formatDates(this.form.value.createdAt[0])

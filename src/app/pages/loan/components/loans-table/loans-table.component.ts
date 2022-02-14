@@ -41,14 +41,14 @@ export class LoansTableComponent implements OnInit {
               private confirmationService: ConfirmationService) { }
 
   ngOnInit() {
-    // console.log(this.books);
   }
 
-  paginate(event: any) {
+  paginate(event: number) {
     this.paginationChanged.emit(event);
   }
 
   sort(event: any) {
+    // console.log(event);
     const sortQuery = `${event.sortField}_${event.sortOrder === 1 ? 'ASC' : 'DESC'}`
 
     if (!!event.sortField && !!event.sortOrder) this.sortChanged.emit(sortQuery);
@@ -86,7 +86,6 @@ export class LoansTableComponent implements OnInit {
   onEdit(rowData: LoanBookResponse) {
     console.log(rowData);
     let id = rowData.id;
-    // console.log(id);
 
     if (id) {
       this.router.navigate([id, 'edit'], { relativeTo: this.route });

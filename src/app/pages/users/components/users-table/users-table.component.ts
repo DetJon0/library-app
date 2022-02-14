@@ -33,11 +33,7 @@ export class UsersTableComponent implements OnInit {
 
   @Input() selectedUsers: UsersResponse[] = [];
 
-  constructor(private router: Router, private route: ActivatedRoute,
-              private loansService: LoansService,
-              private store: UsersStore,
-              private messageService: MessageService,
-              private confirmationService: ConfirmationService) { }
+  constructor(private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
     // console.log(this.books);

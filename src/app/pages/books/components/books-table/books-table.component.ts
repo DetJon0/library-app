@@ -36,7 +36,7 @@ export class BooksTableComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.selectedBooks);
+    // console.log(this.selectedBooks);
   }
 
   paginate(event: any) {

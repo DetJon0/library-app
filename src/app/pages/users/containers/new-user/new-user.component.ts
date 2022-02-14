@@ -19,8 +19,8 @@ export class NewUserComponent implements OnInit {
   subscription: Subscription | undefined;
 
   form = this.fb.group({
-    emails: ['', Validators.required],
-    firstName: ['', Validators.required],
+    emails: [],
+    firstName: ['', [Validators.required, Validators.email]],
     lastName: ['', Validators.required],
     phoneNumber: ['', Validators.required],
     roles: ['', Validators.required],
@@ -35,15 +35,19 @@ export class NewUserComponent implements OnInit {
               private messageService: MessageService, private router: Router, private store: UsersStore) { }
 
   ngOnInit() {
-    this.subscription = this.form.valueChanges.subscribe((value => {
-      length = value.emails.length;
-      // console.log(length);
+    this.subscription = this.form.get('emails')?.valueChanges.subscribe((value => {
+      length = value.length;
+      console.log(length);
 
-      if(length > 1) {
-        this.multipleEmailsDisplay = false
-      } else {
-        this.multipleEmailsDisplay = true
-      }
+
+      // if(length > 1) {
+      //   this.multipleEmailsDisplay = false
+      //   this.form.get('firstName')?.setValidators(null);
+      //   this.form.get('lastName')?.setValidators(null);
+      //   this.form.get('phoneNumber')?.setValidators(null);
+      // } else {
+      //   this.multipleEmailsDisplay = true
+      // }
 
     }))
   }
@@ -64,7 +68,7 @@ export class NewUserComponent implements OnInit {
           this.router.navigateByUrl('/iam');
         },
         error: (err) => {
-          this.messageService.add({key: 'toast', detail: 'Error', severity: 'error', summary: 'User with this email already exists'})
+          this.messageService.add({key: 'toast', detail: 'Error', severity: 'error', summary: 'Error! Please use a valid email'})
           console.log(err);
         }
       }

@@ -65,7 +65,8 @@
               {{ statusValue === 'inProgress' ? 'In Progress' : statusValue | titlecase  }} </span>
         </div>
 
-        <button type="submit" class="button" [disabled]="!form.valid" (click)="onSave()" >Save</button>
+        <button type="submit" class="button" [disabled]="!form.valid" [class.p-disabled]="!form.valid"
+                (click)="onSave()" >Save</button>
         <button type="button" class="reset-button" (click)="onReset()">Reset</button>
 
       </form>

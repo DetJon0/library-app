@@ -9,7 +9,7 @@
 
         <div class="form-group">
           <label for="emails" class="form-label">Emails</label>
-          <p-chips id="emails" formControlName="emails"></p-chips>
+          <p-chips [email]="true" id="emails" formControlName="emails" [max]=3 [allowDuplicate]=false ></p-chips>
           <p class="error-message"
              *ngIf="!form.get('emails')?.valid && form.get('emails')?.touched"
           >
@@ -57,7 +57,7 @@
           </p>
         </div>
 
-        <button type="submit" class="button" [disabled]="!form.valid" [class.p-disabled]="!form.valid" (click)="onSave()" >
+        <button type="submit" class="button" [class.p-disabled]="!form.valid" (click)="onSave()" >
           Save
         </button>
 

@@ -35,7 +35,7 @@ export class EditUserComponent implements OnInit {
     pluck('id'),
     switchMap((id: string) =>
       id ? this.usersService.getUserById(id).pipe(tap((response) => {
-            console.log(response.roles[0]);
+            // console.log(response.roles[0]);
             this.form.patchValue({
               id: response.id,
               email: response.email,

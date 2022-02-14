@@ -65,8 +65,6 @@ export class ViewUserComponent implements OnInit {
         })
       }
     })
-
-      // this.usersService.userStatusChange(userData).subscribe();
   }
 
   getUser(): Observable<UsersResponse | null> {
