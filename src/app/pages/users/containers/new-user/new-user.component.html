@@ -8,13 +8,14 @@
       <form [formGroup]="form">
 
         <div class="form-group">
-          <label for="emails" class="form-label">Emails</label>
-          <p-chips [email]="true" id="emails" formControlName="emails" [max]=3 [allowDuplicate]=false ></p-chips>
+          <label class="form-label">Emails</label>
+          <p-chips inputId="emails" formControlName="emails" [max]=2 [allowDuplicate]="false"  (onAdd)=testMail($event)></p-chips>
           <p class="error-message"
              *ngIf="!form.get('emails')?.valid && form.get('emails')?.touched"
           >
             Please input a valid email.
           </p>
+          <p *ngIf="this.errorMessage" >ERROR!</p>
         </div>
 
         <div class="form-group" *ngIf="multipleEmailsDisplay">

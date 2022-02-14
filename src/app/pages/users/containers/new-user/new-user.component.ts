@@ -6,6 +6,7 @@ import {UsersService} from "../../services/users.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import { MessageService} from "primeng/api";
 import {UsersStore} from "../../services/users.store";
+import {emailValidator} from "../../utils/emailValidator";
 
 @Component({
   selector: 'app-new-user',
@@ -15,12 +16,13 @@ import {UsersStore} from "../../services/users.store";
 export class NewUserComponent implements OnInit {
 
   multipleEmailsDisplay: boolean = true;
+  errorMessage: string = ''
 
   subscription: Subscription | undefined;
 
   form = this.fb.group({
-    emails: [],
-    firstName: ['', [Validators.required, Validators.email]],
+    emails: ['', Validators.required],
+    firstName: ['', Validators.required],
     lastName: ['', Validators.required],
     phoneNumber: ['', Validators.required],
     roles: ['', Validators.required],
@@ -39,15 +41,32 @@ export class NewUserComponent implements OnInit {
       length = value.length;
       console.log(length);
 
+      if(length > 1) {
+        this.multipleEmailsDisplay = false
+        this.form.get('firstName')?.setValidators(null);
+        this.form.get('lastName')?.setValidators(null);
+        this.form.get('phoneNumber')?.setValidators(null);
 
-      // if(length > 1) {
-      //   this.multipleEmailsDisplay = false
-      //   this.form.get('firstName')?.setValidators(null);
-      //   this.form.get('lastName')?.setValidators(null);
-      //   this.form.get('phoneNumber')?.setValidators(null);
-      // } else {
-      //   this.multipleEmailsDisplay = true
-      // }
+        this.form.patchValue({
+          firstName: null,
+          lastName: null,
+          phoneNumber: null,
+        })
+
+      } else {
+        this.multipleEmailsDisplay = true
+
+        this.form.get('firstName')?.setValidators(Validators.required);
+        this.form.get('lastName')?.setValidators(Validators.required);
+        this.form.get('phoneNumber')?.setValidators(Validators.required);
+
+        // this.form.patchValue({
+        //   firstName: '',
+        //   lastName: '',
+        //   phoneNumber: '',
+        // })
+
+      }
 
     }))
   }
@@ -74,6 +93,23 @@ export class NewUserComponent implements OnInit {
       }
     )
   }
+
+  testMail(event: any) {
+    this.errorMessage = ''; // reinitialize error message
+
+    if(!this.validateEmail(event.value)) {
+      this.errorMessage = event.value + ' is not a valid mail address !'; // display message
+      // this.form.get('emails')?.pop(); // remove last entry from emails array of strings
+    }
+  }
+
+  validateEmail(email: string) {
+    return String(email)
+      .toLowerCase()
+      .match(
+        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+      );
+  };
 
   ngOnDestroy() {
     this.subscription?.unsubscribe();
