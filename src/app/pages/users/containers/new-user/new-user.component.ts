@@ -22,7 +22,7 @@ export class NewUserComponent implements OnInit {
   subscription: Subscription | undefined;
 
   form = this.fb.group({
-    emails: ['', Validators.required],
+    emails: ['', [Validators.required, emailValidator()]],
     firstName: ['', Validators.required],
     lastName: ['', Validators.required],
     phoneNumber: ['', Validators.required],
@@ -41,18 +41,17 @@ export class NewUserComponent implements OnInit {
     this.subscription = this.form.get('emails')?.valueChanges.subscribe((value => {
       length = value.length;
       console.log(length);
-      let emails: string[] = value;
-      console.log(emails);
-      this.emailArray = emails;
-      console.log(this.emailArray);
+      // let emails: string[] = value;
+      // console.log(emails);
+      // this.emailArray = emails;
+      // console.log(this.emailArray);
 
-      this.emailArray.forEach((email)=> {
-        if(!emailValidator(email)) {
-          this.form.get('emails')?.setErrors({'emailValidation': true })
-          // this.form.get('emails')?.pop(); // remove last entry from emails array of strings
-        }
-      })
-
+      // this.emailArray.forEach((email)=> {
+      //   if(!emailValidator(email)) {
+      //     this.form.get('emails')?.setErrors({'emailValidation': true })
+      //     // this.form.get('emails')?.pop(); // remove last entry from emails array of strings
+      //   }
+      // })
 
       if(length > 1) {
         this.multipleEmailsDisplay = false
