@@ -1,1 +1,49 @@
-<p>audit-form works!</p>
+<div class="form-box">
+  <form [formGroup]="form" class="form-layout">
+
+    <!--  {{form.value | json}}-->
+
+    <div class="form-group">
+      <div class="label-box">
+        <label class="form-label">Period</label>
+        <p-calendar selectionMode="range" [readonlyInput]="true" formControlName="period" inputId="period" >
+        </p-calendar>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="label-box">
+        <label class="form-label">Entities</label>
+        <p-chips inputId="entities" formControlName="entities" [max]=5 [allowDuplicate]="false" ></p-chips>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="label-box">
+        <label class="form-label">User Email</label>
+        <input type="text" class="form-input" formControlName="userEmail" pInputText>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="label-box">
+        <label class="form-label">Entity ID</label>
+        <input type="text" class="form-input" formControlName="entityId" pInputText>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="label-box">
+        <label class="form-label">Action</label>
+        <input type="text" class="form-input" formControlName="action" pInputText>
+      </div>
+    </div>
+
+    <div class="buttons-box">
+      <button class="button" (click)="onSearch()" >Search</button>
+      <button class="reset-button" >Reset</button>
+    </div>
+
+  </form>
+
+</div>
