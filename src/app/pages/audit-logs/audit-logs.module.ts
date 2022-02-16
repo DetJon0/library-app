@@ -13,6 +13,7 @@ import {PaginatorModule} from "primeng/paginator";
 import {CalendarModule} from "primeng/calendar";
 import {InputMaskModule} from "primeng/inputmask";
 import {ChipsModule} from "primeng/chips";
+import {AuditStore} from "./services/audit.store";
 
 const routes: Routes = [
   {
@@ -40,6 +41,9 @@ const routes: Routes = [
     InputNumberModule,
     TableModule,
     FormsModule,
+  ],
+  providers: [
+    AuditStore
   ]
 })
 export class AuditLogsModule { }

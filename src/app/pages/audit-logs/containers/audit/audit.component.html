@@ -5,7 +5,20 @@
 
     <button type="button" class="audit-button" >Export to Excel</button>
 
-    <app-audit-form></app-audit-form>
+    <ng-container *ngIf="store.state$ | async as state">
+    <app-audit-form
+    (searchQuery)="searchParams($event)"
+    ></app-audit-form>
+
+    <app-audit-table
+      [rows]="state.params.limit"
+      [total]="state.total"
+      [logs]="state.data"
+      (paginationChanged)="paginate($event)"
+      (sortChanged)="sort($event)"
+      [loading]="state.loading"
+    ></app-audit-table>
+    </ng-container>
 
   </div>
 

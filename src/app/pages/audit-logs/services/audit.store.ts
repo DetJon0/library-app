@@ -14,10 +14,12 @@ export interface AuditParams {
   orderBy: string | null;
   limit: number;
   offset: number;
+  period: string | null;
   entityId: string | null;
   entityNames: string | null;
   timestampFromRange: string | null;
   timestampToRange: string | null;
+  createdByEmail: string | null;
   action: string | null;
 }
 
@@ -36,10 +38,12 @@ export const initialState: AuditState = {
     orderBy: null,
     limit: 10,
     offset: 0,
+    period: null,
     entityId: null,
     entityNames: null,
     timestampFromRange: null,
     timestampToRange: null,
+    createdByEmail: null,
     action: null,
   },
   loading: false,
