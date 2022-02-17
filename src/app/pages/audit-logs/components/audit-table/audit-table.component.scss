@@ -31,4 +31,37 @@
   .p-paginator, .p-paginator-pages, .p-paginator-page {
     font-size: 1.2rem;
   }
+
+  .p-button {
+    margin: 0 .5rem 0 0;
+    min-width: 10rem;
+    background-color: transparent;
+    font-size: 1.4rem;
+    color: var(--buttons-color-secondary);
+    border: none;
+
+    &:hover {
+      background-color: var(--buttons-color-secondary);
+      color: white;
+    }
+  }
+
+  p {
+    margin: 0;
+  }
+
+  .confirmation-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .p-dialog {
+    box-shadow: 0 1px 8px rgb(0,0,0, .12);
+  }
+
+  .p-dialog .p-button {
+    min-width: 6rem;
+  }
+
 }

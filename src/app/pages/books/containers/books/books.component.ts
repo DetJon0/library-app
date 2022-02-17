@@ -37,7 +37,8 @@ export class BooksComponent implements OnInit {
   }
 
   searchParams(event: any) {
-    this.store.load({isbn: event.isbn, title:event.title, author: event.author })
+    console.log(event);
+    this.store.load({isbn: event.isbn, title:event.title, author: event.author, status: event.status })
   }
 
   onDeleteButton() {

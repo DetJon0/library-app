@@ -63,4 +63,19 @@ export class AuditFormComponent implements OnInit {
 
   }
 
+  reset() {
+
+    this.form.patchValue({
+      period: null
+    })
+
+    this.searchQuery.emit({
+      offset: 0,
+      entityNames: null,
+      createdByEmail: null,
+      entityId: null,
+      action: null,
+    })
+  }
+
 }

@@ -44,15 +44,6 @@ export class SignInComponent {
     }
     const email = this.form.value.email;
     const password = this.form.value.password;
-    // this.isLoading = true;
-
-    // this.authService.login(email,password).pipe(
-    //   tap(token => this.authStore.setToken(token)),
-    //   concatMap(token => this.authService.me().pipe(me => this.authStore.setUser(me)))).subscribe()
-
-    // modeli i behaviour subject do jete {token: string, user: User (modeli i response te me())
-
-    //krijo interceptorin qe merr tokenin nga servisi qe ka behaviour subject qe te thirrja e dyte ta coje me token
 
     this.authService.login(email, password).pipe(take(1)).subscribe({
       next: token => {

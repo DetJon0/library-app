@@ -15,13 +15,24 @@
   </ng-template>
   <ng-template pTemplate="body" let-rowData let-columns="columns" let-rowIndex="rowIndex">
     <tr>
-      <td>{{rowData.timestamp}}</td>
+      <td>{{rowData.timestamp | date: 'medium'}}</td>
       <td>{{rowData.createdByEmail}}</td>
       <td>{{rowData.entityName}}</td>
       <td>{{rowData.action}}</td>
       <td >{{rowData.entityId}}</td>
       <td>
-        <button class="button-link">View</button>
+<!--        <button class="button-link" (click)="onView(rowData)">View</button>-->
+        <p-button (click)="showResponsiveDialog(rowData)" icon="pi pi-external-link" label="Show"></p-button>
+        <p-dialog header="Audit Logs" [(visible)]="displayResponsive" [breakpoints]="{'960px': '75vw'}" [style]="{width: 'auto', height: 'auto'}"
+                  [draggable]="false" [resizable]="false">
+          <h2>Values:</h2>
+          <pre>
+            <h3>{{ values | json}}</h3>
+          </pre>
+          <ng-template pTemplate="footer">
+            <p-button (click)="displayResponsive=false" label="Close" styleClass="p-button-text"></p-button>
+          </ng-template>
+        </p-dialog>
       </td>
     </tr>
   </ng-template>

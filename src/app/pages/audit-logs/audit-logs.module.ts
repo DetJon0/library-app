@@ -14,11 +14,16 @@ import {CalendarModule} from "primeng/calendar";
 import {InputMaskModule} from "primeng/inputmask";
 import {ChipsModule} from "primeng/chips";
 import {AuditStore} from "./services/audit.store";
+import {DialogModule} from 'primeng/dialog';
 
 const routes: Routes = [
   {
     path: '',
     component: AuditComponent
+  },
+  {
+    path: ':id',
+    component: ViewAuditComponent
   }
 ]
 
@@ -41,6 +46,7 @@ const routes: Routes = [
     InputNumberModule,
     TableModule,
     FormsModule,
+    DialogModule
   ],
   providers: [
     AuditStore

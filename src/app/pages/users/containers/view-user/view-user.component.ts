@@ -84,5 +84,4 @@ export class ViewUserComponent implements OnInit {
     );
   }
 
-
 }

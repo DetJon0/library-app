@@ -1,5 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {AuditLogsModel} from "../../model/audit.model";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-audit-table',
@@ -8,6 +9,7 @@ import {AuditLogsModel} from "../../model/audit.model";
 })
 export class AuditTableComponent implements OnInit {
 
+  values: {} ='';
   @Input() logs!: AuditLogsModel[];
   @Input() total!: number;
   @Input() rows!: number;
@@ -25,7 +27,9 @@ export class AuditTableComponent implements OnInit {
   @Output() paginationChanged = new EventEmitter<number>();
   @Output() sortChanged = new EventEmitter<string>();
 
-  constructor() { }
+  constructor(private router: Router, private route: ActivatedRoute) { }
+
+  displayResponsive!: boolean;
 
   ngOnInit(): void {
   }
@@ -39,6 +43,14 @@ export class AuditTableComponent implements OnInit {
     const sortQuery = `${event.sortField}_${event.sortOrder === 1 ? 'ASC' : 'DESC'}`
 
     if (!!event.sortField && !!event.sortOrder) this.sortChanged.emit(sortQuery);
+  }
+
+  showResponsiveDialog(rowData: any) {
+    console.log(rowData);
+    console.log(rowData.values);
+    this.values = rowData.values
+    console.log(this.values);
+    this.displayResponsive = true;
   }
 
 }

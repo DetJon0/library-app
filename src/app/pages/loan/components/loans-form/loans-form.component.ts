@@ -98,8 +98,8 @@ export class LoansFormComponent implements OnInit {
 
   onSearch() {
     // console.log(this.form.value);
-    console.log(this.form.value.dueDate);
-    console.log(this.form.value.issueDate);
+    // console.log(this.form.value.dueDate);
+    // console.log(this.form.value.issueDate);
 
     if (this.form.value.issueDate) {
       this.issueFromDate = formatDates(this.form.value.issueDate[0])

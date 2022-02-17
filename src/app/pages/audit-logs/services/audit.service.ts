@@ -39,7 +39,7 @@ export class AuditService {
     }
 
     if (params.entityNames) {
-      params.entityNames.forEach((param)=> {
+      params.entityNames.forEach((param: string)=> {
         httpParams = httpParams.append('filter[entityNames][]', param)
       });
     }
@@ -50,10 +50,11 @@ export class AuditService {
     }
 
     if (params.entityNames) {
-      params.entityNames.forEach((param)=> {
+      params.entityNames.forEach((param: string)=> {
         console.log(param);
       });
     }
+
     console.log(httpParams.toString());
     return httpParams;
   }
