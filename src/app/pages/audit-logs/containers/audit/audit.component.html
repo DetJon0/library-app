@@ -6,7 +6,7 @@
     <button type="button" class="audit-button" >Export to Excel</button>
 
     <ng-container *ngIf="store.state$ | async as state">
-    <app-audit-form
+    <app-audit-form [formValue]="state.params"
     (searchQuery)="searchParams($event)"
     ></app-audit-form>
 

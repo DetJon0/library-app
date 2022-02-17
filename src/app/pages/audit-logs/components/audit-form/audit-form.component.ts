@@ -1,6 +1,8 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormBuilder} from "@angular/forms";
 import {formatDates} from "../../../loan/utils/formatDates.function";
+import {UsersParams} from "../../../users/services/users.store";
+import {AuditParams} from "../../services/audit.store";
 
 @Component({
   selector: 'app-audit-form',
@@ -14,11 +16,22 @@ export class AuditFormComponent implements OnInit {
 
   form = this.fb.group({
     period: '',
-    entityNames: '',
+    entityNames: [''],
     createdByEmail: '',
     entityId: '',
     action: '',
   })
+
+  @Input() set formValue(params: AuditParams) {
+    this.form.patchValue({
+      entityId: params.entityId,
+      entityNames: params.entityNames,
+      createdByEmail: params.createdByEmail,
+      action: params.action,
+      timestampFromRange: params.timestampFromRange,
+      timestampToRange: params.timestampToRange,
+    })
+  }
 
   @Output() searchQuery = new EventEmitter<{}>();
 
@@ -38,6 +51,7 @@ export class AuditFormComponent implements OnInit {
     const object = {
       entityNames: this.form.value.entityNames,
       createdByEmail: this.form.value.createdByEmail,
+      entityId: this.form.value.entityId,
       action: this.form.value.action,
       timestampFromRange: this.timestampFromRange,
       timestampToRange: this.timestampToRange

@@ -31,7 +31,7 @@ export class AuditService {
     }
 
     if (params.createdByEmail) {
-      httpParams = httpParams.set('filter[createdByEamil]', params.createdByEmail)
+      httpParams = httpParams.set('filter[createdByEmail]', params.createdByEmail)
     }
 
     if (params.action) {
@@ -39,7 +39,9 @@ export class AuditService {
     }
 
     if (params.entityNames) {
-      httpParams = httpParams.set('filter[entityNames]', params.entityNames)
+      params.entityNames.forEach((param)=> {
+        httpParams = httpParams.append('filter[entityNames][]', param)
+      });
     }
 
     if (params.timestampFromRange && params.timestampToRange) {
@@ -47,6 +49,11 @@ export class AuditService {
         .append('filter[timestampRange][]', params.timestampToRange)
     }
 
+    if (params.entityNames) {
+      params.entityNames.forEach((param)=> {
+        console.log(param);
+      });
+    }
     console.log(httpParams.toString());
     return httpParams;
   }

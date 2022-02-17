@@ -3,7 +3,6 @@ import {AuditLogsModel} from "../model/audit.model";
 import {ComponentStore} from "@ngrx/component-store";
 import {AuditService} from "./audit.service";
 import {catchError, EMPTY, Observable, switchMap, tap} from "rxjs";
-import {UserServerResponse, UsersParams} from "../../users/services/users.store";
 
 export interface AuditServerResponse {
   rows: AuditLogsModel[];
@@ -14,9 +13,8 @@ export interface AuditParams {
   orderBy: string | null;
   limit: number;
   offset: number;
-  period: string | null;
   entityId: string | null;
-  entityNames: string | null;
+  entityNames: string[];
   timestampFromRange: string | null;
   timestampToRange: string | null;
   createdByEmail: string | null;
@@ -38,9 +36,8 @@ export const initialState: AuditState = {
     orderBy: null,
     limit: 10,
     offset: 0,
-    period: null,
     entityId: null,
-    entityNames: null,
+    entityNames: [],
     timestampFromRange: null,
     timestampToRange: null,
     createdByEmail: null,
