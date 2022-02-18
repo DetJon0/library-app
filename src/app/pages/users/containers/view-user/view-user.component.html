@@ -7,7 +7,7 @@
     <ng-container *ngIf="user$ | async as user ;">
     <button type="button" class="button" routerLink="edit" ><i class="pi pi-pencil"></i>Edit</button>
     <button type="button" class="button" (click)="onStatus(user.disabled === false ? true : false)" >
-    <i class="pi pi-times-circle"></i>{{ user.disabled === true ? 'Enable' : 'disable' | titlecase }} </button>
+    <i class="pi pi-{{user.disabled === true ? 'check' : 'times-circle'}}"></i>{{ user.disabled === true ? 'Enable' : 'disable' | titlecase }} </button>
     <button type="button" class="audit-button" routerLink="/audit-logs"><i class="pi pi-history"></i>Audit Logs</button>
     <button type="button" class="audit-button" ><i class="pi pi-eye"></i>Activity</button>
 
