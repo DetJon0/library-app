@@ -18,3 +18,9 @@
     }
   }
 }
+
+:host ::ng-deep {
+  .p-dialog.p-confirm-dialog .p-confirm-dialog-message {
+    font-size: 1.4rem;
+  }
+}

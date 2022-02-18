@@ -4,7 +4,7 @@ import {Router} from "@angular/router";
 import {AuthService} from "../../../auth/services/auth.service";
 import {AuthStore} from "../../../../core/services/auth.store";
 import {MessageService} from "primeng/api";
-import {take} from "rxjs";
+import {catchError, take} from "rxjs";
 
 @Component({
   selector: 'app-edit-profile',
@@ -48,11 +48,10 @@ export class EditProfileComponent implements OnInit {
      console.log(user);
      this.form.patchValue({
        firstName: user?.firstName,
-       lastName: user?.fullName,
+       lastName: user?.lastName,
        phoneNumber: user?.phoneNumber,
      })
     });
-
 
   }
 
@@ -121,10 +120,18 @@ export class EditProfileComponent implements OnInit {
       user.phoneNumber = newCredentials.phoneNumber;
 
       this.authStore.setUser(user);
+      this.messageService.add({key: 'toast', detail: 'Success', severity: 'success', summary: 'Edited succesfully'})
+      this.router.navigate(['/loan'])
       console.log(user);
       console.log(this.authStore.state);
       console.log(this.authStore.state.user?.firstName);
-    });
+    },
+      (err) => {
+        this.messageService.add({key: 'toast', detail: 'Error', severity: 'error', summary: err.message})
+      }
+    );
+
+
 
     console.log(credentials)
   }

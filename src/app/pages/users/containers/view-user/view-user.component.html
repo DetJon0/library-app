@@ -7,7 +7,7 @@
     <ng-container *ngIf="user$ | async as user ;">
     <button type="button" class="button" routerLink="edit" ><i class="pi pi-pencil"></i>Edit</button>
     <button type="button" class="button" (click)="onStatus(user.disabled === false ? true : false)" >
-    <i class="pi pi-{{user.disabled === true ? 'check' : 'times-circle'}}"></i>{{ user.disabled === true ? 'Enable' : 'disable' | titlecase }} </button>
+    <i class="pi pi-{{user.disabled === true ? 'check' : 'ban'}}"></i>{{ user.disabled === true ? 'Enable' : 'disable' | titlecase }} </button>
     <button type="button" class="audit-button" routerLink="/audit-logs"><i class="pi pi-history"></i>Audit Logs</button>
     <button type="button" class="audit-button" ><i class="pi pi-eye"></i>Activity</button>
 
@@ -15,6 +15,7 @@
         <p>ID: <span> {{user.id}} </span> </p>
         <p>Email: <span> {{user.email}} </span> </p>
         <p *ngIf="user.firstName != undefined " >First Name: <span> {{user.firstName}} </span> </p>
+        <p *ngIf="user.lastName != undefined " >Last Name: <span> {{user.lastName}} </span> </p>
         <p>Status:
           <span [ngClass]="{ 'closed-status': user.disabled === true , 'progress-status': user.disabled === false}">
             {{user.disabled === false ? 'Enabled' : 'disabled' | titlecase}}
