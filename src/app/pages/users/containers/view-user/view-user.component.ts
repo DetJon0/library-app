@@ -3,10 +3,11 @@ import {catchError, map, Observable, of, pluck, switchMap, take, tap} from "rxjs
 import {LoanBookResponse} from "../../../loan/model/loan-book-response.model";
 import {UsersResponse} from "../../model/user-response.model";
 import {UsersService} from "../../services/users.service";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {ConfirmationService, MessageService} from "primeng/api";
 import {UserDisable} from "../../model/user-disable.model";
 import {UsersStore} from "../../services/users.store";
+import {AuditStore} from "../../../audit-logs/services/audit.store";
 
 @Component({
   selector: 'app-view-user',
@@ -20,24 +21,9 @@ export class ViewUserComponent implements OnInit {
   userId: string = ''
   user$!: Observable<UsersResponse | null> ;
 
-  // user$: Observable<UsersResponse | null> = this.route.params.pipe(
-  //   pluck('id'),
-  //   tap((id: string) => this.userId = id),
-  //   switchMap((id) =>
-  //     id
-  //       ? this.usersService.getUserById(id).pipe(
-  //         catchError((err) => {
-  //           this.messageService.add({key: 'toast', detail: 'Error', severity: 'error', summary: 'User not found'})
-  //           return of(null);
-  //         })
-  //       )
-  //       : of(null)
-  //   )
-  // );
-
   constructor(private usersService: UsersService, private route: ActivatedRoute, private messageService: MessageService,
               private confirmationService: ConfirmationService,
-              private store: UsersStore) { }
+              private store: AuditStore, private router: Router) { }
 
   ngOnInit() {
     this.user$ = this.getUser();
@@ -82,6 +68,14 @@ export class ViewUserComponent implements OnInit {
           : of(null)
       )
     );
+  }
+
+  onActivity() {
+    this.router.navigateByUrl('/audit-logs')
+    this.getUser().subscribe((res)=>{
+      console.log(res);
+
+    })
   }
 
 }

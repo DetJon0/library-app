@@ -20,6 +20,7 @@ import {UsersStore} from "./services/users.store";
 import {InputMaskModule} from "primeng/inputmask";
 import {MultiSelectModule} from 'primeng/multiselect';
 import {ChipsModule} from 'primeng/chips';
+import {AuditStore} from "../audit-logs/services/audit.store";
 
 const routes: Routes = [
   {
@@ -72,7 +73,8 @@ const routes: Routes = [
     ChipsModule,
   ],
   providers: [
-    UsersStore
+    UsersStore,
+    AuditStore
   ]
 })
 export class UsersModule { }
