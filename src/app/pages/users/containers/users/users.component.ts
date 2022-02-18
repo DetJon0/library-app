@@ -28,7 +28,6 @@ export class UsersComponent implements OnInit {
   }
 
   selectedUsers(event: any) {
-    console.log(this.usersSelection);
     this.usersSelection = event;
     console.log(this.usersSelection);
   }

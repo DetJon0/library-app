@@ -14,7 +14,7 @@ export class NonAuthGuard implements CanActivate {
     const user = this.authStore.state.user;
 
     if(!user) {
-      console.log(user);
+      // console.log(user);
       return true;
     } else {
       console.log(user);

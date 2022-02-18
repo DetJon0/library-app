@@ -4,6 +4,7 @@ import {CommonModule} from "@angular/common";
 import {RouterModule, Routes} from "@angular/router";
 import {InputNumberModule} from "primeng/inputnumber";
 import {ReactiveFormsModule} from "@angular/forms";
+import {SharedModule} from "../../shared/shared.module";
 
 const routes: Routes = [
   {
@@ -17,7 +18,8 @@ const routes: Routes = [
         CommonModule,
         RouterModule.forChild(routes),
         InputNumberModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        SharedModule
     ],
   declarations: [
     SettingsComponent

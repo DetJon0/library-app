@@ -12,6 +12,8 @@ import {ConfirmationService, MessageService} from "primeng/api";
 })
 export class LoanComponent {
 
+  loansSelection: [] = [];
+
   @ViewChild(LoansTableComponent) table!: LoansTableComponent;
 
   constructor(public store: LoansStore, private loansService: LoansService,
@@ -20,6 +22,11 @@ export class LoanComponent {
 
   ngOnInit() {
     this.store.load({});
+  }
+
+  selectedLoans(event: any) {
+    this.loansSelection = event
+    console.log(event);
   }
 
   searchParams(event: any) {

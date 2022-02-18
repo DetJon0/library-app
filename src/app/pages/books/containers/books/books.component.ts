@@ -5,6 +5,7 @@ import {Book} from "../../model/book.model";
 import {BooksTableComponent} from "../../components/books-table/books-table.component";
 import {take} from "rxjs";
 import {ConfirmationService, MessageService} from "primeng/api";
+import {BookResponse} from "../../model/book-response.model";
 
 @Component({
   selector: 'app-books',
@@ -12,6 +13,8 @@ import {ConfirmationService, MessageService} from "primeng/api";
   styleUrls: ['./books.component.scss']
 })
 export class BooksComponent implements OnInit {
+
+  booksSelection: BookResponse[] = [];
 
   @ViewChild(BooksTableComponent) table!: BooksTableComponent;
 
@@ -25,6 +28,10 @@ export class BooksComponent implements OnInit {
 
   ngOnInit() {
     this.store.load({});
+  }
+
+  bookChanged(event: any) {
+    this.booksSelection = event
   }
 
   paginate(event: any) {

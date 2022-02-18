@@ -31,10 +31,11 @@ export class EditProfileComponent implements OnInit {
     }],
     lastName: [
       '',
-      [
-        Validators.required,
-        Validators.minLength(3)
-      ]
+      {
+        validators: [
+          Validators.required,
+          Validators.minLength(3)]
+      }
     ],
     phoneNumber: [
       '',
@@ -45,10 +46,10 @@ export class EditProfileComponent implements OnInit {
   ngOnInit() {
     this.authService.me().subscribe((user) => {
      console.log(user);
-     this.form.setValue({
-       firstName: user.firstName,
-       lastName: user.lastName,
-       phoneNumber: user.phoneNumber,
+     this.form.patchValue({
+       firstName: user?.firstName,
+       lastName: user?.fullName,
+       phoneNumber: user?.phoneNumber,
      })
     });
 

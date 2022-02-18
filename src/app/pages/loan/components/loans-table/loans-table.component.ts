@@ -31,6 +31,7 @@ export class LoansTableComponent implements OnInit {
 
   @Output() paginationChanged = new EventEmitter<number>();
   @Output() sortChanged = new EventEmitter<string>();
+  @Output() loansSelection = new EventEmitter<string>();
 
   selectedBooks: LoanBookResponse[] = [];
 
@@ -41,6 +42,11 @@ export class LoansTableComponent implements OnInit {
               private confirmationService: ConfirmationService) { }
 
   ngOnInit() {
+  }
+
+  selectionChange(event: any) {
+    console.log(event);
+    this.loansSelection.emit(event)
   }
 
   paginate(event: number) {

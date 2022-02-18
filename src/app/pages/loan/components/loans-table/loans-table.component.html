@@ -2,6 +2,7 @@
          [columns]="cols"
          [value]="books"
          [customSort]="true" [(selection)]="selectedBooks"
+         (selectionChange)="selectionChange($event)"
          selectionMode="multiple"
          dataKey="id"
          [loading]="loading">

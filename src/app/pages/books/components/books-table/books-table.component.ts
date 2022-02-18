@@ -28,6 +28,7 @@ export class BooksTableComponent implements OnInit {
 
   @Output() paginationChanged = new EventEmitter<number>();
   @Output() sortChanged = new EventEmitter<string>();
+  @Output() bookChanged = new EventEmitter<string>();
 
   selectedBooks: BookResponse[] = [];
 
@@ -37,6 +38,11 @@ export class BooksTableComponent implements OnInit {
 
   ngOnInit() {
     // console.log(this.selectedBooks);
+  }
+
+  selectionChange(event: any) {
+    console.log(event);
+    this.bookChanged.emit(event)
   }
 
   paginate(event: any) {

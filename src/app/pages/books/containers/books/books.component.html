@@ -5,7 +5,7 @@
 
     <button type="button" routerLink="new" class="button" >New</button>
     <button type="button" routerLink="import" class="button" >Import</button>
-    <button type="button" class="delete-button" (click)="onDeleteButton()" >Delete</button>
+    <button type="button" class="delete-button" [class.p-disabled]="booksSelection.length === 0" (click)="onDeleteButton()" >Delete</button>
     <button type="button" routerLink="/audit-logs" class="audit-button" >Audit Logs</button>
     <button type="button" class="audit-button" >Export to Excel</button>
     <ng-container *ngIf="store.state$ | async as state">
@@ -23,6 +23,7 @@
       [books]="state.data"
       (paginationChanged)="paginate($event)"
       (sortChanged)="sort($event)"
+      (bookChanged)="bookChanged($event)"
       [loading]="state.loading"
     ></app-books-table>
     </ng-container>
