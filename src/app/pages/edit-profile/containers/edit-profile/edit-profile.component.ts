@@ -99,38 +99,27 @@ export class EditProfileComponent implements OnInit {
       phoneNumber: newCredentials.phoneNumber,
     }
 
-    this.authService.edit(credentials).subscribe(response => console.log(response))
-    // this.messageService.add({key: 'toast', detail: 'Success', severity: 'success', summary: 'Profile updated succesfully'})
+    this.authService.edit(credentials).subscribe({
+       next: (res) => {
+         this.authService.me().pipe(take(1)).subscribe((user) => {
+           user.firstName = newCredentials.firstName;
+           user.lastName = newCredentials.lastName;
+           user.phoneNumber = newCredentials.phoneNumber;
 
-    // this.authService.me().pipe(take(1)).subscribe({
-    //   next: (me: User) => {
-    //     me.firstName = newCredentials.firstName;
-    //     me.lastName = newCredentials.lastName;
-    //     me.phoneNumber = newCredentials.phoneNumber;
-    //
-    //     this.authStore.setUser(me);
-    //     console.log(this.authStore.state.user?.firstName);
-    //   }
-    // })
-    // }
+           this.authStore.setUser(user);
+           console.log(user);
+           console.log(this.authStore.state);
+           console.log(this.authStore.state.user?.firstName);
 
-    this.authService.me().pipe(take(1)).subscribe((user) => {
-      user.firstName = newCredentials.firstName;
-      user.lastName = newCredentials.lastName;
-      user.phoneNumber = newCredentials.phoneNumber;
-
-      this.authStore.setUser(user);
-      this.messageService.add({key: 'toast', detail: 'Success', severity: 'success', summary: 'Edited succesfully'})
-      this.router.navigate(['/loan'])
-      console.log(user);
-      console.log(this.authStore.state);
-      console.log(this.authStore.state.user?.firstName);
-    },
-      (err) => {
+           this.messageService.add({key: 'toast', detail: 'Success', severity: 'success', summary: 'Edited succesfully'})
+           this.router.navigateByUrl('/loan');
+         });
+       },
+      error: (err) => {
         this.messageService.add({key: 'toast', detail: 'Error', severity: 'error', summary: err.message})
+        console.log(err);
       }
-    );
-
+    })
 
 
     console.log(credentials)
