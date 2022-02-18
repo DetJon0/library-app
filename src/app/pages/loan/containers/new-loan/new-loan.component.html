@@ -66,8 +66,8 @@
         </div>
 
         <button type="submit" class="button" [disabled]="!form.valid" [class.p-disabled]="!form.valid"
-                (click)="onSave()" >Save</button>
-        <button type="button" class="reset-button" (click)="onReset()">Reset</button>
+                (click)="onSave()"><i class="pi pi-save"></i>Save</button>
+        <button type="button" class="reset-button" (click)="onReset()"><i class="pi pi-undo"></i>Reset</button>
 
       </form>
 

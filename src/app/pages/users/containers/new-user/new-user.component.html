@@ -1,6 +1,7 @@
 <div class="box-view">
 
   <div class="box-view__container">
+    <app-back-button></app-back-button>
     <h1>New User</h1>
 
     <div class="form-container">
@@ -58,6 +59,7 @@
         </div>
 
         <button type="submit" class="button" [class.p-disabled]="!form.valid" (click)="onSave()" >
+          <i class="pi pi-save"></i>
           Save
         </button>
 

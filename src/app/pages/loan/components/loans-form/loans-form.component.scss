@@ -79,26 +79,31 @@
 
 
 :host ::ng-deep {
-  .p-autocomplete-dd, .p-component, .p-autocomplete-dd {
+  .p-autocomplete-dd, .p-component {
     height: 3.8rem;
-  }
-
-  .p-autocomplete-input {
-    font-size: 1.4rem;
-    padding-left: 1.2rem;
   }
 
   .p-autocomplete {
     display: flex;
     width: 100%;
+
+    .p-autocomplete-input {
+      font-size: 1.4rem;
+      padding-left: 1.2rem;
+    }
+
+    .p-autocomplete-panel {
+      height: auto;
+    }
+
+    .p-autocomplete-items {
+      font-size: 1.3rem;
+    }
+
   }
 
-  .p-autocomplete-panel {
-    height: auto;
-  }
-
-  .p-autocomplete-items {
-    font-size: 1.3rem;
+  .p-autocomplete-dd .p-autocomplete-dropdown {
+    padding-left: 1rem;
   }
 
   .p-calendar {

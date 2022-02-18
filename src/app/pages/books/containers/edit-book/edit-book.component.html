@@ -52,10 +52,11 @@
 
         <input type="file" formControlName="images">
 
-        <button [class.p-disabled]="disabled" type="submit" class="button" [disabled]="disabled" (click)="onSave()" >
+        <button [class.p-disabled]="disabled" type="submit" class="button" [disabled]="disabled" (click)="onSave()">
+          <i class="pi pi-save"></i>
           Save
         </button>
-        <button type="button" class="reset-button" (click)="onReset()">Reset</button>
+        <button type="button" class="reset-button" (click)="onReset()"><i class="pi pi-undo"></i>Reset</button>
 
       </form>
 

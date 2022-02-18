@@ -4,7 +4,7 @@
     <app-back-button></app-back-button>
     <h1>Settings</h1>
 
-    <button type="button" routerLink="/audit-logs" class="audit-button" >Audit Logs</button>
+    <button type="button" routerLink="/audit-logs" class="audit-button" ><i class="pi pi-history"></i>Audit Logs</button>
 
     <form [formGroup]="form">
 
@@ -17,8 +17,8 @@
         </div>
       </div>
 
-      <button type="submit" class="button" [disabled]="!form.valid" (click)="onSave()" >Save</button>
-      <button type="button" class="reset-button">Reset</button>
+      <button type="submit" class="button" [disabled]="!form.valid" (click)="onSave()"><i class="pi pi-save"></i>Save</button>
+      <button type="button" class="reset-button"><i class="pi pi-undo"></i>Reset</button>
 
     </form>
 

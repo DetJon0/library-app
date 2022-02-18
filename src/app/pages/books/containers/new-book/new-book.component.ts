@@ -58,4 +58,13 @@ export class NewBookComponent implements OnInit {
 
   }
 
+  reset() {
+    this.form.setValue({
+      isbn: '',
+      title: '',
+      author: '',
+      numberOfCopies: 1
+    })
+  }
+
 }
