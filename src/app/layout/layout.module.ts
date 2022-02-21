@@ -8,6 +8,7 @@ import {ButtonModule} from 'primeng/button';
 import {MegaMenuModule} from 'primeng/megamenu';
 import {ProfileAvatarComponent} from "./main-layout/components/profile-avatar.component";
 import {SharedModule} from "../shared/shared.module";
+import {DirectiveModule} from "../directive/directive.module";
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import {SharedModule} from "../shared/shared.module";
         ButtonModule,
         MegaMenuModule,
         SharedModule,
+        DirectiveModule
     ]
 })
 export class LayoutModule { }

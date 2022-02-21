@@ -7,7 +7,7 @@ import {RouterModule} from "@angular/router";
   @NgModule({
     declarations: [LoadingSpinnerComponent, BackButtonComponent],
     imports: [CommonModule, RouterModule],
-    exports: [CommonModule, LoadingSpinnerComponent, BackButtonComponent],
+    exports: [LoadingSpinnerComponent, BackButtonComponent],
   })
 export class SharedModule {
 

@@ -16,16 +16,13 @@ export class RoleDirective {
     if(intersection.length === 0) {
       this.viewContainer.clear()
     } else {
-      this.viewContainer.createEmbeddedView(this.templateRef)
+      this.viewContainer.createEmbeddedView(this.templateRef);
     }
-
   }
-
 
   intersect(a: [] | undefined, b: [] | undefined) {
     const setB = new Set(b);
     return [...new Set(a)].filter(x => setB.has(x));
   }
-
 
 }

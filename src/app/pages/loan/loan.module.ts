@@ -17,6 +17,8 @@ import {DropdownModule} from "primeng/dropdown";
 import {LoansStore} from "./services/loans.store";
 import {TableModule} from "primeng/table";
 import {PaginatorModule} from "primeng/paginator";
+import {CommonModule} from "@angular/common";
+import {DirectiveModule} from "../../directive/directive.module";
 
 const routes: Routes = [
   {
@@ -42,20 +44,21 @@ const routes: Routes = [
 ];
 
 @NgModule({
-    imports: [
-        // LayoutModule,
-        RouterModule.forChild(routes),
-        InputTextModule,
-        AutoCompleteModule,
-        FormsModule,
-        ReactiveFormsModule,
-        SharedModule,
-        CalendarModule,
-        DropdownModule,
-        TableModule,
-        PaginatorModule,
-        SharedModule
-    ],
+  imports: [
+    // LayoutModule,
+    CommonModule,
+    RouterModule.forChild(routes),
+    InputTextModule,
+    AutoCompleteModule,
+    FormsModule,
+    ReactiveFormsModule,
+    SharedModule,
+    CalendarModule,
+    DropdownModule,
+    TableModule,
+    PaginatorModule,
+    SharedModule,
+  ],
   declarations: [
     LoanComponent,
     NewLoanComponent,
