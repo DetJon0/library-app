@@ -4,6 +4,7 @@ import {AuthLayoutComponent} from "./layout/auth-layout/auth-layout.component";
 import {MainLayoutComponent} from "./layout/main-layout/main-layout.component";
 import {AuthGuard} from "./core/guards/auth.guard";
 import {NonAuthGuard} from "./core/guards/non-auth.guard";
+import {RoleGuard} from "./core/guards/role.guard";
 
 const appRoutes: Routes = [
   {path: '', redirectTo: '/auth/signin', pathMatch: 'full'},
@@ -41,19 +42,28 @@ const appRoutes: Routes = [
         },
         {
           path: 'settings',
-          canActivate: [AuthGuard],
+          canActivate: [AuthGuard, RoleGuard],
+          data: {
+            role: ['owner', 'librarian']
+          },
           loadChildren: () =>
             import('./pages/settings/settings.module').then((m)=> m.SettingsModule)
         },
         {
           path: 'iam',
-          canActivate: [AuthGuard],
+          canActivate: [AuthGuard, RoleGuard],
+          data: {
+            role: ['owner', 'librarian']
+          },
           loadChildren: () =>
             import('./pages/users/users.module').then((m)=> m.UsersModule)
         },
         {
           path: 'audit-logs',
-          canActivate: [AuthGuard],
+          canActivate: [AuthGuard, RoleGuard],
+          data: {
+            role: ['owner', 'librarian']
+          },
           loadChildren: () =>
             import('./pages/audit-logs/audit-logs.module').then((m)=> m.AuditLogsModule)
         }

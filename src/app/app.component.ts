@@ -30,6 +30,16 @@ export class AppComponent implements OnInit {
         next: (me: User) => {
           this.authStore.setUser(me)
           console.log(this.authStore.state);
+          // console.log(this.authStore.state.user?.roles);
+          // const role = this.authStore.state.user?.roles
+          // console.log(role?.some((res)=> res === 'owner'));
+
+          // console.log(this.role?.includes('jane'));
+          // if(role?.includes('owner')) {
+          //   console.log(true);
+          // } else {
+          //   console.log(false);
+          // }
         },
         error: err => {
           console.log(err);
@@ -41,7 +51,4 @@ export class AppComponent implements OnInit {
     }
 
   }
-
-//  n eon init do kerkosh per token ne localstorage nese ka bej dhe thirrjen me dh evendose ne behaviour subject nese jo mos bej asgje
-//  nje alternative tjeter eshte qe ne local storage te ruash dhe userin njesoj formatin sic e pranon behaviour subject dhe nese ka i jep next behaviour subject dhe ske nevoje te besh nje thirrje te dyte
 }

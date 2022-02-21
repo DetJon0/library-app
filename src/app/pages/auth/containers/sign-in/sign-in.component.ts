@@ -52,11 +52,7 @@ export class SignInComponent {
         this.authStore.setToken(token);
         this.authService.me().pipe(take(1)).subscribe({
           next: (me: User) => {
-            // morem me qe i referohet modelit te userit
-
-            //nese useri ka zgjedhur remember me ruaje dhe ne localstorage
-
-            // Vendosim te dhenat e profilit
+            console.log(me);
             this.authStore.setUser(me)
             if (!!this.form.get('rememberMe')?.value) {
               localStorage.setItem('token', token);

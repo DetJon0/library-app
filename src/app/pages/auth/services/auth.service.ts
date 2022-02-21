@@ -11,6 +11,8 @@ import {Router} from "@angular/router";
 export class AuthService {
   constructor(private http: HttpClient, private authStore: AuthStore, private router: Router) {}
 
+  roleAs!: string;
+
   login(email: string, password: string): Observable<any> {
     return this.http.post(`${environment.apiUrl}/api/auth/sign-in`, {
       email: email,
