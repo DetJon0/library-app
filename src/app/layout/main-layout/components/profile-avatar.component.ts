@@ -1,5 +1,4 @@
 import {ChangeDetectionStrategy, Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
-import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-profile-avatar',

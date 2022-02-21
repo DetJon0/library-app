@@ -7,6 +7,7 @@ import {SidebarModule} from "primeng/sidebar";
 import {ButtonModule} from 'primeng/button';
 import {MegaMenuModule} from 'primeng/megamenu';
 import {ProfileAvatarComponent} from "./main-layout/components/profile-avatar.component";
+import {SharedModule} from "../shared/shared.module";
 
 @NgModule({
   declarations: [
@@ -14,12 +15,13 @@ import {ProfileAvatarComponent} from "./main-layout/components/profile-avatar.co
     MainLayoutComponent,
     ProfileAvatarComponent
   ],
-  imports: [
-    CommonModule,
-    RouterModule,
-    SidebarModule,
-    ButtonModule,
-    MegaMenuModule
-  ]
+    imports: [
+        CommonModule,
+        RouterModule,
+        SidebarModule,
+        ButtonModule,
+        MegaMenuModule,
+        SharedModule,
+    ]
 })
 export class LayoutModule { }
