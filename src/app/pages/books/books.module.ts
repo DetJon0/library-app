@@ -15,6 +15,7 @@ import {BooksStore} from "./services/books.store";
 import {PaginatorModule} from 'primeng/paginator';
 import {SharedModule} from "../../shared/shared.module";
 import {ImportBookComponent} from "./containers/import-book/import-book.component";
+import {DirectiveModule} from "../../directive/directive.module";
 
 const routes: Routes = [
   {
@@ -40,17 +41,18 @@ const routes: Routes = [
 ]
 
 @NgModule({
-  imports: [
-    RouterModule.forChild(routes),
-    CommonModule,
-    InputTextModule,
-    ReactiveFormsModule,
-    InputNumberModule,
-    TableModule,
-    FormsModule,
-    PaginatorModule,
-    SharedModule
-  ],
+    imports: [
+        RouterModule.forChild(routes),
+        CommonModule,
+        InputTextModule,
+        ReactiveFormsModule,
+        InputNumberModule,
+        TableModule,
+        FormsModule,
+        PaginatorModule,
+        SharedModule,
+        DirectiveModule
+    ],
   declarations: [
     BooksComponent,
     NewBookComponent,

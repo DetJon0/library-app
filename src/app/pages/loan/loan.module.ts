@@ -58,6 +58,7 @@ const routes: Routes = [
     TableModule,
     PaginatorModule,
     SharedModule,
+    DirectiveModule,
   ],
   declarations: [
     LoanComponent,
