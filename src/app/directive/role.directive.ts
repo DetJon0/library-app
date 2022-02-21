@@ -18,7 +18,7 @@ export class RoleDirective implements OnInit {
     })
     console.log(this.roleArray);
 
-    console.log(this.roleArray?.includes('member'));
+    console.log(this.roleArray?.includes('member') && !this.roleArray?.includes('librarian'));
 
     const checkPermission = this.roleArray?.includes('member')
 
@@ -27,33 +27,6 @@ export class RoleDirective implements OnInit {
     } else {
       this.elementRef.nativeElement.style.display = 'inline-block';
     }
-
-    // if(intersection.length > 0) {
-    //   this.elementRef.nativeElement.style.display = 'none';
-    // } else {
-    //
-    // }
   }
-
-
-  // @Input() set(hideForRoles: []){
-  //   const role = this.authStore.state.user?.roles
-  //   console.log(role);
-  //   const intersection = this.intersect(role, hideForRoles)
-  //
-  //   if(intersection.length === 0) {
-  //     this.viewContainer.clear()
-  //   } else {
-  //     this.viewContainer.createEmbeddedView(this.templateRef)
-  //   }
-  //
-  // }
-
-
-  intersect(a: [] | undefined, b: [] | string[] | undefined) {
-    const setB = new Set(b);
-    return [...new Set(a)].filter(x => setB.has(x));
-  }
-
 
 }
