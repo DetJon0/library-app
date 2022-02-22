@@ -71,7 +71,10 @@ export class ViewUserComponent implements OnInit {
   }
 
   onActivity() {
-    this.router.navigateByUrl('/audit-logs')
+    this.router.navigate(
+      ['/audit-logs'],
+      { queryParams: { createdByEmail: 'popular' } }
+    );
     this.getUser().subscribe((res)=>{
       console.log(res);
 
