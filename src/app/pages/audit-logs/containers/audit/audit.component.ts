@@ -10,7 +10,7 @@ import { exportExcel } from 'src/app/shared/export-excel/export-excel.function';
 })
 export class AuditComponent implements OnInit {
 
-  email: string = ''
+
 
   constructor(public store: AuditStore, private route: ActivatedRoute, private router: Router) { }
 
@@ -19,17 +19,14 @@ export class AuditComponent implements OnInit {
 
     this.route.queryParams.subscribe({
       next: (params: Params) => {
-        // console.log(params);
-        this.email = params['createdByEmail']
-        // console.log(this.email);
+        const createdByEmail = params['createdByEmail']
 
-        if(this.email !== '') {
-          this.store.load({
-            createdByEmail: this.email
-          })
+        if(createdByEmail !== '') {
+          this.store.load({createdByEmail})
         }
       }
     })
+
   }
 
   exportFile(state: any) {

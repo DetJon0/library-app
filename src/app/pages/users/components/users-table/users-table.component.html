@@ -14,7 +14,6 @@
   <ng-template pTemplate="header" let-columns>
     <tr>
       <th style="width: 3rem">
-        <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
       </th>
       <th *ngFor="let column of columns"
           [pSortableColumn]="column.field">{{column.header}} <p-sortIcon [field]="column.field" ></p-sortIcon>

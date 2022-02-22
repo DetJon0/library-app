@@ -14,12 +14,6 @@
 
 }
 
-.flex {
-  display: flex;
-  align-items: center;
-  justify-content: end;
-}
-
 :host ::ng-deep {
   .p-datatable .p-datatable-thead > tr > th {
     font-size: 1.4rem;
