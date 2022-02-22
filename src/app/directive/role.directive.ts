@@ -16,11 +16,11 @@ export class RoleDirective implements OnInit {
     role?.forEach((el)=> {
       this.roleArray.push(el)
     })
-    console.log(this.roleArray);
+    // console.log(this.roleArray);
 
-    console.log(this.roleArray?.includes('member') && !this.roleArray?.includes('librarian'));
+    // console.log(this.roleArray?.includes('member') && !this.roleArray?.includes('librarian'));
 
-    const checkPermission = this.roleArray?.includes('member')
+    const checkPermission = (this.roleArray?.includes('member') && !this.roleArray?.includes('librarian'))
 
     if(checkPermission) {
       this.elementRef.nativeElement.style.display = 'none';

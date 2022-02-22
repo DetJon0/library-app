@@ -14,18 +14,13 @@ export class RoleGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     router: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
 
-    const user = this.authStore.state.user;
-
     const role = this.authStore.state.user?.roles
-    console.log(role);
+    // console.log(role);
     const routeData = route.data['role']
-    console.log(routeData);
-
-    // const userRole = role?.some((res)=> res === routeDate[0] || res === routeDate[1]);
-    // console.log(userRole);
+    // console.log(routeData);
 
     const intersection = this.intersect(role, routeData)
-    console.log(intersection);
+    // console.log(intersection);
     console.log(intersection.length);
 
     if(intersection.length > 0) {
