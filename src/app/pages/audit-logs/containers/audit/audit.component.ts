@@ -21,6 +21,12 @@ export class AuditComponent implements OnInit {
         console.log(params);
         this.email = params['createdByEmail']
         console.log(this.email);
+
+        if(this.email !== '') {
+          this.store.load({
+            createdByEmail: this.email
+          })
+        }
       }
     })
 
