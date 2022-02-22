@@ -66,7 +66,8 @@ const appRoutes: Routes = [
           },
           loadChildren: () =>
             import('./pages/audit-logs/audit-logs.module').then((m)=> m.AuditLogsModule)
-        }
+        },
+        {path: '**', redirectTo: 'loan'}
       ]
     }
 ]

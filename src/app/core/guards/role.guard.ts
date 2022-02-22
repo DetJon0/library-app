@@ -28,6 +28,7 @@ export class RoleGuard implements CanActivate {
       return true;
     } else {
       console.log('not authorized')
+      this.router.navigateByUrl('/loan')
       return false;
     }
 
