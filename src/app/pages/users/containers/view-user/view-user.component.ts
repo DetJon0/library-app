@@ -19,6 +19,7 @@ export class ViewUserComponent implements OnInit {
   // idValue: string[] = [];
 
   userId: string = ''
+  userEmail: string | undefined = ''
   user$!: Observable<UsersResponse | null> ;
 
   constructor(private usersService: UsersService, private route: ActivatedRoute, private messageService: MessageService,
@@ -71,13 +72,13 @@ export class ViewUserComponent implements OnInit {
   }
 
   onActivity() {
-    this.router.navigate(
-      ['/audit-logs'],
-      { queryParams: { createdByEmail: 'popular' } }
-    );
-    this.getUser().subscribe((res)=>{
-      console.log(res);
+    console.log(this.userId);
 
+    this.user$.pipe(take(1)).subscribe((res)=> {
+      this.router.navigate(
+        ['/audit-logs'],
+        { queryParams: { createdByEmail: res?.email } }
+      );
     })
   }
 

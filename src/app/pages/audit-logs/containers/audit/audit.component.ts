@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {AuditStore} from "../../services/audit.store";
+import {ActivatedRoute, Params, Router} from "@angular/router";
 
 @Component({
   selector: 'app-audit',
@@ -8,10 +9,21 @@ import {AuditStore} from "../../services/audit.store";
 })
 export class AuditComponent implements OnInit {
 
-  constructor(public store: AuditStore) { }
+  email: string | undefined = ''
+
+  constructor(public store: AuditStore, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
     this.store.load({})
+
+    this.route.queryParams.subscribe({
+      next: (params: Params) => {
+        console.log(params);
+        this.email = params['createdByEmail']
+        console.log(this.email);
+      }
+    })
+
   }
 
   paginate(event: any) {
