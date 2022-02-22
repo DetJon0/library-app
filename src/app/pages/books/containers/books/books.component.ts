@@ -6,6 +6,7 @@ import {BooksTableComponent} from "../../components/books-table/books-table.comp
 import {take} from "rxjs";
 import {ConfirmationService, MessageService} from "primeng/api";
 import {BookResponse} from "../../model/book-response.model";
+import {exportExcel} from "../../../../shared/export-excel/export-excel.function";
 
 @Component({
   selector: 'app-books',
@@ -28,6 +29,10 @@ export class BooksComponent implements OnInit {
 
   ngOnInit() {
     this.store.load({});
+  }
+
+  exportFile() {
+    exportExcel(this.table.books)
   }
 
   bookChanged(event: any) {

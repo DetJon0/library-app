@@ -3,9 +3,9 @@
   <div class="box-view__container">
     <h1>Audit Logs</h1>
 
-    <button type="button" class="audit-button"><i class="pi pi-file-excel"></i>Export to Excel</button>
-
     <ng-container *ngIf="store.state$ | async as state">
+    <button type="button" class="audit-button" (click)="exportFile(state)"><i class="pi pi-file-excel"></i>Export to Excel</button>
+
     <app-audit-form [formValue]="state.params"
     (searchQuery)="searchParams($event)"
     ></app-audit-form>

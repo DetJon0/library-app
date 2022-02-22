@@ -6,6 +6,7 @@ import {take} from "rxjs";
 import {ConfirmationService, MessageService} from "primeng/api";
 import {UsersService} from "../../services/users.service";
 import * as FileSaver from "file-saver";
+import {exportExcel} from "../../../../shared/export-excel/export-excel.function";
 
 @Component({
   selector: 'app-users',
@@ -27,23 +28,8 @@ export class UsersComponent implements OnInit {
     this.store.load({})
   }
 
-  exportExcel() {
-    console.log(this.table.users);
-    import("xlsx").then(xlsx => {
-      const worksheet = xlsx.utils.json_to_sheet(this.table.users);
-      const workbook = { Sheets: { 'data': worksheet }, SheetNames: ['data'] };
-      const excelBuffer: any = xlsx.write(workbook, { bookType: 'xlsx', type: 'array' });
-      this.saveAsExcelFile(excelBuffer, "users");
-    });
-  }
-
-  saveAsExcelFile(buffer: any, fileName: string): void {
-    let EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
-    let EXCEL_EXTENSION = '.xlsx';
-    const data: Blob = new Blob([buffer], {
-      type: EXCEL_TYPE
-    });
-    FileSaver.saveAs(data, fileName + '_export_' + new Date().getTime() + EXCEL_EXTENSION);
+  exportFile() {
+    exportExcel(this.table.users)
   }
 
   selectedUsers(event: any) {

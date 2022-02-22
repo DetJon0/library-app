@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {AuditStore} from "../../services/audit.store";
 import {ActivatedRoute, Params, Router} from "@angular/router";
+import { exportExcel } from 'src/app/shared/export-excel/export-excel.function';
 
 @Component({
   selector: 'app-audit',
@@ -29,7 +30,10 @@ export class AuditComponent implements OnInit {
         }
       }
     })
+  }
 
+  exportFile(state: any) {
+    exportExcel(state.data)
   }
 
   paginate(event: any) {
