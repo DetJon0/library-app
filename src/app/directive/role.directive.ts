@@ -22,21 +22,21 @@ export class RoleDirective implements OnInit {
       this.roleArray.push(el)
     })
     // console.log(this.roleArray);
-    console.log(this.appRole)
+    // console.log(this.appRole)
 
     // console.log(this.roleArray?.includes('member') && !this.roleArray?.includes('librarian'));
     const intersection = this.intersect(this.appRole, role)
-    console.log(this.appRole, role)
+    // console.log(this.appRole, role)
 
-    console.log(intersection)
+    // console.log(intersection)
 
     if(intersection.length > 0) {
-      console.log('authorized');
+      // console.log('authorized');
     } else {
       console.log('not authorized')
       this.elementRef.nativeElement.remove();
     }
-    
+
   }
 
   intersect(a: string[] | undefined, b: string[] | undefined) {
