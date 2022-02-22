@@ -9,7 +9,7 @@ import {ActivatedRoute, Params, Router} from "@angular/router";
 })
 export class AuditComponent implements OnInit {
 
-  email: string | undefined = ''
+  email: string = ''
 
   constructor(public store: AuditStore, private route: ActivatedRoute, private router: Router) { }
 
@@ -18,9 +18,9 @@ export class AuditComponent implements OnInit {
 
     this.route.queryParams.subscribe({
       next: (params: Params) => {
-        console.log(params);
+        // console.log(params);
         this.email = params['createdByEmail']
-        console.log(this.email);
+        // console.log(this.email);
 
         if(this.email !== '') {
           this.store.load({

@@ -21,6 +21,8 @@ import {InputMaskModule} from "primeng/inputmask";
 import {MultiSelectModule} from 'primeng/multiselect';
 import {ChipsModule} from 'primeng/chips';
 import {AuditStore} from "../audit-logs/services/audit.store";
+import {RippleModule} from "primeng/ripple";
+import {TooltipModule} from "primeng/tooltip";
 
 const routes: Routes = [
   {
@@ -71,6 +73,8 @@ const routes: Routes = [
     InputMaskModule,
     MultiSelectModule,
     ChipsModule,
+    RippleModule,
+    TooltipModule,
   ],
   providers: [
     UsersStore,

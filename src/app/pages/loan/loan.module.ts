@@ -19,6 +19,7 @@ import {TableModule} from "primeng/table";
 import {PaginatorModule} from "primeng/paginator";
 import {CommonModule} from "@angular/common";
 import {DirectiveModule} from "../../directive/directive.module";
+import {RippleModule} from "primeng/ripple";
 
 const routes: Routes = [
   {
@@ -59,6 +60,7 @@ const routes: Routes = [
     PaginatorModule,
     SharedModule,
     DirectiveModule,
+    RippleModule,
   ],
   declarations: [
     LoanComponent,

@@ -8,6 +8,7 @@ import {ConfirmationService, MessageService} from "primeng/api";
 import {UserDisable} from "../../model/user-disable.model";
 import {UsersStore} from "../../services/users.store";
 import {AuditStore} from "../../../audit-logs/services/audit.store";
+import {User} from "../../../../models/user.model";
 
 @Component({
   selector: 'app-view-user',
@@ -71,15 +72,12 @@ export class ViewUserComponent implements OnInit {
     );
   }
 
-  onActivity() {
-    console.log(this.userId);
+  onActivity(user: UsersResponse) {
 
-    this.user$.pipe(take(1)).subscribe((res)=> {
-      this.router.navigate(
-        ['/audit-logs'],
-        { queryParams: { createdByEmail: res?.email } }
-      );
-    })
+    this.router.navigate(
+      ['/audit-logs'],
+      { queryParams: { createdByEmail: user.email } }
+    );
   }
 
 }

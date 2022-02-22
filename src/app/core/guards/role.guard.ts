@@ -17,11 +17,8 @@ export class RoleGuard implements CanActivate {
     const role = this.authStore.state.user?.roles
     // console.log(role);
     const routeData = route.data['role']
-    // console.log(routeData);
 
     const intersection = this.intersect(role, routeData)
-    // console.log(intersection);
-    console.log(intersection.length);
 
     if(intersection.length > 0) {
       console.log('authorized');

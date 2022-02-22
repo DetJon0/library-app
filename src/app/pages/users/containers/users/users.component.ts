@@ -1,11 +1,13 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {LoansTableComponent} from "../../../loan/components/loans-table/loans-table.component";
-import {UsersStore} from "../../services/users.store";
+import {UsersState, UsersStore} from "../../services/users.store";
 import {UsersTableComponent} from "../../components/users-table/users-table.component";
 import {UserDisable} from "../../model/user-disable.model";
 import {take} from "rxjs";
 import {ConfirmationService, MessageService} from "primeng/api";
 import {UsersService} from "../../services/users.service";
+import {UsersResponse} from "../../model/user-response.model";
+import * as FileSaver from "file-saver";
 
 @Component({
   selector: 'app-users',
@@ -25,6 +27,25 @@ export class UsersComponent implements OnInit {
 
   ngOnInit() {
     this.store.load({})
+  }
+
+  exportExcel(state: UsersState) {
+    console.log(state);
+    import("xlsx").then(xlsx => {
+      const worksheet = xlsx.utils.json_to_sheet(state.data);
+      const workbook = { Sheets: { 'data': worksheet }, SheetNames: ['data'] };
+      const excelBuffer: any = xlsx.write(workbook, { bookType: 'xlsx', type: 'array' });
+      this.saveAsExcelFile(excelBuffer, "data");
+    });
+  }
+
+  saveAsExcelFile(buffer: any, fileName: string): void {
+    let EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
+    let EXCEL_EXTENSION = '.xlsx';
+    const data: Blob = new Blob([buffer], {
+      type: EXCEL_TYPE
+    });
+    FileSaver.saveAs(data, fileName + '_export_' + new Date().getTime() + EXCEL_EXTENSION);
   }
 
   selectedUsers(event: any) {
