@@ -1,12 +1,10 @@
 import {Component, Input, OnInit, ViewChild} from '@angular/core';
-import {LoansTableComponent} from "../../../loan/components/loans-table/loans-table.component";
-import {UsersState, UsersStore} from "../../services/users.store";
+import { UsersStore} from "../../services/users.store";
 import {UsersTableComponent} from "../../components/users-table/users-table.component";
 import {UserDisable} from "../../model/user-disable.model";
 import {take} from "rxjs";
 import {ConfirmationService, MessageService} from "primeng/api";
 import {UsersService} from "../../services/users.service";
-import {UsersResponse} from "../../model/user-response.model";
 import * as FileSaver from "file-saver";
 
 @Component({
@@ -29,13 +27,13 @@ export class UsersComponent implements OnInit {
     this.store.load({})
   }
 
-  exportExcel(state: UsersState) {
-    console.log(state);
+  exportExcel() {
+    console.log(this.table.users);
     import("xlsx").then(xlsx => {
-      const worksheet = xlsx.utils.json_to_sheet(state.data);
+      const worksheet = xlsx.utils.json_to_sheet(this.table.users);
       const workbook = { Sheets: { 'data': worksheet }, SheetNames: ['data'] };
       const excelBuffer: any = xlsx.write(workbook, { bookType: 'xlsx', type: 'array' });
-      this.saveAsExcelFile(excelBuffer, "data");
+      this.saveAsExcelFile(excelBuffer, "users");
     });
   }
 
