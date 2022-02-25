@@ -14,6 +14,8 @@ import {BookResponse} from "../../model/book-response.model";
 })
 export class EditBookComponent implements OnInit, OnDestroy {
 
+  isLoading: boolean = false;
+
   resetObject!: {
     id: string,
     isbn: string,

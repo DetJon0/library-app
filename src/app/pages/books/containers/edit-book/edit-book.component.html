@@ -4,7 +4,7 @@
     <app-back-button></app-back-button>
     <h1>Edit Book</h1>
 
-    <ng-container *ngIf="book$ | async as book ;">
+    <ng-container *ngIf="book$ | async as book ; else loading">
     <div class="form-container">
 
       <form [formGroup]="form">
@@ -62,6 +62,12 @@
 
     </div>
     </ng-container>
+
+    <ng-template #loading >
+      <div class="loading-box">
+        <app-loading-spinner></app-loading-spinner>
+      </div>
+    </ng-template>
 
   </div>
 </div>

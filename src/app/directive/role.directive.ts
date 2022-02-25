@@ -1,5 +1,6 @@
 import {Directive, ElementRef, Input, OnInit, TemplateRef, ViewContainerRef} from '@angular/core';
 import {AuthStore} from "../core/services/auth.store";
+import {intersect} from "../shared/intersect/intersect.function";
 
 @Directive({
   selector: '[appRole]'
@@ -25,7 +26,7 @@ export class RoleDirective implements OnInit {
     // console.log(this.appRole)
 
     // console.log(this.roleArray?.includes('member') && !this.roleArray?.includes('librarian'));
-    const intersection = this.intersect(this.appRole, role)
+    const intersection = intersect(this.appRole, role)
     // console.log(this.appRole, role)
 
     // console.log(intersection)
@@ -37,10 +38,5 @@ export class RoleDirective implements OnInit {
       this.elementRef.nativeElement.remove();
     }
 
-  }
-
-  intersect(a: string[] | undefined, b: string[] | undefined) {
-    const setB = new Set(b);
-    return [...new Set(a)].filter(x => setB.has(x));
   }
 }

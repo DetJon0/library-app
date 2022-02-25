@@ -8,7 +8,7 @@
     <button type="button" class="delete-button" (click)="onDelete()" ><i class="pi pi-trash"></i>Delete</button>
     <button type="button" class="audit-button" routerLink="/audit-logs"><i class="pi pi-history"></i>Audit Logs</button>
 
-    <ng-container *ngIf="book$ | async as book ;">
+    <ng-container *ngIf="book$ | async as book ; else loading">
       <div class="container-content">
         <p>ID: <span> {{book.id}} </span> </p>
         <p>Book: <span> {{book.book.title}} </span> </p>
@@ -25,6 +25,12 @@
 
       </div>
     </ng-container>
+
+    <ng-template #loading >
+      <div class="loading-box">
+        <app-loading-spinner></app-loading-spinner>
+      </div>
+    </ng-template>
 
   </div>
 

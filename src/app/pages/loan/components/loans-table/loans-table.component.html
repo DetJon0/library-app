@@ -26,7 +26,7 @@
       <td>{{rowData.issueDate | date}}</td>
       <td>{{rowData.dueDate | date}}</td>
       <td>{{rowData.returnDate | date}} </td>
-      <td >
+      <td>
         <span [ngClass]="{ 'closed-status': rowData.status === 'Closed' || 'overdue', 'progress-status': rowData.status === 'inProgress'}">
           {{rowData.status === 'inProgress' ? 'In Progress' : rowData.status | titlecase}}</span>
       </td>

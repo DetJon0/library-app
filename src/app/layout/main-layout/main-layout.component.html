@@ -1,5 +1,7 @@
 <div class="main-container">
+
   <div class="main-container__sidebar">
+
     <h3>Library</h3>
     <ul class="links-list">
       <li [appRole]="['librarian', 'owner']" class="list-item"><a routerLinkActive="active" routerLink="audit-logs" class="sidebar-links"><i class="pi pi-history"></i>Audit Logs</a></li>
@@ -8,10 +10,16 @@
       <li class="list-item"><a routerLinkActive="active" routerLink="loan" class="sidebar-links"><i class="pi pi-id-card"></i>Loans</a></li>
       <li class="list-item"><a routerLinkActive="active" routerLink="book" class="sidebar-links"><i class="pi pi-book"></i>Books</a></li>
     </ul>
+
   </div>
 
   <div class="page-container">
     <header>
+
+<!--      <button (click)="toggleMenu()" class="hamburger">-->
+<!--        <span>toggle menu</span>-->
+<!--      </button>-->
+
       <ng-container *ngIf="nameChanges$ | async as name">
         <app-profile-avatar [displayedName]="name + ''"></app-profile-avatar>
         <div class="profile-details-box">
