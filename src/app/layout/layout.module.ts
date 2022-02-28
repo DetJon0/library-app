@@ -9,8 +9,7 @@ import {MegaMenuModule} from 'primeng/megamenu';
 import {ProfileAvatarComponent} from "./main-layout/components/profile-avatar.component";
 import {SharedModule} from "../shared/shared.module";
 import {DirectiveModule} from "../directive/directive.module";
-import {BrowserAnimationsModule, NoopAnimationsModule} from "@angular/platform-browser/animations";
-import {BrowserModule} from "@angular/platform-browser";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 @NgModule({
   declarations: [

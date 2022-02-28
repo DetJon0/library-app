@@ -1,7 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormBuilder} from "@angular/forms";
 import {formatDates} from "../../../loan/utils/formatDates.function";
-import {UsersParams} from "../../../users/services/users.store";
 import {AuditParams} from "../../services/audit.store";
 
 @Component({

@@ -7,6 +7,7 @@ import {take} from "rxjs";
 import {ConfirmationService, MessageService} from "primeng/api";
 import {BookResponse} from "../../model/book-response.model";
 import {exportExcel} from "../../../../shared/export-excel/export-excel.function";
+import {PaginationModel} from "../../../../shared/models/pagination.model";
 
 @Component({
   selector: 'app-books',
@@ -35,11 +36,12 @@ export class BooksComponent implements OnInit {
     exportExcel(this.table.books)
   }
 
-  bookChanged(event: any) {
+  bookChanged(event: BookResponse[]) {
+    console.log(event);
     this.booksSelection = event
   }
 
-  paginate(event: any) {
+  paginate(event: PaginationModel) {
     this.store.load({limit: event.rows, offset: event.first})
   }
 

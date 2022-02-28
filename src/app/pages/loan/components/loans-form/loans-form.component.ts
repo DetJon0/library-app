@@ -4,6 +4,7 @@ import {take} from "rxjs";
 import {FormBuilder} from "@angular/forms";
 import {LoansParams} from "../../services/loans.store";
 import {formatDates} from "../../utils/formatDates.function";
+import {AutocompleteModel} from "../../model/autocomplete.model";
 
 @Component({
   selector: 'app-loans-form',
@@ -13,9 +14,8 @@ import {formatDates} from "../../utils/formatDates.function";
 
 export class LoansFormComponent implements OnInit {
 
-  books = [];
-  members = [];
-  formatDate = '';
+  books!: AutocompleteModel[];
+  members!: AutocompleteModel[];
 
   issueFromDate!: string | null;
   issueToDate!: string | null;
@@ -90,9 +90,9 @@ export class LoansFormComponent implements OnInit {
     }, 500)
   }
 
-  selectMember(event: any) {
-    console.log(event);
-  }
+  // selectMember(event: any) {
+  //   console.log(event);
+  // }
 
   /////////////////////////////
 

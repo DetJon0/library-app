@@ -6,6 +6,8 @@ import {BookResponse} from "../../model/book-response.model";
 import {ConfirmationService, MessageService} from "primeng/api";
 import {ActivatedRoute, Router} from "@angular/router";
 import {take} from "rxjs";
+import {PaginationModel} from "../../../../shared/models/pagination.model";
+import {SortModel} from "../../../../shared/models/sort.model";
 
 @Component({
   selector: 'app-books-table',
@@ -26,9 +28,9 @@ export class BooksTableComponent implements OnInit {
     {field: 'author', header: 'Author'},
   ];
 
-  @Output() paginationChanged = new EventEmitter<number>();
+  @Output() paginationChanged = new EventEmitter<PaginationModel>();
   @Output() sortChanged = new EventEmitter<string>();
-  @Output() bookChanged = new EventEmitter<string>();
+  @Output() bookChanged = new EventEmitter<BookResponse[]>();
 
   selectedBooks: BookResponse[] = [];
 
@@ -40,24 +42,24 @@ export class BooksTableComponent implements OnInit {
     // console.log(this.selectedBooks);
   }
 
-  selectionChange(event: any) {
+  selectionChange(event: BookResponse[]) {
     console.log(event);
     this.bookChanged.emit(event)
   }
 
-  paginate(event: any) {
+  paginate(event: PaginationModel) {
     this.paginationChanged.emit(event);
   }
 
-  sort(event: any) {
-    // console.log('ktu', event);
+  sort(event: SortModel) {
     const sortQuery = `${event.sortField}_${event.sortOrder === 1 ? 'ASC' : 'DESC'}`
 
     if (!!event.sortField && !!event.sortOrder) this.sortChanged.emit(sortQuery);
   }
 
-  onDeleteConfirmation(rowData: any) {
-    console.log(rowData.id);
+  onDeleteConfirmation(rowData: BookResponse) {
+    // console.log(rowData);
+    // console.log(rowData.id);
     this.confirmationService.confirm({
       message: 'Are you sure?',
       accept: () => {

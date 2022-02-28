@@ -2,6 +2,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {UsersResponse} from "../../model/user-response.model";
 import * as FileSaver from 'file-saver';
+import {PaginationModel} from "../../../../shared/models/pagination.model";
 
 @Component({
   selector: 'app-users-table',
@@ -24,9 +25,9 @@ export class UsersTableComponent implements OnInit {
     {field: 'createdAt', header: 'Created at'},
   ];
 
-  @Output() paginationChanged = new EventEmitter<number>();
+  @Output() paginationChanged = new EventEmitter<PaginationModel>();
   @Output() sortChanged = new EventEmitter<string>();
-  @Output() userSelection = new EventEmitter<[]>();
+  @Output() userSelection = new EventEmitter<UsersResponse[]>();
 
   @Input() selectedUsers: UsersResponse[] = [];
 
@@ -36,12 +37,12 @@ export class UsersTableComponent implements OnInit {
     // console.log(this.books);
   }
 
-  selectionChange(event: any) {
+  selectionChange(event: UsersResponse[]) {
     console.log(event)
     this.userSelection.emit(event)
   }
 
-  paginate(event: any) {
+  paginate(event: PaginationModel) {
     this.paginationChanged.emit(event);
   }
 

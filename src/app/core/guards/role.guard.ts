@@ -22,7 +22,7 @@ export class RoleGuard implements CanActivate {
     const intersection = intersect(role, routeData)
 
     if(intersection.length > 0) {
-      console.log('authorized');
+      // console.log('authorized');
       return true;
     } else {
       console.log('not authorized')

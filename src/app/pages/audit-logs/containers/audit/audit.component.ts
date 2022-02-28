@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {AuditStore} from "../../services/audit.store";
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import { exportExcel } from 'src/app/shared/export-excel/export-excel.function';
+import {PaginationModel} from "../../../../shared/models/pagination.model";
 
 @Component({
   selector: 'app-audit',
@@ -9,8 +10,6 @@ import { exportExcel } from 'src/app/shared/export-excel/export-excel.function';
   styleUrls: ['./audit.component.scss']
 })
 export class AuditComponent implements OnInit {
-
-
 
   constructor(public store: AuditStore, private route: ActivatedRoute, private router: Router) { }
 
@@ -33,7 +32,8 @@ export class AuditComponent implements OnInit {
     exportExcel(state.data)
   }
 
-  paginate(event: any) {
+  paginate(event: PaginationModel) {
+    console.log(event);
     this.store.load({limit: event.rows, offset: event.first})
   }
 
@@ -43,6 +43,7 @@ export class AuditComponent implements OnInit {
   }
 
   searchParams(event: any) {
+    console.log(event);
     this.store.load({
       timestampFromRange: event.timestampFromRange,
       timestampToRange: event.timestampToRange,

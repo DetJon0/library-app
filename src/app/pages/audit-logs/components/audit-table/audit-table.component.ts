@@ -1,6 +1,8 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {AuditLogsModel} from "../../model/audit.model";
-import {ActivatedRoute, Router} from "@angular/router";
+import {PaginationModel} from "../../../../shared/models/pagination.model";
+import {SortModel} from "../../../../shared/models/sort.model";
+import {ValuesModel} from "../../model/values.model";
 
 @Component({
   selector: 'app-audit-table',
@@ -9,12 +11,14 @@ import {ActivatedRoute, Router} from "@angular/router";
 })
 export class AuditTableComponent implements OnInit {
 
-  values: {} ='';
+  values!: ValuesModel;
   @Input() logs!: AuditLogsModel[];
   @Input() total!: number;
   @Input() rows!: number;
 
   @Input() loading!: boolean;
+
+  displayResponsive!: boolean;
 
   cols = [
     {field: 'date', header: 'Date'},
@@ -24,32 +28,31 @@ export class AuditTableComponent implements OnInit {
     {field: 'entityId', header: 'Entity ID'},
   ];
 
-  @Output() paginationChanged = new EventEmitter<number>();
+  @Output() paginationChanged = new EventEmitter<PaginationModel>();
   @Output() sortChanged = new EventEmitter<string>();
 
-  constructor(private router: Router, private route: ActivatedRoute) { }
-
-  displayResponsive!: boolean;
+  constructor() { }
 
   ngOnInit(): void {
   }
 
-  paginate(event: any) {
+  paginate(event: PaginationModel) {
+    console.log(event);
     this.paginationChanged.emit(event);
   }
 
-  sort(event: any) {
-    // console.log('ktu', event);
+  sort(event: SortModel) {
+    // console.log(event);
     const sortQuery = `${event.sortField}_${event.sortOrder === 1 ? 'ASC' : 'DESC'}`
 
     if (!!event.sortField && !!event.sortOrder) this.sortChanged.emit(sortQuery);
   }
 
-  showResponsiveDialog(rowData: any) {
-    console.log(rowData);
-    console.log(rowData.values);
+  showResponsiveDialog(rowData: AuditLogsModel) {
+    // console.log(rowData);
+    // console.log(rowData.values);
     this.values = rowData.values
-    console.log(this.values);
+    // console.log(this.values);
     this.displayResponsive = true;
   }
 

@@ -7,6 +7,8 @@ import {ConfirmationService, MessageService} from "primeng/api";
 import {UsersService} from "../../services/users.service";
 import * as FileSaver from "file-saver";
 import {exportExcel} from "../../../../shared/export-excel/export-excel.function";
+import {UsersResponse} from "../../model/user-response.model";
+import {PaginationModel} from "../../../../shared/models/pagination.model";
 
 @Component({
   selector: 'app-users',
@@ -17,7 +19,7 @@ export class UsersComponent implements OnInit {
 
   idArray: string[] = [];
 
-  usersSelection: [] = [];
+  usersSelection: UsersResponse[] = [];
 
   @ViewChild(UsersTableComponent) table!: UsersTableComponent;
 
@@ -32,12 +34,13 @@ export class UsersComponent implements OnInit {
     exportExcel(this.table.users)
   }
 
-  selectedUsers(event: any) {
+  selectedUsers(event: UsersResponse[]) {
+    console.log(event);
     this.usersSelection = event;
     console.log(this.usersSelection);
   }
 
-  paginate(event: any) {
+  paginate(event: PaginationModel) {
     this.store.load({limit: event.rows, offset: event.first})
   }
 
@@ -92,9 +95,7 @@ export class UsersComponent implements OnInit {
             })
           }
         })
-
       }
-
     })
 
   }
