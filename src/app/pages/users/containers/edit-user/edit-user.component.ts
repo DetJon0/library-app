@@ -17,6 +17,8 @@ import {UserEditData} from "../../model/user-edit.model";
 })
 export class EditUserComponent implements OnInit {
 
+  isLoading: boolean = false;
+
   roles = [
     {label: 'Member', value: 'member'},
     {label: 'Librarian', value: 'librarian'},
@@ -68,6 +70,8 @@ export class EditUserComponent implements OnInit {
   onSave() {
     console.log(this.form.value);
 
+    this.isLoading = true;
+
     const user: UserEditData = {
       data: this.form.value,
     }
@@ -80,11 +84,13 @@ export class EditUserComponent implements OnInit {
       this.usersService.editUser(user).subscribe({
           next: (res) => {
             console.log(res);
+            this.isLoading = false;
             this.messageService.add({key: 'toast', detail: 'Success', severity: 'success', summary: 'Edited succesfully'})
             this.store.load({})
             this.router.navigateByUrl('/iam');
           },
           error: (err) => {
+            this.isLoading = false;
             this.messageService.add({key: 'toast', detail: 'Error', severity: 'error', summary: err.message})
             console.log(err);
           }

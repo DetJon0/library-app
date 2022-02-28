@@ -22,6 +22,7 @@
       [rows]="state.params.limit"
       [total]="state.total"
       [books]="state.data"
+
       (paginationChanged)="paginate($event)"
       (sortChanged)="sort($event)"
       (bookChanged)="bookChanged($event)"

@@ -7,6 +7,7 @@ import {LoanData, } from "../../model/post-loan-model";
 import {MessageService} from "primeng/api";
 import {LoansStore} from "../../services/loans.store";
 import { Router} from "@angular/router";
+import {AutocompleteModel} from "../../model/autocomplete.model";
 
 @Component({
   selector: 'app-new-loan',
@@ -15,12 +16,14 @@ import { Router} from "@angular/router";
 })
 export class NewLoanComponent implements OnInit {
 
+  isLoading: boolean = false;
+
   currentDate = new Date();
   inputDate: boolean = false;
   status: string = '';
 
-  books = [];
-  members = [];
+  books!: AutocompleteModel[];
+  members!: AutocompleteModel[];
 
   subscription: Subscription | undefined;
 
@@ -128,6 +131,8 @@ export class NewLoanComponent implements OnInit {
     let formattedIssueDate = dayjs(issueDate).format('YYYY-MM-DDTHH:mm:ss');
     let formattedDueDate = dayjs(dueDate).format('YYYY-MM-DDTHH:mm:ss');
 
+    this.isLoading = true;
+
     const Loan: LoanData = {
       book: this.form.value.book.id,
       member: this.form.value.member.id,
@@ -140,11 +145,13 @@ export class NewLoanComponent implements OnInit {
 
     this.loansService.postLoan(Loan).subscribe({
         next: (res) => {
+          this.isLoading = false
           this.messageService.add({key: 'toast', detail: 'Success', severity: 'success', summary: 'Created succesfully'})
           this.store.load({})
           this.router.navigateByUrl('/loan');
         },
         error: (err) => {
+          this.isLoading = false
           this.messageService.add({key: 'toast', detail: 'Error', severity: 'error', summary: err.message})
           console.log(err);
         }

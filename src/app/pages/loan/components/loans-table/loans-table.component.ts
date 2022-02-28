@@ -6,6 +6,8 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {LoansService} from "../../services/loans.service";
 import {LoansStore} from "../../services/loans.store";
 import {ConfirmationService, MessageService} from "primeng/api";
+import {SortModel} from "../../../../shared/models/sort.model";
+import {PaginationModel} from "../../../../shared/models/pagination.model";
 
 @Component({
   selector: 'app-loans-table',
@@ -29,9 +31,9 @@ export class LoansTableComponent implements OnInit {
     {field: 'status', header: 'Status'},
   ];
 
-  @Output() paginationChanged = new EventEmitter<number>();
+  @Output() paginationChanged = new EventEmitter<PaginationModel>();
   @Output() sortChanged = new EventEmitter<string>();
-  @Output() loansSelection = new EventEmitter<string>();
+  @Output() loansSelection = new EventEmitter<LoanBookResponse[]>();
 
   selectedBooks: LoanBookResponse[] = [];
 
@@ -44,16 +46,17 @@ export class LoansTableComponent implements OnInit {
   ngOnInit() {
   }
 
-  selectionChange(event: any) {
+  selectionChange(event: LoanBookResponse[]) {
     console.log(event);
     this.loansSelection.emit(event)
   }
 
-  paginate(event: number) {
+  paginate(event: PaginationModel) {
+    console.log(event);
     this.paginationChanged.emit(event);
   }
 
-  sort(event: any) {
+  sort(event: SortModel) {
     // console.log(event);
     const sortQuery = `${event.sortField}_${event.sortOrder === 1 ? 'ASC' : 'DESC'}`
 

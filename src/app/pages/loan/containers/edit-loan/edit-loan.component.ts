@@ -17,6 +17,8 @@ import {formatDates} from "../../utils/formatDates.function";
 })
 export class EditLoanComponent implements OnInit, OnDestroy {
 
+  isLoading: boolean = false;
+
   editObject!: {
     book: string,
     member: string,
@@ -100,6 +102,8 @@ export class EditLoanComponent implements OnInit, OnDestroy {
 
     const id = this.route.snapshot.paramMap.get('id');
 
+    this.isLoading = true;
+
     const book = {
       id: `${id}`,
       data: this.editObject,
@@ -110,11 +114,13 @@ export class EditLoanComponent implements OnInit, OnDestroy {
           next: (res) => {
             console.log(res);
             console.log(this.editObject);
+            this.isLoading = false
             this.messageService.add({key: 'toast', detail: 'Success', severity: 'success', summary: 'Edited succesfully'})
             this.store.load({})
             this.router.navigateByUrl('/loan');
           },
           error: (err) => {
+            this.isLoading = false
             this.messageService.add({key: 'toast', detail: 'Error', severity: 'error', summary: err.message})
             console.log(err);
           }

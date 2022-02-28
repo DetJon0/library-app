@@ -178,3 +178,22 @@ input.ng-touched.ng-invalid {
   text-align: center;
 }
 
+.center-alignment {
+  display: flex;
+  align-items: center;
+}
+
+.buttons-box {
+  @media (max-width: 35em) {
+    display: flex;
+    flex-direction: column;
+  }
+
+
+  .button {
+    @media (max-width: 25em) {
+      margin-right: 0;
+    }
+  }
+}
+

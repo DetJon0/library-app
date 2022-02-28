@@ -13,7 +13,7 @@ import {MessageService} from "primeng/api";
   styleUrls: ['./sign-in.component.scss']
 })
 export class SignInComponent {
-  // isLoading = false;
+  isLoading = false;
 
   constructor(
     private router: Router,
@@ -39,6 +39,9 @@ export class SignInComponent {
   });
 
   onSignIn() {
+
+    this.isLoading = true;
+
     if (!this.form.valid) {
       return;
     }
@@ -50,6 +53,7 @@ export class SignInComponent {
         // console.log(token);
         // Vendosim tokenin ne Behaviour Subject
         this.authStore.setToken(token);
+
         this.authService.me().pipe(take(1)).subscribe({
           next: (me: User) => {
             console.log(me);
@@ -57,12 +61,12 @@ export class SignInComponent {
             if (!!this.form.get('rememberMe')?.value) {
               localStorage.setItem('token', token);
             }
-            // Bejme navigate ne hyrje te aplikacionit
-            this.messageService.add({key: 'toast', detail: 'Success', severity: 'success', summary: 'Logged in succesfully'})
             this.router.navigateByUrl('/loan');
-            // this.isLoading = false;
+            this.isLoading = false;
+            this.messageService.add({key: 'toast', detail: 'Success', severity: 'success', summary: 'Logged in succesfully'})
           },
           error: err => {
+            this.isLoading = false;
             console.log(err);
             this.authStore.setToken(null);
             localStorage.removeItem('token');

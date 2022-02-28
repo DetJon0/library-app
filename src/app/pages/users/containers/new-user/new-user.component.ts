@@ -15,6 +15,8 @@ import {emailValidator} from "../../utils/emailValidator";
 })
 export class NewUserComponent implements OnInit {
 
+  isLoading: boolean = false;
+
   multipleEmailsDisplay: boolean = true;
   errorMessage: string = ''
   emailArray: string[] = [];
@@ -71,6 +73,8 @@ export class NewUserComponent implements OnInit {
     console.log(this.form.value);
     console.log(this.form.value.emails);
 
+    this.isLoading = true;
+
     const user: NewUserData = {
       data: this.form.value,
     }
@@ -79,11 +83,13 @@ export class NewUserComponent implements OnInit {
 
     this.usersService.postUser(user).subscribe({
         next: (res) => {
+          this.isLoading = false
           this.messageService.add({key: 'toast', detail: 'Success', severity: 'success', summary: 'Created succesfully'})
           this.store.load({})
           this.router.navigateByUrl('/iam');
         },
         error: (err) => {
+          this.isLoading = false
           this.messageService.add({key: 'toast', detail: 'Error', severity: 'error', summary: 'Error! Please use a valid email'})
           console.log(err);
         }

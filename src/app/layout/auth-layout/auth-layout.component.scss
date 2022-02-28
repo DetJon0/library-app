@@ -24,5 +24,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
+
+    @media(max-width: 62.5em) {
+      background-image: linear-gradient(rgba(#eee, .95), rgba(#eee, .95)), url("https://vue-library-demo.web.app/images/signin.jpg");;
+
+      background-size: cover;
+      background-position: center;
+    }
   }
 }

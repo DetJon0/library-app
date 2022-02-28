@@ -1,6 +1,6 @@
 <div class="main-container">
 
-  <div class="main-container__sidebar">
+  <div [@slideInOut]="menuState" class="main-container__sidebar">
 
     <h3>Library</h3>
     <ul class="links-list">
@@ -16,17 +16,21 @@
   <div class="page-container">
     <header>
 
-<!--      <button (click)="toggleMenu()" class="hamburger">-->
-<!--        <span>toggle menu</span>-->
-<!--      </button>-->
+      <div class="side-click">
+        <button (click)="toggleMenu()" class="button-switch">
+          <i class="pi pi-bars" style="font-size: 2.4rem"></i>
+        </button>
+      </div>
 
-      <ng-container *ngIf="nameChanges$ | async as name">
-        <app-profile-avatar [displayedName]="name + ''"></app-profile-avatar>
-        <div class="profile-details-box">
-          <p-megaMenu [model]="items" styleClass="user-panel">
-          </p-megaMenu>
-        </div>
-      </ng-container>
+      <div class="content">
+        <ng-container *ngIf="nameChanges$ | async as name">
+          <app-profile-avatar [displayedName]="name + ''"></app-profile-avatar>
+          <div class="profile-details-box">
+            <p-megaMenu [model]="items" styleClass="user-panel">
+            </p-megaMenu>
+          </div>
+        </ng-container>
+      </div>
     </header>
 
     <div class="page-view">

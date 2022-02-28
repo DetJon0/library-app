@@ -24,7 +24,14 @@
       Please input a valid password with atleast 6 characters, 1 uppercase, 1 lowercase, 1 numeric.
     </p>
 
-    <button type="submit" class="button" (click)="onSignup()" >Sign Up</button>
+    <button type="submit" class="button" (click)="onSignup()" [class.p-disabled]="!form.valid || isLoading">
+      <span class="center-alignment" style="justify-content: center;">
+         Sign Up
+         <i class="pi pi-spin pi-spinner" style="font-size: 1.4rem; margin-left: 1rem" *ngIf="isLoading"></i>
+         <i class="pi pi-chevron-right" style="font-size: 1.4rem; margin-left: 1rem" *ngIf="!isLoading"></i>
+      </span>
+    </button>
+
     <button type="button" class="signin-account-button" (click)="onSigninRedirect()">Already have an account? Sign in.</button>
   </div>
 </form>

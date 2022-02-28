@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, HostListener} from '@angular/core';
 import {MegaMenuItem} from "primeng/api";
 import {AuthService} from "../../pages/auth/services/auth.service";
 import {AuthStore} from "../../core/services/auth.store";
@@ -12,21 +12,39 @@ import {animate, state, style, transition, trigger} from "@angular/animations";
   animations: [
     trigger('slideInOut', [
       state('in', style({
-        transform: 'translateX(0)'
+        transform: 'translateX(-25rem)',
+        opacity: 0,
+        width: 0,
+        height: '700px',
       })),
       state('out', style({
-        transform: 'translateX(-100%)'
+        opacity: 1,
+        // width: '25rem',
+        transform: 'translateX(0)',
       })),
-      transition('in => out', animate('400ms ease-in-out')),
-      transition('out => in', animate('400ms ease-in-out'))
+      transition('in => out', animate('100ms ease-out')),
+      transition('out => in', animate('150ms ease-in'))
     ]),
-    ]
+  ]
 })
 export class MainLayoutComponent {
 
-  menuState:string = 'out';
 
-  toggleMenu(){
+  scrHeight:any;
+  scrWidth:any;
+
+  @HostListener('window:resize', ['$event'])
+  getScreenSize() {
+    this.scrHeight = window.innerHeight;
+    this.scrWidth = window.innerWidth;
+
+    this.scrWidth < 712 ? this.menuState = 'in' : this.menuState = 'out'
+  }
+
+
+  menuState: string = 'out';
+
+  toggleMenu() {
     this.menuState = this.menuState === 'out' ? 'in' : 'out';
   }
 
@@ -34,12 +52,14 @@ export class MainLayoutComponent {
 
   nameChanges$ = this.authStore.name$.pipe(
     tap((name) => {
-      this.items = this.getItems()
+        this.items = this.getItems()
       }
     )
   );
 
-  constructor(private authService: AuthService, private authStore: AuthStore) { }
+  constructor(private authService: AuthService, private authStore: AuthStore) {
+    this.getScreenSize();
+  }
 
   onProfileLogout() {
     this.authService.logout();
@@ -52,8 +72,8 @@ export class MainLayoutComponent {
         items: [
           [
             {
-              items: [{ label: 'Edit Profile', routerLink: '/edit-profile'},
-                { label: 'Logout', command: () => this.onProfileLogout()}]
+              items: [{label: 'Edit Profile', routerLink: '/edit-profile'},
+                {label: 'Logout', command: () => this.onProfileLogout()}]
             }
           ]
         ]

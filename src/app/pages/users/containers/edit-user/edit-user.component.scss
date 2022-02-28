@@ -23,6 +23,11 @@
   }
 }
 
+.loading-style {
+  color: white;
+  width: 1rem;
+}
+
 :host ::ng-deep {
   .p-inputtext {
     width: 50%;

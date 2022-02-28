@@ -27,7 +27,13 @@
       <button type="button" class="forgot-pass" (click)="onForgotPassword()">Forgot Password</button>
     </div>
 
-    <button type="submit" class="button" [disabled]="!form.valid" (click)="onSignIn()" >Sign In</button>
+    <button type="submit" class="button" [disabled]="!form.valid" (click)="onSignIn()" [class.p-disabled]="!form.valid || isLoading" >
+      <span class="center-alignment" style="justify-content: center;">
+         Sign In
+         <i class="pi pi-spin pi-spinner" style="font-size: 1.4rem; margin-left: 1rem" *ngIf="isLoading"></i>
+         <i class="pi pi-sign-in" style="font-size: 1.4rem; margin-left: 1rem" *ngIf="!isLoading"></i>
+      </span>
+    </button>
 <!--    <div *ngIf="isLoading">-->
 <!--      <app-loading-spinner></app-loading-spinner>-->
 <!--    </div>-->

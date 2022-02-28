@@ -65,8 +65,13 @@
               {{ statusValue === 'inProgress' ? 'In Progress' : statusValue | titlecase  }} </span>
         </div>
 
-        <button type="submit" class="button" [disabled]="!form.valid" [class.p-disabled]="!form.valid"
-                (click)="onSave()"><i class="pi pi-save"></i>Save</button>
+        <button type="submit" class="button" [disabled]="!form.valid" [class.p-disabled]="!form.valid" (click)="onSave()">
+          <span class="center-alignment">
+                <i class="pi pi-spin pi-spinner" style="font-size: 1.4rem" *ngIf="isLoading"></i>
+                <i class="pi pi-save" *ngIf="!isLoading"></i>
+                Save
+          </span>
+        </button>
         <button type="button" class="reset-button" (click)="onReset()"><i class="pi pi-undo"></i>Reset</button>
 
       </form>

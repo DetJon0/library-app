@@ -40,7 +40,11 @@
           </div>
 
           <button type="submit" class="button" [disabled]="!form.valid" (click)="onSave()" >
-            Save
+            <span class="center-alignment">
+              <i class="pi pi-spin pi-spinner" style="font-size: 1.4rem" *ngIf="isLoading"></i>
+              <i class="pi pi-save" *ngIf="!isLoading"></i>
+              Save
+            </span>
           </button>
 
 <!--          {{ form.value | json }}-->

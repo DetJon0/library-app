@@ -68,4 +68,17 @@ h2 {
   font-weight: 400;
   border: none;
   color: var(--primary-color);
+  background: none;
+}
+
+:host ::ng-deep {
+
+  .p-password input {
+    font-size: 1.4rem;
+    padding: 1.2rem;
+    width: 100%;
+    border: none;
+    border-radius: 7px;
+  }
+
 }

@@ -15,6 +15,9 @@ import {BookResponse} from "../../model/book-response.model";
 export class EditBookComponent implements OnInit, OnDestroy {
 
   isLoading: boolean = false;
+  disabled: boolean = true;
+
+  subscription: Subscription | null = null;
 
   resetObject!: {
     id: string,
@@ -33,10 +36,6 @@ export class EditBookComponent implements OnInit, OnDestroy {
     numberOfCopies: [1, [Validators.required]],
     images: ['']
   })
-
-  subscription: Subscription | null = null;
-  disabled = true;
-  // sameObject: boolean = true;
 
   book$: Observable<BookResponse | null> = this.route.params.pipe(
     pluck('id'),
@@ -60,7 +59,7 @@ export class EditBookComponent implements OnInit, OnDestroy {
               images: response.images,
             }
             this.subscription = this.form.valueChanges.pipe(tap(res => console.log(res)), map(value => {
-              console.log(JSON.stringify(value) === JSON.stringify(this.resetObject))
+              // console.log(JSON.stringify(value) === JSON.stringify(this.resetObject))
               this.disabled = JSON.stringify(value) === JSON.stringify(this.resetObject);
             })).subscribe();
             // this.sameObject = JSON.stringify(this.form.value) === JSON.stringify(this.resetObject);
@@ -83,11 +82,14 @@ export class EditBookComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    // this.store.state$.subscribe((res)=>
+    //   console.log(res.loaded));
   }
 
   onSave() {
     // console.log(this.form.value);
 
+    this.isLoading = true;
     const id = this.route.snapshot.paramMap.get('id');
 
     const book = {
@@ -98,14 +100,17 @@ export class EditBookComponent implements OnInit, OnDestroy {
     if (id) {
       this.booksService.editBook(id, book).subscribe({
           next: (res) => {
-            console.log(res);
-            console.log(book.data);
-            console.log(this.resetObject);
+            // console.log(res);
+            // console.log(this.store.loading);
+            // console.log(book.data);
+            // console.log(this.resetObject);
+            this.isLoading = false;
             this.messageService.add({key: 'toast', detail: 'Success', severity: 'success', summary: 'Edited succesfully'})
             this.store.load({})
             this.router.navigateByUrl('/book');
           },
           error: (err) => {
+            this.isLoading = false;
             this.messageService.add({key: 'toast', detail: 'Error', severity: 'error', summary: err.message})
             console.log(err);
           }
