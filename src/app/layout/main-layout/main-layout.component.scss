@@ -8,9 +8,16 @@
     background-color: white;
     border-right: 1px solid rgba(0,0,0, .2);
 
-    h3 {
-      margin-top: 2rem;
-      text-align: center;
+    .heading-link {
+      text-decoration: none;
+      font-size: 2rem;
+      //font-weight: 500;
+      color: #1c1b1b;
+
+      .library-text {
+        margin-top: 2rem;
+        text-align: center;
+      }
     }
 
     ul {

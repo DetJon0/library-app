@@ -61,7 +61,7 @@ export class LoansStore extends ComponentStore<LoansState> {
   constructor(private loansService: LoansService) {
     super(initialState);
 
-    // this.state$.subscribe(console.log)
+    this.state$.subscribe(console.log)
   }
 
   get params() {

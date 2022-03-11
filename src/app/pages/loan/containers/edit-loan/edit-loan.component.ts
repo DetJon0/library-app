@@ -44,7 +44,8 @@ export class EditLoanComponent implements OnInit, OnDestroy {
   book$: Observable<LoanBookResponse | null> = this.route.params.pipe(
     pluck('id'),
     switchMap((id: string) =>
-      id ? this.loansService.getLoanBookById(id).pipe(tap((response) => {
+      id ?
+        this.loansService.getLoanBookById(id).pipe(tap((response) => {
             // console.log(response);
             this.form.patchValue({
               id: response.id,
@@ -63,6 +64,8 @@ export class EditLoanComponent implements OnInit, OnDestroy {
               returnDate: '',
               status: response.status,
             }
+
+
 
             this.subscription = this.form.valueChanges.pipe(tap(res => {
               console.log(res)
@@ -88,6 +91,7 @@ export class EditLoanComponent implements OnInit, OnDestroy {
               private store: LoansStore) { }
 
   ngOnInit(): void {
+    console.log(this.route.params);
   }
 
   get statusValue() {

@@ -29,7 +29,6 @@ import {animate, state, style, transition, trigger} from "@angular/animations";
 })
 export class MainLayoutComponent {
 
-
   scrHeight:any;
   scrWidth:any;
 
