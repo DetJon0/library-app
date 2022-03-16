@@ -20,6 +20,7 @@ import {PaginatorModule} from "primeng/paginator";
 import {CommonModule} from "@angular/common";
 import {DirectiveModule} from "../../directive/directive.module";
 import {RippleModule} from "primeng/ripple";
+import {TranslocoModule} from "@ngneat/transloco";
 
 const routes: Routes = [
   {
@@ -45,23 +46,24 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [
-    // LayoutModule,
-    CommonModule,
-    RouterModule.forChild(routes),
-    InputTextModule,
-    AutoCompleteModule,
-    FormsModule,
-    ReactiveFormsModule,
-    SharedModule,
-    CalendarModule,
-    DropdownModule,
-    TableModule,
-    PaginatorModule,
-    SharedModule,
-    DirectiveModule,
-    RippleModule,
-  ],
+    imports: [
+        // LayoutModule,
+        CommonModule,
+        RouterModule.forChild(routes),
+        InputTextModule,
+        AutoCompleteModule,
+        FormsModule,
+        ReactiveFormsModule,
+        SharedModule,
+        CalendarModule,
+        DropdownModule,
+        TableModule,
+        PaginatorModule,
+        SharedModule,
+        DirectiveModule,
+        RippleModule,
+        TranslocoModule,
+    ],
   declarations: [
     LoanComponent,
     NewLoanComponent,

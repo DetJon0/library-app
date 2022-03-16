@@ -22,9 +22,16 @@
         </button>
       </div>
 
+<!--      <div class="language-box">-->
+<!--        <select class="custom-select" (change)="changeLang($event)" >-->
+<!--          <option value="en" [selected]="lang === 'en'" >English</option>-->
+<!--          <option value="de" [selected]="lang === 'de'">Deutsch</option>-->
+<!--        </select>-->
+<!--      </div>-->
+
       <div class="content">
         <ng-container *ngIf="nameChanges$ | async as name">
-          <app-profile-avatar [displayedName]="name + ''"></app-profile-avatar>
+          <app-profile-avatar [displayedName]="name + ''" [avatarUrl]="avatar" ></app-profile-avatar>
           <div class="profile-details-box">
             <p-megaMenu [model]="items" styleClass="user-panel">
             </p-megaMenu>

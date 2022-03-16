@@ -10,12 +10,14 @@ import {ProfileAvatarComponent} from "./main-layout/components/profile-avatar.co
 import {SharedModule} from "../shared/shared.module";
 import {DirectiveModule} from "../directive/directive.module";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import { SanitizerPipe } from './main-layout/pipes/sanitizer.pipe';
 
 @NgModule({
   declarations: [
     AuthLayoutComponent,
     MainLayoutComponent,
-    ProfileAvatarComponent
+    ProfileAvatarComponent,
+    SanitizerPipe
   ],
     imports: [
         CommonModule,

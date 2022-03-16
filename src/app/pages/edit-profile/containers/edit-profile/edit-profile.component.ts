@@ -5,6 +5,7 @@ import {AuthService} from "../../../auth/services/auth.service";
 import {AuthStore} from "../../../../core/services/auth.store";
 import {MessageService} from "primeng/api";
 import {catchError, take} from "rxjs";
+import {User} from "../../../../models/user.model";
 
 @Component({
   selector: 'app-edit-profile',
@@ -14,7 +15,8 @@ import {catchError, take} from "rxjs";
 export class EditProfileComponent implements OnInit {
 
   fileName = '';
-  file = null;
+  file!: FormData;
+  privateUrl = null;
 
   constructor(private fb: FormBuilder,
               private router: Router,
@@ -55,16 +57,34 @@ export class EditProfileComponent implements OnInit {
 
   }
 
-
   onCancel() {
     this.router.navigate(['loan'])
   }
 
   onFile(event: any) {
-    console.log(event.target.files)
+    console.log(event.target.files[0])
 
+    const file = event.target.files[0]
+
+    if(file) {
+      let formData = new FormData();
+
+      formData.append('file', file, file.name);
+      formData.append('filename', file.name);
+
+      console.log(formData);
+      this.file = formData
+
+      this.authService.upload(formData).subscribe(response => {
+        this.privateUrl = response.privateUrl;
+      });
+      console.log(this.file);
+    }
+
+
+    //
     // const file:File = event.target.files[0];
-
+    //
     // if (file) {
     //
     //   this.fileName = file.name;
@@ -76,13 +96,12 @@ export class EditProfileComponent implements OnInit {
     //   this.authService.edit(formData).subscribe(response => console.log(response));
     //
     //   this.authService.upload(formData).subscribe(response => console.log(response));
-
-
-      // this.authService.me().pipe(take(1)).subscribe({
-      //   next: (me: User) => {
-      //     console.log(me);
-      //   }
-      // })
+    //
+    //   this.authService.me().pipe(take(1)).subscribe({
+    //     next: (me: User) => {
+    //       console.log(me);
+    //     }
+    //   })
     // }
 
   }
@@ -97,6 +116,7 @@ export class EditProfileComponent implements OnInit {
       firstName: newCredentials.firstName,
       lastName: newCredentials.lastName,
       phoneNumber: newCredentials.phoneNumber,
+      avatars: {...this.file, privateUrl: this.privateUrl}
     }
 
     this.authService.edit(credentials).subscribe({

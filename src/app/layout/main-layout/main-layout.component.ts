@@ -1,4 +1,4 @@
-import {Component, HostListener} from '@angular/core';
+import {Component, HostListener, OnInit} from '@angular/core';
 import {MegaMenuItem} from "primeng/api";
 import {AuthService} from "../../pages/auth/services/auth.service";
 import {AuthStore} from "../../core/services/auth.store";
@@ -27,7 +27,11 @@ import {animate, state, style, transition, trigger} from "@angular/animations";
     ]),
   ]
 })
-export class MainLayoutComponent {
+export class MainLayoutComponent implements OnInit{
+
+  avatar!: string;
+
+  lang!: string;
 
   scrHeight:any;
   scrWidth:any;
@@ -56,6 +60,18 @@ export class MainLayoutComponent {
     )
   );
 
+  ngOnInit() {
+    this.lang = localStorage.getItem('lang') || "en"
+
+    this.authService.me().subscribe((res)=> {
+      console.log(res)
+
+      console.log(res.avatars[0]?.privateUrl);
+
+      this.avatar = res.avatars[0]?.privateUrl
+    })
+  }
+
   constructor(private authService: AuthService, private authStore: AuthStore) {
     this.getScreenSize();
   }
@@ -80,4 +96,13 @@ export class MainLayoutComponent {
     ];
   }
 
+  changeLang(lang: any) {
+
+    console.log(lang.target.value);
+
+    let value = lang.target.value
+
+    localStorage.setItem('lang', value)
+    window.location.reload()
+  }
 }

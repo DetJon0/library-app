@@ -10,6 +10,10 @@ export class ProfileAvatarComponent implements OnInit {
 
   name: string | null = '';
 
+  local: string = 'C:\\Users\\Adi\\Desktop\\Adi\\backend-mongodb\\config\\storage\\user\\avatars\\profile\\6231ba8f7b57d90cc07b261c\\preview.png'
+
+  @Input() avatarUrl!: string;
+
   @Input() set displayedName(name: string | null) {
     this.name = name;
     this.createInititals();
