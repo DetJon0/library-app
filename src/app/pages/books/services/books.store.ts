@@ -51,7 +51,7 @@ export class BooksStore extends ComponentStore<BooksState>{
 
   constructor(private booksService: BooksService) {
     super(initialState);
-    // this.state$.subscribe(console.log)
+    this.state$.subscribe(console.log)
   }
 
   get params() {

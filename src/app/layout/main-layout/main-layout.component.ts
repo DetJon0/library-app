@@ -44,7 +44,6 @@ export class MainLayoutComponent implements OnInit{
     this.scrWidth < 712 ? this.menuState = 'in' : this.menuState = 'out'
   }
 
-
   menuState: string = 'out';
 
   toggleMenu() {
@@ -56,12 +55,12 @@ export class MainLayoutComponent implements OnInit{
   nameChanges$ = this.authStore.name$.pipe(
     tap((name) => {
         this.items = this.getItems()
+
       }
     )
   );
 
   ngOnInit() {
-    this.lang = localStorage.getItem('lang') || "en"
 
     this.authService.me().subscribe((res)=> {
       console.log(res)

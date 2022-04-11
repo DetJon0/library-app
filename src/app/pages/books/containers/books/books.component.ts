@@ -1,7 +1,6 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {BooksStore} from "../../services/books.store";
 import {BooksService} from "../../services/books.service";
-import {Book} from "../../model/book.model";
 import {BooksTableComponent} from "../../components/books-table/books-table.component";
 import {take} from "rxjs";
 import {ConfirmationService, MessageService} from "primeng/api";
