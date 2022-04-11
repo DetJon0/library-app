@@ -24,3 +24,5 @@ $ npm start
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
 ## Contributors
+- Git - [Adi](https://github.com/adi-matraku)
+- Git - [Fiorelo](https://github.com/fiorelo11)
