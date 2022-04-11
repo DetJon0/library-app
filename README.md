@@ -5,14 +5,14 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 ## Installation & Usage
 To clone and run this application you'll need [Git](https://git-scm.com/downloads) and [Node.js](https://nodejs.org/en/) installed on your computer.
 
-```
-# <h1>Clone repository</h1>
+```html
+# <h2>Clone repository</h2>
 $ git clone https://github.com/adi-matraku/library-app.git
 
 # Go into the repository
 $ cd library-app
 
-# Instal ldependencies
+# Install dependencies
 $ npm install
 
 # Run the app
