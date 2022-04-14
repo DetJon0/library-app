@@ -25,13 +25,13 @@ export class SignInComponent {
   }
 
   form = this.fb.group({
-    email: ['test@gmail.com', {
+    email: ['test2@gmail.com', {
       validators: [
         Validators.required,
         Validators.minLength(6)]
     }],
     password: [
-      '12345678',
+      'A123456$',
       [Validators.required
       ]
     ],

@@ -55,7 +55,6 @@ export class MainLayoutComponent implements OnInit{
   nameChanges$ = this.authStore.name$.pipe(
     tap((name) => {
         this.items = this.getItems()
-
       }
     )
   );

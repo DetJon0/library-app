@@ -9,7 +9,6 @@ import {ToastModule} from "primeng/toast";
 import {ConfirmationService, MessageService} from "primeng/api";
 import {ConfirmDialogModule} from "primeng/confirmdialog";
 import {LayoutModule} from "./layout/layout.module";
-import { TranslocoRootModule } from './transloco-root.module';
 
 @NgModule({
   declarations: [
@@ -24,7 +23,6 @@ import { TranslocoRootModule } from './transloco-root.module';
     CoreModule,
     ToastModule,
     ConfirmDialogModule,
-    TranslocoRootModule,
   ],
   bootstrap: [AppComponent],
   providers: [

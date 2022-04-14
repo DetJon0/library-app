@@ -15,8 +15,8 @@ export const initialState: AuthState = {
 @Injectable({providedIn: 'root'})
 export class AuthStore {
 
-  state$$ = new BehaviorSubject<AuthState>(initialState)
-  state$ = this.state$$.asObservable();
+  state$$ = new BehaviorSubject<AuthState>(initialState) // Subject and Observable
+  state$ = this.state$$.asObservable(); // Take the subject as an Observable
   user$ = this.state$.pipe(pluck('user'))
   name$ = this.user$.pipe(pluck('firstName'))
 
