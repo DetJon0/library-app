@@ -25,13 +25,13 @@ export class SignInComponent {
   }
 
   form = this.fb.group({
-    email: ['test2@gmail.com', {
+    email: ['test@gmail.com', {
       validators: [
         Validators.required,
         Validators.minLength(6)]
     }],
     password: [
-      'A123456$',
+      'Asdfg123$',
       [Validators.required
       ]
     ],
@@ -67,7 +67,7 @@ export class SignInComponent {
           },
           error: err => {
             this.isLoading = false;
-            console.log(err);
+            console.log('ERROR:',err);
             this.authStore.setToken(null);
             localStorage.removeItem('token');
             // this.isLoading = false;
@@ -77,6 +77,7 @@ export class SignInComponent {
       },
       error: err => {
         console.log(err);
+        this.isLoading = false;
         this.messageService.add({key: 'toast', detail: 'Error', severity: 'error', summary: 'Sorry, we don\'t recognize your credentials'})
       }
 

@@ -50,6 +50,7 @@ export class UsersComponent implements OnInit {
   }
 
   searchParams(event: any) {
+    console.log(event);
     this.store.load ({
       id: event.id,
       email: event.email,
