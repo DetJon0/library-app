@@ -20,14 +20,12 @@
           (searchQuery)="searchParams($event)"></app-users-form>
 
       <app-users-table
-        [selectedUsers]="usersSelection"
         [rows]="state.params.limit"
         [total]="state.total"
         [users]="state.data"
         (paginationChanged)="paginate($event)"
         (sortChanged)="sort($event)"
         (userSelection)="selectedUsers($event)"
-
         [loading]="state.loading">
       </app-users-table>
 

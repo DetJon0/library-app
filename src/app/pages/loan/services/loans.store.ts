@@ -68,8 +68,8 @@ export class LoansStore extends ComponentStore<LoansState> {
     return this.get(s => s.params);
   }
 
-  load = this.effect((params$: Observable<Partial<LoansParams>>) => params$
-    .pipe(tap(() => this.patchState({ loading: true, loaded: false, error: null })),
+  load = this.effect((params$: Observable<Partial<LoansParams>>) =>
+    params$.pipe(tap(() => this.patchState({ loading: true, loaded: false, error: null })),
       switchMap(params => {
         const currentParams = this.params;
         const newParams = { ...currentParams, ...params };
@@ -92,5 +92,6 @@ export class LoansStore extends ComponentStore<LoansState> {
           )
         );
       })
-    ));
-  }
+  ));
+
+}
