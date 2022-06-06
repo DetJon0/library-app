@@ -58,6 +58,7 @@ export class SignInComponent {
           next: (me: User) => {
             console.log(me);
             this.authStore.setUser(me)
+            console.log(!!this.form.get('rememberMe')?.value);
             if (!!this.form.get('rememberMe')?.value) {
               localStorage.setItem('token', token);
             }

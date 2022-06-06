@@ -11,21 +11,21 @@
     <button type="button" class="audit-button" (click)="exportFile()"><i class="pi pi-file-excel"></i>Export to Excel</button>
 
     <ng-container *ngIf="store.state$ | async as state">
-    <div class="loan-container">
-      <app-loans-form
-        [formValue]="state.params"
-      (searchQuery)="searchParams($event)"></app-loans-form>
-    </div>
+     <div class="loan-container">
+       <app-loans-form
+         [formValue]="state.params"
+       (searchQuery)="searchParams($event)"></app-loans-form>
+     </div>
 
-      <app-loans-table
-        [rows]="state.params.limit"
-        [total]="state.total"
-        [books]="state.data"
-        (paginationChanged)="paginate($event)"
-        (loansSelection)="selectedLoans($event)"
-        (sortChanged)="sort($event)"
-        [loading]="state.loading">
-      </app-loans-table>
+     <app-loans-table
+       [rows]="state.params.limit"
+       [total]="state.total"
+       [books]="state.data"
+       (paginationChanged)="paginate($event)"
+       (loansSelection)="selectedLoans($event)"
+       (sortChanged)="sort($event)"
+       [loading]="state.loading">
+     </app-loans-table>
 
     </ng-container>
 

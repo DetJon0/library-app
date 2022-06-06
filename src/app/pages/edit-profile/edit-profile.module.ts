@@ -8,8 +8,6 @@ import {CommonModule} from "@angular/common";
 import {InputMaskModule} from 'primeng/inputmask';
 import {FileUploadModule} from 'primeng/fileupload';
 import {HttpClientModule} from '@angular/common/http';
-import {SharedModule} from "../../shared/shared.module";
-
 
 const routes: Routes = [
   {
@@ -34,6 +32,4 @@ const routes: Routes = [
     EditProfileComponent
   ]
 })
-export class EditProfileModule {
-
-}
+export class EditProfileModule {}

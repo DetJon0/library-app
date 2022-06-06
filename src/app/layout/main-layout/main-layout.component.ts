@@ -50,7 +50,7 @@ export class MainLayoutComponent implements OnInit{
     this.menuState = this.menuState === 'out' ? 'in' : 'out';
   }
 
-  items: MegaMenuItem[] = this.getItems();
+  items!: MegaMenuItem[]
 
   nameChanges$ = this.authStore.name$.pipe(
     tap((name) => {

@@ -48,6 +48,7 @@ export class BooksTableComponent implements OnInit {
   }
 
   paginate(event: PaginationModel) {
+    console.log(event);
     this.paginationChanged.emit(event);
   }
 

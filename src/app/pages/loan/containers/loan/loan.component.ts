@@ -50,6 +50,7 @@ export class LoanComponent {
   }
 
   paginate(event: any) {
+    console.log(event);
     this.store.load({limit: event.rows, offset: event.first})
   }
 

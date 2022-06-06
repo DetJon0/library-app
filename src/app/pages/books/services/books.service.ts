@@ -71,7 +71,7 @@ export class BooksService {
   }
 
   editBook(id: string, book: BookEditModel): Observable<any> {
-    return  this.http.put(`${environment.apiUrl}/api/book/${id}`, book)
+    return this.http.put(`${environment.apiUrl}/api/book/${id}`, book)
   }
 
   singleDeleteBook(id: string): Observable<any> {

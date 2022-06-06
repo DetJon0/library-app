@@ -23,32 +23,22 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    const token = localStorage.getItem('token')
-    if(token) {
-      this.authStore.setToken(token);
-      this.authService.me().pipe(take(1)).subscribe({
-        next: (me: User) => {
-          this.authStore.setUser(me)
-          console.log(this.authStore.state);
-          // console.log(this.authStore.state.user?.roles);
-          // const role = this.authStore.state.user?.roles
-          // console.log(role?.some((res)=> res === 'owner'));
-
-          // console.log(this.role?.includes('jane'));
-          // if(role?.includes('owner')) {
-          //   console.log(true);
-          // } else {
-          //   console.log(false);
-          // }
-        },
-        error: err => {
-          console.log(err);
-          this.authStore.setToken(null);
-          localStorage.removeItem('token');
-          //  shto nje toast qe shfaq err.message
-        }
-      })
-    }
+    // const token = localStorage.getItem('token')
+    // if(token) {
+    //   this.authStore.setToken(token);
+    //   this.authService.me().pipe(take(1)).subscribe({
+    //     next: (me: User) => {
+    //       this.authStore.setUser(me)
+    //       console.log(this.authStore.state);
+    //     },
+    //     error: err => {
+    //       console.log(err);
+    //       this.authStore.setToken(null);
+    //       localStorage.removeItem('token');
+    //       //  shto nje toast qe shfaq err.message
+    //     }
+    //   })
+    // }
 
   }
 }

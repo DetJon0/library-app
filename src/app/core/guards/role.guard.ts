@@ -16,7 +16,7 @@ export class RoleGuard implements CanActivate {
     router: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
 
     const role = this.authStore.state.user?.roles
-    // console.log(role);
+    console.log(role);
     const routeData = route.data['role']
 
     const intersection = intersect(role, routeData)

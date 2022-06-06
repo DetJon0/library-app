@@ -100,10 +100,6 @@ export class EditBookComponent implements OnInit, OnDestroy {
     if (id) {
       this.booksService.editBook(id, book).subscribe({
           next: (res) => {
-            // console.log(res);
-            // console.log(this.store.loading);
-            // console.log(book.data);
-            // console.log(this.resetObject);
             this.isLoading = false;
             this.messageService.add({key: 'toast', detail: 'Success', severity: 'success', summary: 'Edited succesfully'})
             this.store.load({})
