@@ -31,10 +31,6 @@ $ npm start
 ## Backend
 For accessing the backend of the app, proceed here: [code](https://github.com/felipepastorelima/vue-library/tree/master/1-Project/backend-mongodb)
 
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
 ## Contributors
 - Git - [Adi](https://github.com/adi-matraku)
 - Git - [Fiorelo](https://github.com/fiorelo11)
