@@ -50,15 +50,12 @@ export class SignInComponent {
 
     this.authService.login(email, password).pipe(take(1)).subscribe({
       next: token => {
-        // console.log(token);
-        // Vendosim tokenin ne Behaviour Subject
+        // We set the token into Behaviour Subject
         this.authStore.setToken(token);
 
         this.authService.me().pipe(take(1)).subscribe({
           next: (me: User) => {
-            console.log(me);
             this.authStore.setUser(me)
-            console.log(!!this.form.get('rememberMe')?.value);
             if (!!this.form.get('rememberMe')?.value) {
               localStorage.setItem('token', token);
             }
@@ -79,7 +76,7 @@ export class SignInComponent {
       error: err => {
         console.log(err);
         this.isLoading = false;
-        this.messageService.add({key: 'toast', detail: 'Error', severity: 'error', summary: 'Sorry, we don\'t recognize your credentials'})
+        this.messageService.add({key: 'toast', detail: 'Error', severity: 'error', summary: 'Cannot Authenticate. An error occured.'})
       }
 
     })

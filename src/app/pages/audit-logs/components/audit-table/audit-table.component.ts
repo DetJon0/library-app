@@ -49,10 +49,7 @@ export class AuditTableComponent implements OnInit {
   }
 
   showResponsiveDialog(rowData: AuditLogsModel) {
-    // console.log(rowData);
-    // console.log(rowData.values);
     this.values = rowData.values
-    // console.log(this.values);
     this.displayResponsive = true;
   }
 

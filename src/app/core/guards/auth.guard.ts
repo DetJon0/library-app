@@ -1,6 +1,6 @@
 import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot} from "@angular/router";
 import {AuthStore} from "../services/auth.store";
-import {Observable} from "rxjs";
+import {Observable, of} from "rxjs";
 import {Injectable} from "@angular/core";
 
 @Injectable({ providedIn: 'root' })
@@ -13,6 +13,7 @@ export class AuthGuard implements CanActivate {
 
     if(user) {
       // console.log(user);
+      console.log('auth');
       return true;
     } else {
       // console.log(user);

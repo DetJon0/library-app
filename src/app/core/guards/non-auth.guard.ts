@@ -1,6 +1,6 @@
 import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot} from "@angular/router";
 import {AuthStore} from "../services/auth.store";
-import {Observable} from "rxjs";
+import {Observable, of} from "rxjs";
 import {Injectable} from "@angular/core";
 
 @Injectable({
@@ -14,7 +14,6 @@ export class NonAuthGuard implements CanActivate {
     const user = this.authStore.state.user;
 
     if(!user) {
-      // console.log(user);
       return true;
     } else {
       console.log(user);

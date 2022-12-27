@@ -85,7 +85,8 @@ export class MainLayoutComponent implements OnInit{
         items: [
           [
             {
-              items: [{label: 'Edit Profile', routerLink: '/edit-profile'},
+              items: [
+                {label: 'Edit Profile', routerLink: '/edit-profile'},
                 {label: 'Logout', command: () => this.onProfileLogout()}]
             }
           ]
