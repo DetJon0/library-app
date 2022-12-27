@@ -33,10 +33,10 @@ const routes: Routes = [
     path: 'new',
     component: NewUserComponent
   },
-  {
-    path: 'import',
-    component: ImportUserComponent
-  },
+  // {
+  //   path: 'import',
+  //   component: ImportUserComponent
+  // },
   {
     path: ':id',
     component: ViewUserComponent

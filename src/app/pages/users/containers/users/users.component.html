@@ -5,10 +5,10 @@
 
     <ng-container *ngIf="store.state$ | async as state">
     <button type="button" routerLink="new" class="button"><i class="pi pi-plus"></i>New</button>
-    <button type="button" routerLink="import" class="button"><i class="pi pi-upload"></i>Import</button>
+    <button type="button" class="button"><i class="pi pi-upload"></i>Import</button>
     <button type="button" class="button" >Remove</button>
     <button  type="button" [class.p-disabled]="usersSelection.length === 0"
-             class="button"(click)="onStatusChangeUser(false)"><i class="pi pi-check"></i>Enable</button>
+             class="button" (click)="onStatusChangeUser(false)"><i class="pi pi-check"></i>Enable</button>
     <button type="button" (click)="onStatusChangeUser(true)" class="button"
             [class.p-disabled]="usersSelection.length === 0" ><i class="pi pi-ban"></i>Disable</button>
     <button type="button" routerLink="/audit-logs" class="audit-button" ><i class="pi pi-history"></i>Audit Logs</button>
