@@ -29,7 +29,7 @@ $ npm start
 ```
 
 ## Backend
-For accessing the backend of the app, proceed here: [code](https://github.com/felipepastorelima/vue-library/tree/master/1-Project/backend-mongodb).2
+For accessing the backend of the app, proceed here: [code](https://github.com/felipepastorelima/vue-library/tree/master/1-Project/backend-mongodb)
 
 ## Build
 
